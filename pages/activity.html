@@ -30,7 +30,7 @@
 
             <div class="d-flex align-items-center justify-content-center flex-grow-1 status-info">
                 <!-- Modal for opening or not -->
-                <div class="avatar avatar-xl position-relative" data-bs-toggle="modal"
+                <div class="avatar avatar-xl position-relative" data-bs-toggle="modal" id="mosa2"
                     data-bs-target="#staticBackdrop">
                     <!-- 上線中statusLight 是 bg-success，休息是 bg-warning-->
                     <div class="status">
@@ -563,7 +563,7 @@
             })
           
             if (alist[1][0].shop_logo_img) {
-              $('.avatar img').prop('src', '../' + alist[1][0].shop_logo_img);
+              $('#mosa2 img').prop('src', '../' + alist[1][0].shop_logo_img);
             }
 
             // 將左側 menu 的文字改成店名
