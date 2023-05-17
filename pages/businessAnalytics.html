@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+
+  <title>businessAnalytics</title>
+  <!-- BS CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="/css/backstage_share_frame.css">
+  <link rel="stylesheet" href="/css/stars_progress_accordion.css">
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <!-- chart.js圖表樣式 -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- 折線圖 -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
+  <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+  <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery.canvasjs.stock.min.js"></script>
+  <!-- <script type="text/javascript" src="../../public/js/businessAnalytics/stockchart.js"></script> -->
+ <!-- title ICON -->
+<link rel="icon" type="image/x-icon" href="/pic/favicon32.ico">
+ <style>
+    /* 星星 */
+    .stars {
+      --star-size: 20px;
+      --star-color: #ddd;
+      --star-background: #ffc107;
+      --percent: calc(var(--rating) / 5 * 100%);
+
+      display: inline-block;
+      font-size: var(--star-size);
+      font-family: Times;
+      line-height: 1;
+    }
+
+    /* .stars::before {
+      content: '★★★★★';
+      letter-spacing: 3px;
+      background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    } */
+
+    progress {
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    progress {
+      width: 168px;
+      height: 10px;
+    }
+
+    progress::-webkit-progress-bar {
+      background-color: #e6e4e4;
+      border-radius: 5px;
+    }
+
+    progress::-webkit-progress-value {
+      background-color: #ffc107;
+      border-radius: 5px;
+    }
+
+    /* 手風琴按鈕 */
+
+    #myChart1 {
+      height: 367px;
+    }
+
+    #timeline {
+      width: 650px;
+      height: 10px;
+      background-color: #F2EDED;
+      position: relative;
+    }
+
+    #timeline .event {
+      position: absolute;
+      height: 10px;
+      cursor: pointer;
+      border: 0px solid rgba(255, 255, 255, 0);
+    }
+
+    .popover-content {
+      display: none;
+    }
+
+    .upload-container {
+      position: relative;
+      background-color: antiquewhite;
+      height: 100px;
+      width: 100%;
+    }
+
+    .upload-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .upload-container span {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255, 255, 255, 0.8);
+      opacity: 0.5;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .upload-container span:hover {
+      opacity: 1;
+    }
+
+    .upload-container span i {
+      font-size: 20px;
+      color: #000;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="container-fluid p-0 d-flex justify-content-center align-items-center vh-100">
+    <div class="container backstage_body row align-items-center justify-content-between">
+      <div class="col-2 backstage_nav card p-0 ">
+        <div class="d-flex flex-column h-100 pb-2 pt-4 ">
+
+            <div class="d-flex align-items-center justify-content-center flex-grow-1 status-info">
+                <!-- Modal for opening or not -->
+                <div class="avatar avatar-xl position-relative" data-bs-toggle="modal"
+                    data-bs-target="#staticBackdrop">
+                    <!-- 上線中statusLight 是 bg-success，休息是 bg-warning-->
+                    <div class="status">
+                        <div class="bg-success statusLight"></div>
+                    </div>
+                    <img src="/pic/mosa2.jpg" alt="" class="rounded-circle ">
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">選擇營業狀態</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+
+
+                        <div class="modal-body">
+                            <div class="form-check fs-4">
+                                <input class="form-check-input custom-radio" type="radio"
+                                    name="flexRadioDefault" id="flexRadioDefault1" checked />
+                                <label class="form-check-label" for="flexRadioDefault1"> 營業中 </label>
+                                <span class="checkmark"></span>
+                            </div>
+
+                            <div class="form-check mt-3 fs-4">
+                                <input class="form-check-input custom-radio" type="radio"
+                                    name="flexRadioDefault" id="flexRadioDefault2" />
+                                <label class="form-check-label" for="flexRadioDefault2"> 閉店中 </label>
+                                <span class="checkmark"></span>
+                            </div>
+                        </div>
+
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light btn-outline-secondary"
+                                data-bs-dismiss="modal">關閉</button>
+                            <button type="button" class="btn btn-success">確認</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 商家名稱 -->
+            <p class="mb-0 mt-2 mb-4 text-center fw-bold fs-6" id="welcomeText"></p>
+
+            <a href="/backstage/clientinfo" class="d-flex align-items-start py-2 mt-2 flex-grow-1 nav_a">
+                <i class="bi bi-info-circle  text-sm  me-3 fs-5 fw-bold "></i>
+                <span class="nav-link-text ms-1">店家資訊</span>
+            </a>
+            <a href="/backstage/businessAnalytics/all" class="d-flex align-items-start py-2 flex-grow-1 nav_a">
+                <i class="bi bi-pie-chart  text-sm  me-3 fs-5 fw-bold "></i>
+                <span class="nav-link-text ms-1">平台分析</span>
+            </a>
+            <a href="/backstage/businessAnalytics/self" class="d-flex align-items-start py-2 flex-grow-1 nav_a">
+                <i class="bi bi-graph-up-arrow  text-sm  me-3 fs-5 fw-bold "></i>
+                <span class="nav-link-text ms-1">本店分析</span>
+            </a>
+            <a href="/backstage/menu" class="d-flex align-items-start py-2 flex-grow-1 nav_a">
+                <i class="bi bi-clipboard  text-sm  me-3 fs-5 fw-bold "></i>
+                <span class="nav-link-text ms-1">菜單專區</span>
+            </a>
+            <a href="/backstage/activity" class="d-flex align-items-start py-2 flex-grow-1 nav_a">
+                <i class="bi bi-megaphone  text-sm  me-3 fs-5 fw-bold "></i>
+                <span class="nav-link-text ms-1">活動專區</span>
+            </a>
+
+            <!-- 下面兩個按鈕 -->
+            <div class=" mt-3 px-2 py-2 btnContainer">
+                <hr>
+                <button href="" target="_blank" class="btn btn-light btn-sm w-100 mb-3 fw-bold rounded-3"><i
+                        class="bi bi-house me-3 ps-2 "></i>我的餐廳</button>
+                <button class="btn btn-warning btn-sm  w-100 fw-bold  mb-3 rounded-3" type="button"><i
+                        class="bi bi-box-arrow-left me-3 ps-2 pe-3"></i>登出</button>
+
+            </div>
+
+        </div>
+    </div>
+      <!-- 右邊 -->
+
+      <!-- 分析_左_評論-->
+      <div class="col-10 backstage_main_area">
+
+        <div class="d-flex justify-content-between mb-2 " style="height: 40%;">
+          <div class="mosa_card me-2 h-100" style="width: 50%; ">
+            <div class="card-body ">
+              <div class="row align-items-center">
+                <div class="col-5  text-center d-flex align-items-center justify-content-center flex-column ">
+                  <span class="fs-1">4.8</span>
+                  <!-- <div class="stars" data-rating="4"></div> -->
+                  <!-- <span class="fs-6">8888 則回覆</span> -->
+                </div>
+                <!-- 1~5顆星 -->
+                <div class="col-7 px-3 ">
+                  <div class="text-warning d-flex align-items-center">
+                    <span>5</span>
+                    <i class="bi bi-star-fill pe-1"></i>
+                    <progress value="67" max="100"></progress>
+                  </div>
+                  <div class="text-warning  d-flex align-items-center">
+                    <span>4</span>
+                    <i class="bi bi-star-fill pe-1"></i>
+                    <progress value="20" max="100"></progress>
+                  </div>
+                  <div class="text-warning  d-flex align-items-center">
+                    <span>3</span>
+                    <i class="bi bi-star-fill pe-1"></i>
+                    <progress value="5" max="100"></progress>
+                  </div>
+                  <div class="text-warning  d-flex align-items-center">
+                    <span>2</span>
+                    <i class="bi bi-star-fill pe-1"></i>
+                    <progress value="5" max="100"></progress>
+                  </div>
+                  <div class="text-warning  d-flex align-items-center">
+                    <span>1</span>
+                    <i class="bi bi-star-fill pe-1"></i>
+                    <progress value="3" max="100"></progress>
+                  </div>
+
+                </div>
+              </div>
+              <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#commentModal">評論總覽<i class="bi bi-list-stars"></i></button> -->
+              <button id="commentBtn" type="button" class="btn btn-secondary w-100 mt-4" data-bs-toggle="modal"
+                data-bs-target="#commentModal">
+                評論總覽<i class="bi bi-list-stars"></i>
+              </button>
+
+
+            </div>
+          </div>
+          <div class="mosa_card mb-4" style="height: 100%;width: 50%;">
+            <div class="card-body p-auto align-items-center" style="width: 90%; height: 100%; display: block;">
+              <div>觸及數-年齡分布</div>
+              <canvas id="myChart2" style="height: 70%;"></canvas>
+            </div>
+          </div>
+
+        </div>
+
+        <div class=" mt-1 " style="height: 80%; width: 100%; display: block;">
+
+          <div class="card py-4 d-flex justify-content-center" style="height: auto; width: 100%;">
+            <div class=" px-4 d-flex justify-content-center" style="height:367px; width: 100%;">
+
+              <canvas id="myChart" style="height:367px;"></canvas>
+              <div class="p-3">
+                  <form class="food_checkbox">
+                      <input type="checkbox" name="item1" value="主食" checked>主食<br>
+                      <input type="checkbox" name="item2" value="招牌必點" >招牌必點<br>
+                      <input type="checkbox" name="item3" value="湯品">湯品<br>
+                      <input type="checkbox" name="item4" value="特色飲品">特色飲品<br>
+                  </form>
+              </div>
+
+            </div>
+            <div class="d-flex align-items-center" style=" width: 100%;">
+              <div class="d-flex align-items-center "
+                style="background-color: rgba(197, 119, 119, 0);height: 10px;width: 145px;font-size: 8px;text-align: right;padding-left: 40px;">
+                Coupon time </div>
+              <div id="timeline"></div>
+              <!-- <div id="summerDrink" style="background-color: rgba(255, 99, 132, 0.2); height: 10px;width: 50px;"></div>
+              <div id="happyMom"style="background-color: rgba(54, 162, 235, 0.2);height: 10px;width: 80px;"></div>
+              <div id="happyNewYear" style="background-color: rgba(255, 206, 86, 0.2);height: 10px;width: 80px;"></div>
+              <div id="winterSoup" style="background-color: rgba(75, 192, 192, 0.2);height: 10px;width: 90px;"></div> -->
+
+            </div>
+
+
+          </div>
+
+
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+  </div>
+
+  <!-- 評論Modal -->
+  <div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="commentModalLabel">評論總覽</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- 在這裡添加評論內容 -->
+          <div class="card card-plain m-2">
+            <div class="card-body">
+              <div class="author">
+                <div class="name">
+                  <h6 class="mb-0 font-weight-bolder">Nick Willever</h6>
+                  <div class="stats">
+                    <i class="bi bi-clock"></i> 1 天前
+                  </div>
+                </div>
+              </div>
+              <p class="py-1 m-0">"鮭魚好貴可不可以賣便宜一點"</p>
+              <div class="rating text-warning">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+              </div>
+            </div>
+          </div>
+          <!-- 添加更多評論卡片 -->
+        </div>
+        <div class="modal-footer ">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- replicaModal -->
+  <div class="modal fade" id="replicaModal" tabindex="-1" aria-labelledby="replicaModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="replicaModalLabel">復刻活動</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="upload-container" style="background-color: antiquewhite;height:150px; width: auto;">
+            <img id="replicaImg" src="./" alt="">
+            <input type="file" multiple="multiple" name="file" id="file_upload" style="display: none;">
+            <span>
+              <i class="bi bi-image " id="uploadIcon"></i>
+            </span>
+          </div>
+          <form>
+            <div class="mb-3">
+              <label for="replicaTitle" class="form-label">活動標題</label>
+              <input type="text" class="form-control" id="replicaTitle" value="" required>
+            </div>
+            <div class="mb-3 ">
+              <label for="recipient-name" class="col-form-label ">活動時間:</label>
+              <input id="replicaStartdate" name="enddate" type="date" class="form-control " placeholder="yyyy/mm/dd"
+                value="2023-05-31" required>
+              ~
+              <input id="replicaEnddate" name="enddate" type="date" class="form-control " placeholder="yyyy/mm/dd"
+                value="2023-05-31" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">活動說明:</label>
+              <textarea id="replicaMemo" class="form-control" rows="1" value="">111</textarea>
+            </div>
+            <!-- <div class="mb-3">
+              <label for="replicaStartDate" class="form-label">開始日期</label>
+              <input type="date" class="form-control" id="replicaStartDate" value="" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="replicaEndDate" class="form-label">结束日期</label>
+              <input type="date" class="form-control" id="replicaEndDate" value="" readonly>
+            </div> -->
+            <div class="mb-3">
+              <label for="replicaCouponText" class="form-label">優惠卷名稱</label>
+              <input type="text" class="form-control" id="replicaCouponName" value="" readonly>
+            </div>
+            <!-- <div class="mb-3">
+              <label for="couponTitle" class="form-label">優惠卷標題</label>
+              <input type="text" class="form-control" id="replicaCouponTitle" required>
+            </div> -->
+            <!-- <div class="mb-3">
+              <label for="couponEndDate" class="form-label">優惠卷結束時間</label>
+              <input type="date" class="form-control" id="couponEndDate" required>
+            </div> -->
+            <div class="mb-3">
+              <label for="couponCode" class="form-label">優惠卷碼</label>
+              <input type="text" class="form-control" id="replicaCouponCode" value="" required>
+            </div>
+            <div class="mb-3">
+              <label for="mealCategory" class="form-label">優惠的餐點分類</label>
+              <input type="text" class="form-control" id="replicaMenuType" value="" required>
+            </div>
+            <div class="mb-3">
+              <label for="couponDescription" class="form-label">優惠卷說明</label>
+              <textarea class="form-control" id="replicaCouponText" rows="1" value="" required></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="btninsert">確認</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- // 引入 chart.js -->
+  <script src="/js/businessAnalytics/search.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+  <script>
+   // 建立 chart 物件
+var ctx2 = document.getElementById('myChart2').getContext('2d');
+var myChart2 = new Chart(ctx2, {
+  type: 'doughnut',
+  data: {
+    labels: ['19以下', '20~28', '29~37', '38~49', '50以上'],
+    datasets: [{
+      label: '近一年資料',
+      data: [50, 400, 450, 120, 100],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)'
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)'
+      ],
+      borderWidth: 1
+    },
+    {
+      label: '進3個月資料',
+      data: [150, 500,1020,  190, 120],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)'
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)'
+      ],
+      borderWidth: 1
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'right',
+      },
+      title: {
+        display: true,
+        text: '年齡分布'
+      }
+    }
+  },
+});
+
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- <script src="http://localhost:3000/public/js/businessAnalytics/chart0510.js"></script> -->
+  
+  
+  <script>
+    const ctx = document.getElementById('myChart1').getContext('2d');
+    // var config = require('./chart0510.js').config;
+    // var actions = require('./chart0510.js').actions;
+    var myChart = new Chart(ctx, config);</script>
+
+
+  </script>
+  <script>
+    //上傳圖片click
+    const uploadIcon = document.getElementById('uploadIcon');
+    const fileUpload = document.getElementById('file_upload');
+    uploadIcon.addEventListener('click', () => {
+      fileUpload.click();
+    });
+    //變更圖片預覽
+    fileUpload.addEventListener('change', function () {
+      const reader = new FileReader();
+      reader.onload = function () {
+        const img = document.querySelector('.upload-container img');
+        img.src = reader.result;
+      }
+      reader.readAsDataURL(this.files[0]);
+    });
+
+
+  </script>
+  <script>
+
+    $(document).ready(function () {
+      $('.stars').each(function () {
+        var rating = $(this).data('rating');
+        $(this).css('--rating', rating);
+      });
+    });    
+  </script>
+  <!-- 回應表 -->
+  <script>
+
+
+    $(document).ready(function () {
+
+      $.ajax({
+        method: "GET",
+        url: "/businessAnalyticsSelf/activeCouponSelect",
+        success: function (response) {
+          console.log(response)
+          console.log(response[0])
+          console.log(response[1][0])
+          //openModal(response)
+          response[0].forEach(function (item) {
+            var activeTitle = item.active_title;
+            var activeStartDate = item.active_startdate;
+            var activeEndDate = item.active_enddate;
+            var color;
+            var menuType = item.menu_type;
+            var couponText = item.coupon_text;
+            var couponCode = item.coupon_code;
+            var couponName = item.coupon_name;
+            var activeContent = item.active_content
+
+            switch (menuType) {
+              case "招牌必點":
+                color = "rgba(255, 206, 86, 1)";
+                break;
+              case "主食":
+                color = "rgba(54, 162, 235, 1)";
+                break;
+              case "特色飲品":
+                color = "rgba(255, 99, 132, 1)";
+                break;
+              case "湯品":
+                color = "rgba(75, 192, 192, 1)";
+                break;
+              default:
+                color = "rgba(0, 0, 0, 0)";
+            }
+
+            createEvent(activeTitle, activeStartDate, activeEndDate,  couponText, activeContent, couponName, couponCode, menuType,color);
+
+          });
+          //
+          var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
+          var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+            return new bootstrap.Popover(popoverTriggerEl);
+          });
+        
+          if (response[1][0].shop_logo_img) {
+              $('.avatar img').prop('src', '../' + response[1][0].shop_logo_img);
+            }
+
+            // 將左側 menu 的文字改成店名
+            $('#welcomeText').text(`Welcome! ${response[1][0].shop_name.split(" ")[0]}`);
+        
+        
+        }
+      });
+
+      function createEvent(activeTitle, activeStartDate, activeEndDate,  couponText, activeContent, couponName, couponCode, menuType,color) {
+        var timeline = document.getElementById("timeline");
+        var event = document.createElement("button");
+        console.log(event)
+        event.activeTitle = activeTitle;
+        event.coupon_text = couponText;
+        event.active_content = activeContent;
+        event.coupon_name = couponName;
+        event.coupon_code = couponCode;
+        event.menu_type = menuType;
+        event.className = "event";
+        event.style.backgroundColor = color;
+        event.style.height = "10px";
+        timeline.appendChild(event);
+
+
+        event.coupon_text = couponText;
+        event.menu_type = menuType;
+        var start = new Date(activeStartDate);
+        var end = new Date(activeEndDate);
+        var totalDays = Math.ceil((end - start) / (1000 * 60 * 60 * 24));
+        var timelineWidth = timeline.offsetWidth;
+        var eventWidth = (totalDays / 365) * timelineWidth;
+        var startDateOffset = new Date("2022-04-01");
+        var leftmovedate = Math.ceil((start - startDateOffset) / (1000 * 60 * 60 * 24));
+        var leftmovestep = (leftmovedate / 365) * timelineWidth;
+
+        event.style.width = eventWidth + "px";
+        event.style.left = leftmovestep + "px";
+
+        var popoverContent =
+          '活動標題:' + activeTitle + 'Start Date:' + activeStartDate + '<br> End Date: ' + activeEndDate + '<br>Coupon: ' + couponText + '<br><button name="replica" type="button" class=" btn btn-outline-secondary " title="復刻活動"><i class="bi bi-back"></i></button>';
+        event.setAttribute("data-bs-toggle", "popover");
+        event.setAttribute("data-bs-placement", "top");
+        event.setAttribute("data-bs-trigger", "hover");
+        event.setAttribute("data-bs-html", "true");
+        event.setAttribute("data-bs-content", popoverContent);
+        //event.setAttribute("data-bs-container", "body");
+
+        new bootstrap.Popover(event);
+
+        $(document).on("click", '[data-bs-toggle="popover"]', function () {
+          var popoverButton = this;
+
+          var lastClickTime = $(popoverButton).data("lastClickTime");
+          var currentTime = Date.now();
+          var doubleClickThreshold = 300; // 典籍間隔秒數
+
+          if (lastClickTime && currentTime - lastClickTime < doubleClickThreshold) {
+            // 
+            openModal(popoverButton);
+          } else {
+            $(popoverButton).data("lastClickTime", currentTime);
+            $(popoverButton).popover("show");
+            // 單擊事件顯示popover
+          }
+        });
+      }
+      function openModal(popoverButton) {
+        console.log(popoverButton)
+        var activeTitle = popoverButton.activeTitle;
+        var activeStartDate = popoverButton.active_startdate;
+        var activeEndDate = popoverButton.active_enddate;
+        var activeContent = popoverButton.active_content;
+        var couponName = popoverButton.coupon_name;
+        var couponCode = popoverButton.coupon_code;
+        var menuType = popoverButton.menu_type;
+        var couponText = popoverButton.coupon_text;
+        
+        console.log(couponText)
+
+        $("#replicaTitle").val(activeTitle);
+        $("#replicaMemo").val(activeContent);
+        $("#replicaStartdate").val(activeStartDate);
+        $("#replicaEnddate").val(activeEndDate);
+        $("#replicaCouponName").val(couponName);
+        $("#replicaCouponCode").val(couponCode);
+        $("#replicaMenuType").val(menuType);
+        $("#replicaCouponText").val(couponText);
+
+        $("#replicaModal").modal("show");
+      }
+      
+    })
+
+
+
+
+
+  </script>
+<script>
+  //復刻資料的insert
+  $(document).ready(function () {
+  
+  $("#btninsert").on("click", function () {
+    sendDataToServer();
+  });
+});
+
+
+function sendDataToServer() {
+  var formData = new FormData();
+
+  // Collect form values
+  formData.append("title", $("#replicaTitle").val());
+  formData.append("startdate", $("#replicaStartdate").val());
+  formData.append("enddate", $("#replicaEnddate").val());
+  formData.append("memo", $("#replicaMemo").val());
+  formData.append("coupon_name", $("#replicaCouponName").val());
+  formData.append("coupon_text", $("#replicaCouponText").val());
+  formData.append("coupon_code", $("#replicaCouponCode").val());
+  formData.append("menu_type", $("#replicaMenuType").val());
+  // formData.append("coupon_description", $("#replicaCouponText").val());
+
+  // Collect image file(s)
+  var fileInputElement = document.getElementById("file_upload");
+  for (var i = 0; i < fileInputElement.files.length; i++) {
+    formData.append("file[]", fileInputElement.files[i]);
+  }
+
+  // Send data to server using AJAX
+  $.ajax({
+    url: "http://localhost:3000/businessAnalyticsSelf/replicaInsert",
+    type: "POST",
+    data: formData,
+    processData: false, // Important: Do not process data
+    contentType: false, // Important: Do not set content type
+    success: function (response) {
+      console.log("Data submitted successfully:", response);
+      // Handle success case here
+      $("#replicaModal").modal("hide"); // Close the modal
+      alert('復刻成功!請前往活動優惠頁面查看');
+    },
+    error: function (error) {
+      console.log("Error submitting data:", error);
+      // Handle error case here
+    },
+  });
+}
+
+
+</script>
+ 
+<script>
+  function getCommentList() {
+      console.log("getCommentList()")
+      $.ajax({
+        method: "GET",
+        url: "/businessAnalyticsSelf/commentSelect",
+        success: function (response) {
+          console.log(response)
+          $('#commentModal .modal-body').empty();
+          $.each(response, function (index, comment) {
+            var createdDate = new Date(comment.created_at);
+            var currentDate = new Date();
+            var timeDiff = Math.abs(currentDate.getTime() - createdDate.getTime());
+            var daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+            var formattedDate = (daysDiff > 7) ? createdDate.toLocaleDateString('en-US') : `${daysDiff} days ago`;
+
+            $('#commentModal .modal-body').append(`
+              <div class="card card-plain m-2">
+                <div class="card-body">
+                  <div class="author">
+                    <div class="name">
+                      <h6 class="mb-0 font-weight-bolder" style="display: none;"> ${comment.user_id}</h6>
+                      <div class="stats">
+                        <i class="bi bi-clock"></i> ${formattedDate}
+                      </div>
+                    </div>
+                  </div>
+                  <p class="py-1 m-0">${comment.comment_text}</p>
+                  <div class="rating text-warning">
+                    ${generateStarRating(comment.comment_star)}
+                  </div>
+                </div>
+              </div>
+            `);
+          });
+
+        },
+        error: function (xhr, status, error) {
+          console.log(error);
+        }
+      });
+
+      function generateStarRating(rating) {
+        var stars = "";
+        for (var i = 0; i < rating; i++) {
+          stars += '<i class="bi bi-star-fill"></i>';
+        }
+        return stars;
+      }
+    }
+    $(document).ready(function () {
+
+      $('#commentBtn').on('click', function () {
+        console.log('commcomm')
+        getCommentList();
+
+      });
+    });
+</script>
+</body>
+
+</html>

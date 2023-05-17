@@ -1,0 +1,124 @@
+
+.scrollable {
+    overflow-y: scroll;
+    /* 只在垂直方向上显示滚动条 */
+  }
+
+  /* #menu_table {
+    height: 500px;
+     overflow-y: auto;
+
+  }*/
+  #card3  {
+    /* height: 450px; */
+    overflow: auto;
+  }
+
+
+.upload-container {
+    position: relative;
+    background-color: antiquewhite;
+    height: 100px;
+    width: 100%;
+  }
+
+  .upload-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .upload-container span {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.8);
+    opacity: 0.5;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .upload-container span:hover {
+    opacity: 1;
+  }
+
+  .upload-container span i {
+    font-size: 20px;
+    color: #000;
+  }
+   /* Timeline styles */
+   .arrows {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: stretch;
+
+    width: 100%;
+    margin: 0 auto;
+    padding: 6px 15px;
+    position: relative;
+
+  }
+
+  .arrow {
+    width: 33%;
+    margin: 0;
+    padding: 25px 10px;
+    text-align: center;
+    position: relative;
+  }
+
+  .arrow:after {
+    border-top: 34px solid transparent;
+    border-bottom: 34px solid transparent;
+    content: "";
+    height: 0;
+    position: absolute;
+    right: -17px;
+    top: 0;
+    width: 0;
+    z-index: 2;
+    
+  }
+
+  .arrow:last-child:after {
+    border: none;
+    right: 0;
+  }
+
+
+  /* Colour each section. */
+  .step1 {
+    background-color: #F8C78B;
+    border-radius: 10px 0px 0px 10px;
+    /* box-shadow: 0px 3px 4px #B7B7B7; */
+    /* border: #ffffff 5px solid; */
+  }
+  .step2 {
+    background-color: #F6B565;
+    /* box-shadow: 0px 3px 4px #B7B7B7; */
+  }
+  .step3 {
+    background-color: #F4A23E;
+    border-radius: 0px 10px 10px 0px;
+    /* box-shadow: 0px 3px 4px #B7B7B7; */
+  }
+  /* Colour the wedge (arrow) */
+  .arrow.step1:after {
+    border-left: 17px solid #F8C78B;;
+  }
+  .arrow.step2:after {
+    border-left: 17px solid #F6B565;
+  }
+
+
+  /* Typography */
+  .arrow span {
+    color: #ffffff;
+    position: relative;
+  }

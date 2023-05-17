@@ -1,0 +1,59 @@
+ <!-- nav-->
+ <nav class="navbar navbar-expand-xl d-flex">
+    <div class="container-fluid ">
+        <!-- LOGO-->
+        <a class="navbar-brand col-lg-4" href="/index"><img src="/pic/LOGO.png" alt="LOGO" class="img-fluid ps-5"
+                style="width: 200px;"></a>
+        <!-- RWD nav漢堡-->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon fs-3"></span>
+        </button>
+
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
+
+            <!-- search-->
+            <form class="d-flex align-items-center col-lg-4 col-6 ms-auto ms-lg-4 mt-3 mt-md-0" role="search">
+                <input id="shopSearch_text" class="form-control me-2 navinput" type="search" placeholder="請輸入餐廳與美食" aria-label="Search">
+                <button id="shopSearch_btn" class="btn btn-warning me-2 d-flex text-nowrap" type="button">搜尋</button>
+            </form>
+
+            <% if(!user  && !shopId) {%>
+            <!-- 登錄前 -->
+            <a class="btn btn-outline-primary btn-sm ms-auto me-2 d-inline text-nowrap" type="submit" href="/login">登錄</a>
+            <div class="btn-group" role="group">
+                <button type="button " class="btn btn-primary btn-sm dropdown-toggle " data-bs-toggle="dropdown" aria-expanded="false">
+                  註冊
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end ">
+                  <li><a class="dropdown-item" href="/signup/user">加入會員</a></li>
+                  <li>
+                    <hr class="dropdown-divider">
+                </li>
+                  <li><a class="dropdown-item" href="/signup/client">成為合作夥伴</a></li>
+                </ul>
+              </div>
+            <% } else { %>
+            <!-- 登錄後 -->
+            <div class="dropdown text-end ms-auto me-2 col-lg-4 mt-4 mt-md-0">
+                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end text-small">
+                    <% if(shopId) {%>
+                        <li><a class="dropdown-item" href="#">店家後台</a></li>
+                    <% } else { %>
+                        <li><a class="dropdown-item" href="#">會員專區</a></li>
+                    <% } %>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" id="logout_btn">登出</a></li>
+                </ul>
+            </div>
+            <% } %>
+        </div>
+    </div>
+</nav>

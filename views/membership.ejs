@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>membership</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+        </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="/css/membership.css">
+
+    <!-- Chart JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+
+    <!-- Chart JS Plugin for displaying text over chart -->
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.1.0/chartjs-plugin-datalabels.min.js">
+        </script>
+     <link rel="icon" type="image/x-icon" href="/pic/favicon32.ico">
+
+</head>
+
+<body>
+    <!-- Outermost Container div -->
+    <div class="container-fluid ps-5 pe-5">
+        <!-- Outermost Glass Container div -->
+        <div class="row m-1 m-lg-3 body_Container">
+            <!-- Navbar Button -->
+
+            <!-- Left Column Container -->
+            <div class="col-12 col-xl-4 col-md-6 left_Column">
+                <!-- Left Column Container -->
+                <div class="row left_Column_Container">
+                    <!-- User Information -->
+                    <div class="col-12 user_Information">
+                        <div class="row ps-3 pt-3">
+                            <div class="col-3">
+                                <!-- User Information image -->
+                                <img class="user_Information_image" src="<%= user[0][0].user_avatar %>"
+                                    onclick="uploadImage()">
+                                <form id="uploadForm" enctype="multipart/form-data" style="display: none;">
+                                    <input type="file" name="avatar" id="avatarInput">
+                                </form>
+                            </div>
+                            <div class="row col-9">
+                                <div class="col-12 mb-3">
+                                    <input type="hidden" id="user_id" value="<%= user_id %>">
+                                    <input type="text" id="username" class="username-input"
+                                        value="<%= user[0][0]['user_name'] %>" onclick="editUsername(user_id)">
+                                </div>
+                                <!-- <input type="text" style=""> -->
+                                <!-- User Points & edit -->
+                                <div class="col-12">
+                                    <p class="user_Points">
+                                        我的積分點數 :
+                                        <span id="user_point">
+                                            <%= user[0][0]['user_point'] %>
+                                        </span>
+                                        點
+                                    </p>
+                                    <a href=""></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <script src="/js/uploadUserImage.js"></script>
+                    <!-- Edit User Name Update $.ajax 請求 -->
+                    <script src="/js/updateEditUserName.js"></script>
+
+                    <!-- Points Exchange  -->
+                    <div class="col-12 points_Exchange">
+                        <div class="row">
+                            <div class="col-6">
+                                <!-- Points Exchange Turntable -->
+                                <div class="col-12 text-center points_Exchange_Image">
+                                    <!-- Lucky Wheel -->
+                                    <div class="wheel-wrapper">
+                                        <div class="wheel-container">
+                                            <div class="wheel-Container">
+                                                <canvas id="wheel-canvas"></canvas>
+                                                <button id="wheel-spin-btn">
+                                                    <img id="wheel-spin-btn-img"
+                                                         src="/pic/luckyWheel.png">
+                                                </button>
+                                                <img id="wheel-svg-img" 
+                                                     src="/pic/spinner-arrow-.svg"
+                                                     alt="spinner-arrow" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <!-- Points Button -->
+                                    <button class="pointsButton" id="pointUsedButton">
+                                        積分兌換
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- Exchange History -->
+                            <div class="col-6 exchange_History">
+                                <div class="text-left">
+                                    <h5>兌換紀錄</h5>
+                                </div>
+                                <!-- Scrollbar & Exchange History Item -->
+                                <div class="scrollbar mt-3 pe-2 exchange_History_Item">
+                                    <div class="text-left history-title">
+                                        <p>抽獎結果:　</p>
+                                    </div>
+                                    <div id="final-value" class="text-left"></div>
+                                    <% for(var i=0; i<user[2].length; i++) { %>
+                                        <div id="history-value" class="text-left">
+                                            <%= user[2][i].history_text %>
+                                        </div>
+                                        <% } %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 積分點數兌換 Upade $.ajax 請求 | 幸運轉盤 JavaScript | 轉盤抽獎獲得的 CouponCode&HistoryText insert $.ajax 請求 -->
+                    <script src="/js/wheelScript.js"></script>
+
+                    <!-- My Coupon -->
+                    <div class="col-12 my_Coupon">
+                        <div class="row my_Coupon-row">
+                            <div class="row">
+                                <div class="col-12 mb-2">
+                                    <h5>我的優惠券</h5>
+                                </div>
+                                <!-- Coupon Lable Cursor Style -->
+                                <div class="col-5 col-sm-4">
+                                    <label class="couponCode" for="couponCode">輸入優惠碼</label>
+                                </div>
+                                <!-- Coupon Input -->
+                                <div class="col-7 col-sm-8">
+                                    <input class="coupon_Input" id="couponCode" type="text" placeholder="優惠碼 Enter 輸入">
+                                </div>
+                            </div>
+                            <div class="col-12 mt-1 me-1 scrollbar coupon-Container overflow: auto;">
+                                <!-- Coupon -->
+                                <div class="row">
+                                    <% for(var i=0; i<user[1].length; i++) { %>
+                                        <% if(user[1][i].coupon_used_date==null) { %>
+                                            <div class="col-4 text-center mt-2">
+                                                <!-- --Coupon-Button 內容 -->
+                                                <button class="text-center" id="codeButton"
+                                                    data-bs-target="#coupanButton" data-bs-toggle="modal"
+                                                    data-shop-id="<%= user[1][i].shop_id %>"
+                                                    data-coupon-code="<%= user[1][i].coupon_code %>"
+                                                    data-user-coupon="<%= JSON.stringify(user[1]) %>"
+                                                    data-user-coupon-id="<%= user[1][i].user_coupon_id %>">
+                                                    <div class="text-center">
+                                                        <div class="codeButton-shop">
+                                                            <%= user[1][i].shop_name %>
+                                                        </div>
+                                                        <p class="codeButton-Coupon">
+                                                            Coupon
+                                                        </p>
+                                                    </div>
+                                                </button>
+                                            </div>
+                                            <% } %>
+                                                <% } %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coupon Input Insert $.ajax 請求 -->
+            <script src="/js/couponInputInsert.js"></script>
+
+            <!-- Coupon - 編輯按鈕 - 彈出編輯框 -->
+            <div class="modal fade" id="coupanButton" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <label for="message-text" class="modal-title fs-5" id="exampleModalLabel">優惠券資訊</label>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="POST">
+                                <div class="mb-3">
+                                    <!-- 獲取 shop_id -->
+                                    <input type="hidden" id="selectedShopId" value="">
+                                    <input type="hidden" id="selectedUserCouponId" value="">
+                                    <!-- 要顯示的 coupon 資訊 -->
+                                    <div id="couponNameList"></div>
+                                    <div id="coupontextList"></div>
+                                    <div id="couponExpireList"></div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                            <button id="submitCoupanButton" onclick="updateCouponUsed()" type="button"
+                                class="btn btn-warning">使用優惠券</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 優惠券 update $.ajax 請求 -->
+            <script src="/js/updateCouponUsed.js"></script>
+
+            <!-- Middle Column -->
+            <div class="col-12 col-xl-4 col-md-6 middle_Column">
+                <!-- Middle Column Container  -->
+                <div class="row p-2 pt-3 p-sm-3 pt-sm-4 middle_Column_Container">
+                    <div class="col-12 mb-2">
+                        <h5>美食口袋</h5>
+                    </div>
+                    <!-- Scrollbar & Favorites Food Container -->
+                    <div class="col-12 scrollbar pt-1 favorites_Food_Container ps-4 pe-4">
+                        <% for(var i=0; i<user[0].length; i++) { %>
+                            <% if(user[0][i].comment_favorite==1) { %>
+                                <!-- Card -->
+                                <div class="card card_style mb-3" style="background: linear-gradient(230deg, transparent 30%, rgba(260, 255, 255, 0.8) 50%), url('<%= user[0][i].shop_preview_img %>'); 
+                                            background-repeat: no-repeat; 
+                                            background-size: cover;">
+                                    <!-- --.card-body:內容 -->
+                                    <div class="card-body">
+                                        <h6 class="card-title">
+                                            <%= user[0][i].shop_name %>
+                                        </h6>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <p class="comment_Card_Date">
+                                                    <%= user[0][i].created_at %>
+                                                </p>
+                                            </div>
+                                            <!-- <div class="col-6">
+                                                <p class="card-text pt-3">87 comments</p>
+                                            </div> -->
+                                            <div class="col-12 card-text text-end my_Comment_Button">
+                                                <button data-bs-target="#favoritesButton" data-bs-toggle="modal"
+                                                    data-shop-id="<%= user[0][i].shop_id %>"
+                                                    data-comment-favorite="<%= user[0][i].comment_favorite %>">
+                                                    <i class="bi bi-suit-heart-fill"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% } %>
+                                    <% } %>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 美食口袋 - 編輯按鈕 - 彈出編輯框 -->
+            <div class="modal fade" id="favoritesButton" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <label class="modal-title fs-5" id="exampleModalLabel">是否移除口袋名單?</label>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-end">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                            <button id="submitfavoritesButton" onclick="updateFavorite(this)" type="button"
+                                class="btn btn-warning">確定</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 我的最愛 update $.ajax 請求 -->
+            <script src="/js/updateFavorite.js"></script>
+
+
+            <!-- Right Column -->
+            <div class="col-12 col-xl-4 col-md-6 right_Column">
+                <!-- Right Column Container -->
+                <div class="row p-2 pt-3 p-sm-3 pt-sm-4 right_Column_Container">
+                    <div class="col-12 mb-2">
+                        <h5>我的評論</h5>
+                    </div>
+                    <!-- Scrollbar & My Comment Item -->
+                    <div class="col-12 scrollbar pt-1 my_Comment_Item  ps-4 pe-4">
+                        <!-- Comment Card -->
+                        <% for(var i=0; i<user[0].length; i++) { %>
+                            <div class="card comment_Card_Style mb-3">
+                                <!-- card-body:內容 -->
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-2 me-3">
+                                            <img src="<%= user[0][i].shop_logo_img %>">
+                                        </div>
+                                        <div class="col-7 mt-1">
+                                            <p class="comment_Card_Name">
+                                                <%= user[0][i].shop_name %>
+                                            </p>
+                                            <p class="comment_Card_Date">
+                                                <%= user[0][i].created_at %>
+                                            </p>
+                                        </div>
+                                        <div class="row text">
+                                            <div class="col-12">
+                                                <p class="card-text">
+                                                    <%= user[0][i].comment_text %>
+                                                </p>
+                                            </div>
+                                            <!-- My Comment Button -->
+                                            <div class="col-12 card-text text-end my_Comment_Button">
+                                                <button data-bs-target="#CommentButton" data-bs-toggle="modal"
+                                                    data-shop-id="<%= user[0][i].shop_id %>"><i
+                                                        class="bi bi-pencil-square"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 我的評論 - 編輯按鈕 - 彈出編輯框 -->
+        <div class="modal fade" id="CommentButton" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <label for="message-text" class="modal-title fs-5" id="exampleModalLabel">填寫評論</label>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST">
+                            <div class="mb-3">
+                                <textarea class="form-control" id="message-text" name="comment_text"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                        <button id="submitCommentButton" onclick="updateCommentText(this)" type="button"
+                            class="btn btn-warning">確認</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 我的評論 update $.ajax 請求 -->
+        <script src="/js/updateCommentText.js"></script>
+
+        <!-- 滑鼠追蹤效果 -->
+        <script src="/js/mouse-tracker.js"></script>
+</body>
+</html>

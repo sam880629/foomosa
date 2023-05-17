@@ -1,0 +1,403 @@
+/* ********************************
+    共用區域開始 
+**********************************/
+
+body {
+    font-family: 'Noto Sans TC', sans-serif;
+}
+
+h4 {
+    size: 21px;
+    line-height: 21px;
+    font-weight: 500;
+}
+
+h6 {
+    size: 16px;
+    line-height: 16px;
+    font-weight: 500;
+}
+
+p,
+.p {
+    size: 14px;
+    line-height: 14px;
+    font-weight: 400;
+}
+
+.btn-outline-orange {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #F89E02;
+    --bs-btn-border-color: #F89E02;
+    --bs-btn-hover-color: #F89E02;
+    --bs-btn-hover-bg: #fff;
+    --bs-btn-hover-border-color: #F89E02;
+    --bs-btn-focus-shadow-rgb: 108, 117, 125;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #F89E02;
+    --bs-btn-active-border-color: #F89E02;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #F89E02;
+    --bs-btn-disabled-bg: transparent;
+    --bs-btn-disabled-border-color: #F89E02;
+    --bs-gradient: none;
+}
+
+.btn-orange {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #F89E02;
+    --bs-btn-border-color: #F89E02;
+    --bs-btn-hover-color: #F89E02;
+    --bs-btn-hover-bg: #fff;
+    --bs-btn-hover-border-color: #F89E02;
+    --bs-btn-focus-shadow-rgb: 225, 83, 97;
+    --bs-btn-active-color: #F89E02;
+    --bs-btn-active-bg: #bF89E0202a37;
+    --bs-btn-active-border-color: #F89E02;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #F89E02;
+    --bs-btn-disabled-border-color: #F89E02;
+}
+
+.signup-img-area {
+    border-top-left-radius: 27px;
+    border-bottom-left-radius: 27px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+.form-area .input-group-append .btn {
+    border-radius: 0px;
+    border-top-right-radius: var(--bs-btn-border-radius);
+    border-bottom-right-radius: var(--bs-btn-border-radius);
+}
+
+.form-area input:focus {
+    border-color: #F89E02;
+    box-shadow: none
+}
+
+.form-area .form-select:focus {
+    border-color: #F89E02;
+    box-shadow: none;
+    outline: 0;
+}
+
+.form-select+.form-control {
+    flex-basis: 45%;
+}
+
+.form-area>div {
+    margin-bottom: 20px;
+}
+
+#duty+label {
+    line-height: 20px;
+}
+
+.form-control::placeholder {
+    color: #c6c6c6;
+}
+
+.signupCardArea {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* box-sizing: border-box; */
+    border-radius: 27px;
+    height: 70%;
+    min-height: 672px;
+    box-shadow: -3px 12px 12px rgb(91, 91, 91, 0.5);
+    display: flex;
+}
+
+.duty-area {
+    margin-top: 10%;
+}
+
+.duty-area>button {
+    margin-left: 50px;
+    padding: 10px 35px;
+}
+
+.duty-area .form-check-input {
+    width: 18px;
+    height: 18px;
+}
+
+.form-area .form-check-input:checked {
+    background-color: #F89E02;
+    border-color: rgb(248, 158, 2);
+}
+
+@media screen and (max-width:1200px) {
+
+    .form-area .col-6,
+    .form-area .col-4,
+    .form-area .col-8 {
+        flex: 0 0 auto;
+        width: 90%;
+    }
+
+    .duty-area>button {
+        margin-left: 5px;
+        padding: 5px 25px;
+    }
+}
+
+/* ********************************
+    共用區域結束
+**********************************/
+
+/* ------------------------------------------------------------------- */
+
+/* ********************************
+    register_shop.html 區域開始 
+**********************************/
+.shop-signup-background-area {
+    background-image: url('../pic/Businse_Sign\ UP.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.45;
+    width: 37.5%;
+    float: left;
+}
+
+.shop-signup-form-area {
+    overflow-y: auto;
+    height: 90%;
+}
+
+.col-6-12 {
+    flex: 0 0 auto;
+    width: 90%;
+}
+
+@media screen and (min-width:1200px) {
+    .col-6-12 {
+        flex: 0 0 auto;
+        width: 50%;
+    }
+}
+
+/* ********************************
+    register_shop.html 區域結束 
+**********************************/
+
+/* ------------------------------------------------------------------- */
+
+/* ********************************
+    register_user.html 區域開始 
+**********************************/
+
+.user-signup-background-area {
+    background-image: url('../pic/Client_Sign\ UP.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.45;
+    width: 37.5%;
+    float: left;
+}
+
+.custom-form-check-input:checked[type=radio] {
+    background-color: #F89E02;
+}
+
+.client-signup-form-area {
+    overflow-y: auto;
+    height: 90%;
+}
+
+.third-party button {
+    width: 138px;
+
+    /* --bs-btn-color: #6c757d; */
+    /* --bs-btn-border-color: #C6C6C6; */
+    --bs-btn-border-color: #dadce0;
+    /* --bs-btn-hover-color: #fff; */
+    --bs-btn-hover-bg: #C6C6C6;
+    --bs-btn-hover-border-color: #C6C6C6;
+    /* --bs-btn-focus-shadow-rgb: 108, 117, 125; */
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #6c757d;
+    --bs-btn-active-border-color: #6c757d;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+
+.client-signup-form-area hr {
+    width: 90%;
+}
+
+.client-signup-form-area .form-area {
+    width: 90%;
+}
+
+.client-signup-form-area .col-6 {
+    padding-right: calc(var(--bs-gutter-x) * .6);
+    padding-left: calc(var(--bs-gutter-x) * .6);
+}
+
+/* ********************************
+    register_user.html 區域結束 
+**********************************/
+
+/* ------------------------------------------------------------------- */
+
+/* ********************************
+    login.html 區域開始 
+**********************************/
+.login-background-area {
+    background-image: url('../pic/login.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.45;
+    width: 45%;
+    float: left;
+}
+
+.login-img-area {
+    border-top-left-radius: 27px;
+    border-bottom-left-radius: 27px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.login-form-area {
+    margin: 0 auto;
+}
+
+.input-area {
+    margin-top: 3%;
+    width: 60%;
+    max-width: 368px;
+    padding: 10px 20px;
+}
+
+.title-area {
+    width: 60%;
+    max-width: 368px;
+    padding: 10px 20px;
+}
+
+#pills-user>form .small a,
+#pills-client>form .small a {
+    color: #B7B7B7;
+    text-decoration: none;
+}
+
+#pills-user>div:nth-child(2) .small a:hover,
+#pills-client>div:nth-child(2) .small a:hover {
+    text-decoration: underline;
+}
+
+#pills-user span,
+#pills-client span {
+    color: #1481D8;
+}
+
+#pills-user>div:nth-child(3),
+#pills-client>div:nth-child(3) {
+    /* height: 36px; */
+}
+
+.tab-content .btn[type="submit"] {
+    --bs-btn-border-radius: 5px;
+    min-width: 134px;
+    box-shadow: 0px 4px 4px rgb(0, 0, 0, 0.25);
+    padding: 12px;
+}
+
+.tab-content input:focus {
+    border-color: #F89E02;
+    box-shadow: none
+}
+
+.input-area .nav-pills .nav-item {
+    box-shadow: 0px 4px 10px rgb(198, 198, 198, 0.48);
+    margin-right: -5%;
+}
+
+.input-area .nav-pills .nav-item .active {
+    color: #F28F16;
+    background-color: white;
+    position: relative;
+
+}
+
+.input-area .nav-link {
+    color: #B7B7B7;
+    background-color: transparent;
+}
+
+.input-area li {
+    width: 40%;
+}
+
+.input-area .nav-item {
+    border-radius: 3px;
+}
+
+#pills-user fieldset,
+#pills-client fieldset {
+    border-top: 1px solid #cdc9c4;
+    margin-top: 20px;
+    text-align: center;
+}
+
+#pills-user fieldset legend,
+#pills-client fieldset legend {
+    float: none;
+    width: fit-content;
+
+}
+
+#pills-user fieldset .small,
+#pills-client fieldset .small {
+    color: #B7B7B7;
+    padding: 10px;
+}
+
+.input-area .third-party button {
+    width: 50px;
+    height: 50px;
+
+    /* --bs-btn-color: #6c757d; */
+    /* --bs-btn-border-color: #C6C6C6; */
+    --bs-btn-border-color: #dadce0;
+    /* --bs-btn-hover-color: #fff; */
+    --bs-btn-bg: #FFFFFF;
+    --bs-btn-hover-bg: #F5F8FE;
+    --bs-btn-hover-border-color: #D4E4FC;
+    /* --bs-btn-focus-shadow-rgb: 108, 117, 125; */
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #F5F8FE;
+    --bs-btn-active-border-color: #D4E4FC;
+    /* --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); */
+    --bs-btn-border-radius: 29px;
+    border-width: 1px;
+}
+
+
+
+.g_id_signin {
+    /* width: 50px;
+    height: 80px; */
+    transform: scale(1.22);
+    margin-right: 20px;
+    /* border: black solid 1px; */
+}
+
+#container>div {
+    border: black solid 1px;
+}
+
+
+/* ********************************
+    login.html 區域結束 
+**********************************/

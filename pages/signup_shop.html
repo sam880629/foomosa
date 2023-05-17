@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>店家註冊</title>
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <!-- 引進 google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <!-- 引進 BS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- 引進 本地css -->
+    <link rel="stylesheet" href="../css/signup_login.css">
+    <!-- 引進 jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+    <script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <!-- 引進 google icon -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- 引進 SweetAlert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- 引進google gsi client -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <!-- title logo -->
+    <link rel="icon" type="image/x-icon" href="/pic/favicon32.ico">
+</head>
+
+<body>
+
+    <div class="container-fluid p-0 vh-100">
+        <div class="shop-signup-background-area h-100">
+        </div>
+
+        <div class="container-lg p-0 signupCardArea m-0">
+            <div class="signup-img-area h-100">
+                <img src="../pic/Businse_Sign UP.png" alt="" class="h-100">
+            </div>
+            <div class="shop-signup-form-area d-flex flex-column m-auto w-50 mt-5">
+                <h4>建立商家帳戶</h4>
+                <form class="form-area row mt-5 w-100" id="clientForm" method="post" action="/clientCreate">
+                    <div class="col-6">
+                        <h6>商家名稱<span class="text-danger">*</span></h6>
+                        <input type="text" class="form-control" name="shopName" required>
+                    </div>
+                    <div class="col-6">
+                        <h6>商家帳號<span class="text-danger">*</span></h6>
+                        <input type="text" class="form-control" name="shopTaxId" placeholder="請輸入統一編號，例 : 03077208"
+                            required>
+                    </div>
+                    <div class="col-6">
+                        <h6>密碼<span class="text-danger">*</span></h6>
+                        <input type="password" id="userPW" class="form-control" name="shopPw" data-toggle="tooltip"
+                            data-placement="right" title="密碼須由 6~20 個英文大小寫與數字組成" required>
+                    </div>
+                    <div class="col-6">
+                        <h6>確認密碼<span class="text-danger">*</span></h6>
+                        <input id="userPwConfirm" type="password" class="form-control" required>
+                    </div>
+                    <div class="col-6">
+                        <h6>聯絡電話<span class="text-danger">*</span></h6>
+                        <input type="tel" class="form-control" name="shopPhone" required> 
+
+                    </div>
+
+                    <div class="col-6">
+                        <h6>商家地址 (限台中)<span class="text-danger">*</span></h6>
+                        <div class="input-group">
+                            <select class="form-select" name="locationId" required>
+                                <option value="1">東區</option>
+                                <option value="2">西區</option>
+                                <option value="3">南區</option>
+                                <option value="4">北區</option>
+                                <option value="5">中區</option>
+                                <option value="6">西屯區</option>
+                                <option value="7" selected>南屯區</option>
+                                <option value="8">北屯區</option>
+                            </select>
+                            <input type="text" class="form-control" name="shopAddress" required>
+                        </div>
+                    </div>
+
+
+                    <div class="col-6-12 ">
+                        <h6>聯絡信箱<span class="text-danger">*</span></h6>
+                        <input type="email" class="form-control" name="shopEmail" placeholder="example@food.com"
+                            required>
+
+                    </div>
+
+                    <div class="col-12 duty-area text-center">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="duty" required>
+                            <label class="form-check-label p" for="duty">我已閱讀並同意
+                                <span class="text-primary"><a href="#">服務條款</a></span>、
+                                <span class="text-primary"><a href="#">企業刊登契約書</a></span>、
+                                <span class="text-primary"><a href="#">隱私權聲明</a></span>、
+                                <span class="text-primary"><a href="#">免責聲明</a></span>
+                            </label>
+                        </div>
+                        <button class="btn btn-orange mt-3" id="okButton" type="submit">下一步</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/register_resize.js"></script>
+
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip({
+                trigger: 'hover'
+            });
+        })
+
+    </script>
+</body>
+
+</html>

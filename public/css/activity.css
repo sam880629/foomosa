@@ -1,0 +1,65 @@
+.upload-container {
+    position: relative;
+    background-color: antiquewhite;
+    height: 100px;
+    width: 100%;
+  }
+
+  .upload-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .upload-container span {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.8);
+    opacity: 0.5;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .upload-container span:hover {
+    opacity: 1;
+  }
+
+  .upload-container span i {
+    font-size: 20px;
+    color: #000;
+  }
+
+  .string-container {
+    display: inline-block;
+    max-width: 144px;
+    /* 最大寬度為144px */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* 超過最大寬度時顯示省略號 */
+    white-space: nowrap;
+  }
+
+  .string-container:hover {
+    white-space: normal;
+    position: relative;
+  }
+
+  .string-container:hover::after {
+    content: attr(data-full-text);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 5px;
+    min-width: 100px;
+    max-width: 300px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+  }

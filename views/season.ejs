@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partial/seasonHead')%>
+</head>
+
+<body>
+    <!-- Banner-->
+
+    <!-- LOGO-->
+    <div class="logo-container">
+        <a class="navbar-brand col-lg-4" href="/index"><img src="/pic/LOGO.png" alt="LOGO" class="img-fluid ps-5"
+                style="width: 200px;"></a>
+    </div>
+  
+    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+        <div class="slideContainer">
+
+            <h5 class="ps-3 shopSelected text-white fw-lighter">精選商家</h5>
+
+            <div class="d-flex">
+                <% shops.forEach(function(shop) { %>
+                    <a href="/restaurant/<%= shop.shop_id %>">
+                        <div class="slideCard ms-3">
+                            <img src="<%= shop.shop_logo_img %>" class="card-img">
+                        </div>
+                    </a>
+                    <% }); %>
+            </div>
+
+        </div>
+
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="0" class="active"
+                aria-current="true"></button>
+            <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="2"></button>
+        </div>
+
+        <div class="carousel-inner">
+
+            <div class="carousel-item active" data-bs-interval="1500">
+                <img src="<%= season.season_background_img_1 %>" class="d-block w-100">
+                <div class="carousel-caption d-md-block bannerTitle">
+                    <h2>
+                        <%= season.season_topic %>
+                    </h2>
+                    <p>
+                        <%= season.season_content %>
+                    </p>
+                </div>
+            </div>
+
+            <div class="carousel-item" data-bs-interval="1500">
+                <img src="<%= season.season_background_img_2 %>" class="d-block w-100">
+                <div class="carousel-caption d-none d-md-block bannerTitle">
+                    <h2>
+                        <%= season.season_topic %>
+                    </h2>
+                    <p>
+                        <%= season.season_content %>
+                    </p>
+                </div>
+            </div>
+
+            <div class="carousel-item" data-bs-interval="1500">
+                <img src="<%= season.season_background_img_3 %>" class="d-block w-100">
+                <div class="carousel-caption d-none d-md-block bannerTitle">
+                    <h2>
+                        <%= season.season_topic %>
+                    </h2>
+                    <p>
+                        <%= season.season_content %>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+            <span class="visually-hidden">Next</span>
+        </button>
+        <% let nextId = id => id < 3 ? id + 1 : 1; %>
+        <a class="carousel-control-next text-decoration-none" type="button"  href="/season/<%= nextId(currentId) %>">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span >Next</span>
+        </a>
+    </div>
+
+</body>
+
+</html>

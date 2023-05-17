@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+
+  <title>Activity</title>
+  <!-- BS CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="/css/backstage_share_frame.css">
+  <link rel="stylesheet" href="/css/activity.css">
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <!-- chart.js圖表樣式 -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+  <!-- title ICON -->
+<link rel="icon" type="image/x-icon" href="/pic/favicon32.ico">
+</head>
+
+<body>
+  <div class="container-fluid p-0 d-flex justify-content-center align-items-center vh-100">
+    <div class="container backstage_body row align-items-center justify-content-between">
+      <div class="col-2 backstage_nav card p-0 ">
+        <div class="d-flex flex-column h-100 pb-2 pt-4 ">
+
+            <div class="d-flex align-items-center justify-content-center flex-grow-1 status-info">
+                <!-- Modal for opening or not -->
+                <div class="avatar avatar-xl position-relative" data-bs-toggle="modal"
+                    data-bs-target="#staticBackdrop">
+                    <!-- 上線中statusLight 是 bg-success，休息是 bg-warning-->
+                    <div class="status">
+                        <div class="bg-success statusLight"></div>
+                    </div>
+                    <img src="/pic/mosa2.jpg" alt="" class="rounded-circle ">
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">選擇營業狀態</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+
+
+                        <div class="modal-body">
+                            <div class="form-check fs-4">
+                                <input class="form-check-input custom-radio" type="radio"
+                                    name="flexRadioDefault" id="flexRadioDefault1" checked />
+                                <label class="form-check-label" for="flexRadioDefault1"> 營業中 </label>
+                                <span class="checkmark"></span>
+                            </div>
+
+                            <div class="form-check mt-3 fs-4">
+                                <input class="form-check-input custom-radio" type="radio"
+                                    name="flexRadioDefault" id="flexRadioDefault2" />
+                                <label class="form-check-label" for="flexRadioDefault2"> 閉店中 </label>
+                                <span class="checkmark"></span>
+                            </div>
+                        </div>
+
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light btn-outline-secondary"
+                                data-bs-dismiss="modal">關閉</button>
+                            <button type="button" class="btn btn-success">確認</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 商家名稱 -->
+            <p class="mb-0 mt-2 mb-4 text-center fw-bold fs-6" id="welcomeText"></p>
+
+            <a href="/backstage/clientinfo" class="d-flex align-items-start py-2 mt-2 flex-grow-1 nav_a">
+                <i class="bi bi-info-circle  text-sm  me-3 fs-5 fw-bold "></i>
+                <span class="nav-link-text ms-1">店家資訊</span>
+            </a>
+            <a href="/backstage/businessAnalytics/all" class="d-flex align-items-start py-2 flex-grow-1 nav_a">
+                <i class="bi bi-pie-chart  text-sm  me-3 fs-5 fw-bold "></i>
+                <span class="nav-link-text ms-1">平台分析</span>
+            </a>
+            <a href="/backstage/businessAnalytics/self" class="d-flex align-items-start py-2 flex-grow-1 nav_a">
+                <i class="bi bi-graph-up-arrow  text-sm  me-3 fs-5 fw-bold "></i>
+                <span class="nav-link-text ms-1">本店分析</span>
+            </a>
+            <a href="/backstage/menu" class="d-flex align-items-start py-2 flex-grow-1 nav_a">
+                <i class="bi bi-clipboard  text-sm  me-3 fs-5 fw-bold "></i>
+                <span class="nav-link-text ms-1">菜單專區</span>
+            </a>
+            <a href="/backstage/activity" class="d-flex align-items-start py-2 flex-grow-1 nav_a">
+                <i class="bi bi-megaphone  text-sm  me-3 fs-5 fw-bold "></i>
+                <span class="nav-link-text ms-1">活動專區</span>
+            </a>
+
+            <!-- 下面兩個按鈕 -->
+            <div class=" mt-3 px-2 py-2 btnContainer">
+                <hr>
+                <button href="" target="_blank" class="btn btn-light btn-sm w-100 mb-3 fw-bold rounded-3"><i
+                        class="bi bi-house me-3 ps-2 "></i>我的餐廳</button>
+                <button class="btn btn-warning btn-sm  w-100 fw-bold  mb-3 rounded-3" type="button"><i
+                        class="bi bi-box-arrow-left me-3 ps-2 pe-3"></i>登出</button>
+
+            </div>
+
+        </div>
+    </div>
+      <div class="col-10 backstage_main_area" id="bgs">
+        <!-- 菜單左側 -->
+        <!-- 上傳檔案&下載檔案container-fluid -->
+
+        <div class=" ">
+          <div class=" ">
+
+            <!-- 上傳活動資料 -->
+            <div class=" mb-2" id="atcard1">
+              <div class="">新增活動資訊<i class="bi bi-info-circle  opacity-10 ms-2 fw-bold "></i></div>
+              <div class="mosa_card">
+                <div class="card-body  px-xl-5 px-sm-0 ">
+                  <form id="activityInsertCard">
+
+                    <div class="form-group row px-4  mb-2 ">
+                      <label for="title" class="col-2 col-form-label text-center px-sm-0">活動標題</label>
+                      <div class="col-4 ps-0">
+                        <input id="title" name="title" type="text" class="form-control" required="required">
+                      </div>
+                      <label for="" class="col-2 col-form-label text-center px-sm-0">活動圖片</label>
+                      <input type="file" class=" col-4 " id="picture" aria-describedby="inputActivityImage"
+                        aria-label="Upload" title="選擇.jpg.jpge.png.等圖片檔案類型">
+                    </div>
+                    <div class="form-group row px-4 mb-2">
+                      <label for="startdate" class="col-2 col-form-label text-center px-sm-0">開始日期</label>
+                      <div class="col-4 ps-0">
+                        <input id="startdate" name="startdate" type="date" class="form-control" placeholder="yyyy/mm/dd"
+                          required>
+
+                      </div>
+                      <label for="enddate" class="col-2 col-form-label text-center px-sm-0">結束日期</label>
+                      <div class="col-4">
+                        <input id="enddate" name="enddate" type="date" class="form-control" placeholder="yyyy/mm/dd"
+                          required>
+
+                      </div>
+                    </div>
+
+                    <div class="form-group row px-4 mb-2 ">
+                      <label for="memo" class="col-2 col-form-label text-center px-sm-0">活動說明</label>
+                      <div class="col-10 ps-0">
+                        <textarea id="memo" name="memo" class="form-control" required="required"
+                          aria-describedby="textareaHelpBlock"></textarea>
+                        <span id="textareaHelpBlock" class="form-text text-muted">麻煩在這裡填寫活動相關說明(0/100字)</span>
+                      </div>
+                    </div>
+                    <div class="form-group align-middle text-end px-4">
+
+                      <div class="offset-2  ">
+                        <!-- name="submit" type="submit" -->
+                        <button class="btn btn-warning" id="insertActivity">新增</button>
+                      </div>
+                    </div>
+                  </form>
+
+                </div>
+              </div>
+            </div>
+            <!-- </div> -->
+            <!-- 菜單list -->
+
+            <div class="">
+              <div class="col-xl-12 ">
+
+                <div class="mosa_card " id="atcard2">
+                  <div class="card-header d-flex justify-content-between align-items-center mb-1">
+                    <h6>Activity table</h6>
+                    <div><button id="openingData" type="button" class=" btn btn-outline-secondary " title="優惠狀態:進行中">
+                        <i class="bi bi-check-circle-fill"></i>
+                      </button>
+                      <button id="closingData" type="button" class=" btn btn-outline-secondary " title="優惠狀態:歷史紀錄">
+                        <i class="bi bi-clock-history"></i>
+                      </button>
+                    </div>
+
+                  </div>
+
+                  <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0 scrollbar" style="max-height: 400px; overflow-y: auto; "
+                      id="at_table_tbody">
+                      <table class="table align-items-center mb-0">
+                        <thead>
+                          <tr>
+                            <th
+                              class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7  align-middle text-center">
+                              活動圖片
+                            </th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                              活動期間</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                              活動標題
+                            </th>
+
+                            <th
+                              class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7  align-middle text-center">
+                              優惠卷</th>
+
+
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                            </th>
+
+                          </tr>
+                        </thead>
+                        <tbody>
+
+                          <tr>
+                            <div style="display: none;">這裡要放ID</div>
+                            <div style="display: none;">這裡要放memo</div>
+                            <td class="align-middle text-center">
+                              <div class="d-flex align-items-center justify-content-center flex-grow-1">
+                                <div class="avatar avatar-xl position-relative">
+                                  <img src="../public/pic/小小兵.png" alt="profile_image"
+                                    class="w-100 border-radius-round ">
+                                </div>
+                              </div>
+                              <span class=" text-secondary text-xs font-weight-bold">鮭魚王小小兵.jpg</span>
+                            </td>
+                            <td class="align-middle text-center">
+                              <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
+                              <p class="text-xs font-weight-bold mb-0 align-middle text-center">～</p>
+                              <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
+                            </td>
+                            <td class="align-middle text-center">
+                              <span class="  text-xs font-weight-bold">我要成為鮭魚王123</span>
+                            </td>
+                            <!-- <td class="align-middle text-center">
+                              <span class="text-secondary text-xs font-weight-bold">小小兵才能參加</span>
+                            </td> -->
+                            <td class="align-middle text-center">
+                              <span class="memo" style="display: none;">${myactivitylist.memo}</span>
+                              <span class="id" style="display: none;">${myactivitylist.id}</span>
+                              <span class=" text-lg "><i class="bi bi-toggle-on text-warning fs-1"></i></span>
+                            </td>
+                            <td class=" align-middle  text-center">
+                              <button type="button" class="thisActivity btn btn-outline-secondary  "
+                                data-bs-toggle="modal" data-bs-target="#myModal" title="預覽">
+                                <i class="bi bi-eye"></i>
+                              </button>
+                              <button type="button" class="editActivity btn btn-outline-secondary  "
+                                data-bs-toggle="modal" data-bs-target="#myModal_V2" title="編輯">
+                                <i class="bi bi-pencil-square"></i>
+                              </button>
+                              <button type="button" class="delActivity btn btn-outline-secondary  "
+                                data-bs-toggle="modal" data-bs-target="#myModal_V3" title="刪除">
+                                <i class="bi bi-trash3-fill"></i>
+                              </button>
+                              <!-- <button class="btn btn-outline-danger"><a href="javascript:;"
+                                  class="text-secondary font-weight-bold text-xs px-1 " data-toggle="tooltip"
+                                  data-original-title="Edit user">
+                                  刪除
+                                </a></button> -->
+                            </td>
+                          </tr>
+                          <!-- 第一個tr以下 -->
+
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <!-- Modal 編輯-->
+  <div class="modal fade" id="myModal_V2">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">活動編輯</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="upload-container" style="background-color: rgb(190, 188, 185);height:150px; width: auto;">
+            <img id="editImg" src="../public/img/活動範例圖.jpeg" alt="">
+            <input type="file" multiple="multiple" name="file" id="file_upload" style="display: none;">
+            <span>
+              <i class="bi bi-image " id="uploadIcon"></i>
+            </span>
+          </div>
+          <form>
+            <div class="mb-3 ">
+              <span id="editId" style="display: none;" value="1111">111</span>
+              <label for="recipient-name" class="col-form-label ">活動標題:</label>
+              <input type="text" class="form-control " id="editTitle" value="1111">
+            </div>
+            <div class="mb-3 ">
+              <label for="recipient-name" class="col-form-label ">活動時間:</label>
+              <input id="editStartdate" name="enddate" type="date" class="form-control " placeholder="yyyy/mm/dd"
+                value="2023-05-03" required>
+              ~
+              <input id="editEnddate" name="enddate" type="date" class="form-control " placeholder="yyyy/mm/dd"
+                value="2023-05-03" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">活動說明:</label>
+              <textarea id="editMemo" class="form-control">111</textarea>
+            </div>
+          </form>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="btnEdit">確認</button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- Modal 預覽-->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">活動預覽</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="upload-container" style="background-color: rgb(190, 188, 185);height: 150px; width: auto;">
+            <img id="previewImg" src="../public/img/活動範例圖.jpeg" alt="">
+
+
+          </div>
+          <form>
+            <div class="mb-3 ">
+              <span id="previewId" style="display: none;">111</span>
+              <label for="recipient-name" class="col-form-label ">活動標題:</label>
+              <span id="previewTitle">111</span>
+            </div>
+            <div class="mb-3 ">
+              <label for="recipient-name" class="col-form-label ">活動時間:</label>
+              <span id="previewStartdate">222</span>
+
+              ~
+              <span id="previewEnddate">333</span>
+
+            </div>
+
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">活動說明:</label>
+              <span id="previewMemo">444 </span>
+
+            </div>
+          </form>
+        </div>
+
+
+        <div class="modal-footer">
+
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- Modal 刪除-->
+  <div class="modal fade" id="myModal_V3">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">刪除活動</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <!-- <div style="background-color: antiquewhite;height: 100px; width: auto;"></div> -->
+
+
+          <form>
+            <div class="mb-3 ">
+              <span id="delId" style="display: none;">111</span>
+              <!-- <label for="recipient-name" class="col-form-label ">確定要刪除此活動嗎?</label> -->
+              <label for="recipient-name" class="col-form-label ">確定要刪除此活動嗎?</label>
+              <span id="delTitle" style="text-decoration: line-through;">111</span>
+            </div>
+            <div class="mb-3 ">
+              <label for="recipient-name" class="col-form-label " style="display: none;">活動時間:</label>
+              <span id="delStartdate" style="text-decoration: line-through; display: none;">222</span>
+
+
+              <span id="delEnddate" style="text-decoration: line-through; display: none;">333</span>
+
+            </div>
+
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label" style="display: none;">活動說明:</label>
+              <span id="delMemo" style="text-decoration: line-through; display: none;">444 </span>
+
+            </div>
+          </form>
+        </div>
+
+        <!-- Modal footer data-bs-target="#myModal_V2"-->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="btnDelete">確認</button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- coupon Modal -->
+  <div class="modal fade" id="couponModal" tabindex="-1" aria-labelledby="couponModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="couponModalLabel">填寫優惠卷資訊</h5>
+          <bu tton type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></bu>
+        </div>
+        <div class="modal-body">
+          <form id="couponForm">
+            <div class="mb-3">
+              <label for="couponTitle" class="form-label">優惠卷標題</label>
+              <input type="text" class="form-control" id="couponTitle" required>
+            </div>
+            <div class="mb-3">
+              <label for="couponEndDate" class="form-label">優惠卷結束時間</label>
+              <input type="date" class="form-control" id="couponEndDate" required>
+            </div>
+            <div class="mb-3">
+              <label for="couponCode" class="form-label">優惠卷碼</label>
+              <input type="text" class="form-control" id="couponCode" required>
+            </div>
+            <div class="mb-3">
+              <label for="mealCategory" class="form-label">優惠的餐點分類</label>
+              <input type="text" class="form-control" id="mealCategory" required>
+            </div>
+            <div class="mb-3">
+              <label for="couponDescription" class="form-label">優惠卷說明</label>
+              <textarea class="form-control" id="couponDescription" rows="3" required></textarea>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+              <button type="submit" class="btn btn-primary">確認</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/activity/activity_pic_height_span.js"></script>
+  <script src="/js/activity/activity_btn.js"></script>
+  <script src="/js/activity/activity_update.js"></script>
+  
+  <script>
+  
+    //獲得活動資料
+    $(function () {
+      // 初始狀態顯示進行中的活動
+      var showOpenData = true;
+
+      // 點選進行中的活動按鈕
+      $('#openingData').on('click', function () {
+        if (!showOpenData) {
+          showOpenData = true;
+          getActivityList();
+        }
+      });
+
+      // 點選歷史紀錄按鈕
+      $('#closingData').on('click', function () {
+        if (showOpenData) {
+          showOpenData = false;
+          getActivityList();
+        }
+      });
+
+      function getActivityList() {
+        $.ajax({
+          url: "http://localhost:3000/activitySelect",
+          type: "GET",
+          success: function (alist) {
+            //檢查是否有進來
+            console.log('我是getActivityList-success')
+            //檢查有沒有url資料
+            console.log(alist)
+            console.log(alist[0])
+            console.log(alist[1][0])
+            $('tbody').empty();
+            $.each(alist[0], function (index, myactivitylist) {
+              if ((showOpenData && myactivitylist.active_ifDel == 1) || (!showOpenData && myactivitylist.active_ifDel == 0)) {
+                $('tbody').append(
+                  `   <tr>
+                        <td class="align-middle text-center">
+                              <div class="d-flex align-items-center justify-content-center flex-grow-1">
+                                <div class="avatar avatar-xl position-relative">
+                                  <img src="${myactivitylist.active_picture||""}" alt="profile_image"
+                                    class="w-100 border-radius-round " style="height: 30px; width: auto";>
+                                </div>
+                              </div>
+                              <span class=" text-secondary text-xs font-weight-bold string-container" data-full-text="">${myactivitylist.active_picture.split("/").pop().split("-").pop()||""}</span>
+                            </td>
+                            <td class="align-middle text-center">
+                              <span class="text-secondary text-xs font-weight-bold">${myactivitylist.active_startdate}</span>
+                              <p class="text-xs font-weight-bold mb-0 align-middle text-center">～</p>
+                              <span class="text-secondary text-xs font-weight-bold">${myactivitylist.active_enddate}</span>
+                            </td>
+                            <td class="align-middle text-center">
+                              <span class="  text-xs font-weight-bold string-container">${myactivitylist.active_title}</span>
+                            </td>
+                            <td class="align-middle text-center">
+                              <span class="memo" style="display: none;">${myactivitylist.active_content}</span>
+                              <span class="id" style="display: none;">${myactivitylist.active_id}</span>
+
+                              <span class=" text-lg "><i class="bi bi-ticket-perforated-fill text-warning fs-2" name=couponOpen></i></span>
+                            </td>
+                            <td class=" align-middle  text-center">
+                              <button type="button" class="thisActivity btn btn-outline-secondary  "
+                                data-bs-toggle="modal" data-bs-target="#myModal" title="預覽">
+                                <i class="bi bi-eye"></i>
+                              </button>
+                              <button type="button" class="editActivity btn btn-outline-primary  "
+                                data-bs-toggle="modal" data-bs-target="#myModal_V2" title="編輯">
+                                <i class="bi bi-pencil-square"></i>
+                              </button>
+                              <button type="button" class="delActivity btn btn-outline-warning "
+                                data-bs-toggle="modal" data-bs-target="#myModal_V3" title="切換優惠狀態">
+                                <i class="bi bi-folder-symlink"></i>
+                              </button>
+                            </td>
+                          </tr>`
+                )
+              }
+            })
+          
+            if (alist[1][0].shop_logo_img) {
+              $('.avatar img').prop('src', '../' + alist[1][0].shop_logo_img);
+            }
+
+            // 將左側 menu 的文字改成店名
+            $('#welcomeText').text(`Welcome! ${alist[1][0].shop_name.split(" ")[0]}`);
+          }
+        })
+
+      }
+
+      getActivityList();
+      
+      getThisActivity()
+      getEditActivity()
+      getDelActivity()
+    });
+    $(document).ready(function () {
+      // 當 couponOpen 被點擊時
+      $(document).on('click', 'i[name="couponOpen"]', function () {
+        $('#couponModal').modal('show');
+      });
+    });
+
+
+  </script>
+
+  <!-- <script src="/js/activity/activity_insert.js"></script> -->
+</body>
+
+</html>

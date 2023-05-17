@@ -1,0 +1,654 @@
+@charset "UTF-8";
+/* Goolge font */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap");
+* {
+  font-family: "Noto Sans TC", sans-serif;
+}
+
+/* 項目內容-可折疊樣式: */
+.Servicecollapsible {
+  background-color: #ffffff;
+  color: rgb(73, 73, 73);
+  cursor: pointer;
+  padding: 5px;
+  margin-bottom: 3px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  scale: 100%;
+  transition: scale 0.3s;
+}
+
+/* 內容 */
+.Servicecontent {
+  /* padding: 0 18px; */
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: #ffffff;
+  margin-bottom: 1px;
+}
+
+/* Body background */
+body {
+  padding: 0px;
+  margin: 0px;
+  background-image: url("../pic/linerBckground.jpg");
+  background-size: cover;
+}
+
+/* All div */
+div {
+  border-radius: 20px;
+}
+
+/* Scrollbar Width */
+.scrollbar::-webkit-scrollbar {
+  background-color: #d7d7d7;
+  width: 6px;
+}
+
+/* Scrollbar Style */
+.scrollbar::-webkit-scrollbar-thumb {
+  background-color: #afafaf;
+  border-radius: 4px;
+}
+
+/* 最外層玻璃容器 div */
+.bodt_Container {
+  height: 100%;
+  width: 100%;
+  padding-left: 45px;
+  padding-right: 45px;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+/* Header Left LOGO */
+.Header_Left_LOGO {
+  transition: 0.2s;
+}
+
+/* Header Left LOGO hover */
+.Header_Left_LOGO:hover {
+  scale: 120%;
+  cursor: pointer;
+}
+
+/* Left Column Container */
+.left_Column {
+  padding: 18px 30px 18px 30px;
+}
+
+.left_Column_Container {
+  height: 88vh;
+  flex-wrap: wrap;
+}
+
+/* User Information */
+.user_Information {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0px 0px 5px rgba(121, 121, 121, 0.2);
+  display: flex;
+  align-items: center;
+  transition: 0.3s;
+  position: relative;
+}
+
+.user_Information:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0px 3px 5px rgba(121, 121, 121, 0.8);
+  display: flex;
+  align-items: center;
+}
+
+/* User Information 游標 style */
+.user_Information:hover::before {
+  opacity: 1;
+}
+
+.user_Information::before,
+.user_Information::after {
+  border: inherit;
+  content: "";
+  height: 100%;
+  left: 0px;
+  opacity: 0;
+  position: absolute;
+  top: 0px;
+  transition: opacity 500ms;
+  width: 100%;
+}
+
+.user_Information::before {
+  background: radial-gradient(200px circle at var(--mouse-x) var(--mouse-y), rgba(255, 136, 0, 0.3), rgba(255, 136, 0, 0.1), transparent);
+  z-index: -1;
+  border-radius: 20px;
+}
+
+.user_Information::after {
+  background: radial-gradient(200px circle at var(--mouse-x) var(--mouse-y), rgba(255, 136, 0, 0.3), rgba(255, 136, 0, 0.2), transparent);
+  z-index: -2;
+  border-radius: 20px;
+}
+
+/* User Information image */
+.user_Information_image {
+  border-radius: 50%;
+  width: 66px;
+}
+
+/* User Name */
+.username-input {
+  width: 150px;
+  height: 20px;
+  padding: 2px;
+  margin: 0;
+  border: none;
+  background: none;
+}
+
+/* User Points */
+.user_Points {
+  border-bottom: solid 1px rgb(233, 151, 0);
+  color: rgb(233, 151, 0);
+  display: inline-block;
+}
+
+/* Points Exchange */
+.points_Exchange {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0px 0px 5px rgba(121, 121, 121, 0.2);
+  margin-top: 30px;
+  padding: 20px 20px 15px 30px;
+  transition: 0.3s;
+  position: relative;
+}
+
+/* Points Exchange 游標 style */
+.points_Exchange:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0px 3px 5px rgba(121, 121, 121, 0.8);
+  margin-top: 30px;
+  padding: 20px 20px 15px 30px;
+  transition: 0.3s;
+  align-items: center;
+}
+
+.points_Exchange:hover::before {
+  opacity: 1;
+}
+
+.points_Exchange::before,
+.points_Exchange::after {
+  border: inherit;
+  content: "";
+  height: 100%;
+  left: 0px;
+  opacity: 0;
+  position: absolute;
+  top: 0px;
+  transition: opacity 500ms;
+  width: 100%;
+}
+
+.points_Exchange::before {
+  background: radial-gradient(200px circle at var(--mouse-x) var(--mouse-y), rgba(255, 136, 0, 0.3), rgba(255, 136, 0, 0.1), transparent);
+  z-index: -1;
+  border-radius: 20px;
+}
+
+.points_Exchange::after {
+  background: radial-gradient(200px circle at var(--mouse-x) var(--mouse-y), rgba(255, 136, 0, 0.3), rgba(255, 136, 0, 0.2), transparent);
+  z-index: -2;
+  border-radius: 20px;
+}
+
+/* Points Exchange Image */
+.points_Exchange_Image img {
+  border-radius: 5%;
+  width: 100%;
+}
+
+/* Points Button */
+.pointsButton {
+  scale: 100%;
+  transition: 0.3s;
+  background-color: rgb(233, 151, 0);
+  color: white;
+  border-radius: 10px;
+  padding: 2px 13px;
+  width: 100%;
+  border: none;
+  text-align: center;
+  margin-top: 15px;
+}
+
+/* Points Button hover */
+.pointsButton:hover {
+  scale: 110%;
+}
+
+/* Exchange History */
+.exchange_History {
+  padding-left: 30px;
+}
+
+/* Exchange History Item */
+.exchange_History_Item {
+  height: 26vh;
+  overflow: auto;
+  border-radius: 0px;
+}
+
+/* My Coupon */
+.my_Coupon {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0px 0px 5px rgba(121, 121, 121, 0.2);
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  transition: 0.3s;
+  position: relative;
+}
+.my_Coupon .my_Coupon-row {
+  padding: 5px 20px 10px 20px;
+}
+
+/* my_Coupon 游標 style */
+.my_Coupon:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0px 3px 5px rgba(121, 121, 121, 0.8);
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.my_Coupon:hover::before {
+  opacity: 1;
+}
+
+.my_Coupon::before,
+.my_Coupon::after {
+  border: inherit;
+  content: "";
+  height: 100%;
+  left: 0px;
+  opacity: 0;
+  position: absolute;
+  top: 0px;
+  transition: opacity 500ms;
+  width: 100%;
+}
+
+.my_Coupon::before {
+  background: radial-gradient(200px circle at var(--mouse-x) var(--mouse-y), rgba(255, 136, 0, 0.3), rgba(255, 136, 0, 0.1), transparent);
+  z-index: -1;
+  border-radius: 20px;
+}
+
+.my_Coupon::after {
+  background: radial-gradient(500px circle at var(--mouse-x) var(--mouse-y), rgba(255, 136, 0, 0.3), rgba(255, 136, 0, 0.2), transparent);
+  z-index: -2;
+  border-radius: 20px;
+}
+
+.coupon-Container {
+  height: 120px;
+  overflow: auto;
+}
+.coupon-Container .row {
+  padding-right: 15px;
+}
+
+/* Coupon Lable Cursor*/
+.couponCode {
+  cursor: pointer;
+}
+
+/* Coupon Input */
+.coupon_Input {
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  padding-left: 13px;
+}
+
+#codeButton {
+  background: none;
+  border: none;
+  background-image: url(/pic/coupon4.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  border-radius: 0px;
+  margin: 0;
+  padding: 2px;
+  padding-top: 6px;
+  padding-bottom: 5px;
+  overflow: hidden;
+  max-height: 50px;
+  min-width: 100px;
+  max-width: 140px;
+  transition: 0.3s;
+}
+
+#codeButton:hover {
+  scale: 107%;
+}
+
+.codeButton-shop {
+  font-size: 12px;
+  color: rgb(79, 79, 79);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.codeButton-Coupon {
+  color: rgb(95, 95, 95);
+  font-size: 2px;
+  width: 100%;
+  height: 100%;
+}
+
+/* Coupon-Body */
+/* Coupon Image hover */
+/* Middle Column */
+.middle_Column {
+  padding: 18px 30px 18px 30px;
+  flex-wrap: wrap;
+}
+
+/* Middle Column Container */
+.middle_Column_Container {
+  height: 88vh;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0px 0px 5px rgba(121, 121, 121, 0.2);
+  padding: 18px 20px 0px 20px;
+  transition: 0.3s;
+  position: relative;
+}
+
+/* middle_Column_Container 游標 style */
+.middle_Column_Container:hover {
+  height: 88vh;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0px 3px 5px rgba(121, 121, 121, 0.8);
+  padding: 18px 20px 0px 20px;
+}
+
+.middle_Column_Container:hover::before {
+  opacity: 1;
+}
+
+.middle_Column_Container::before,
+.middle_Column_Container::after {
+  border: inherit;
+  content: "";
+  height: 100%;
+  left: 0px;
+  opacity: 0;
+  position: absolute;
+  top: 0px;
+  transition: opacity 500ms;
+  width: 100%;
+}
+
+.middle_Column_Container::before {
+  background: radial-gradient(200px circle at var(--mouse-x) var(--mouse-y), rgba(255, 136, 0, 0.3), rgba(255, 136, 0, 0.1), transparent);
+  z-index: -1;
+  border-radius: 20px;
+}
+
+.middle_Column_Container::after {
+  background: radial-gradient(200px circle at var(--mouse-x) var(--mouse-y), rgba(255, 136, 0, 0.3), rgba(255, 136, 0, 0.2), transparent);
+  z-index: -2;
+  border-radius: 20px;
+}
+
+.favorites_Food_Container {
+  height: 90%;
+  overflow: auto;
+}
+
+/* All Card */
+.card {
+  scale: 100%;
+  transition: 0.3s;
+  box-shadow: 0 2px 3px 0 rgba(1, 1, 0, 0.2);
+}
+
+.card_style {
+  border-radius: 15px;
+  border: none;
+  margin-bottom: 10px;
+}
+.card_style .card-body .row div a img {
+  width: 40px;
+}
+
+.card-body {
+  position: relative;
+}
+
+.my_Comment_Button {
+  position: absolute;
+  margin-left: 5px;
+  right: 15px;
+  top: 15px;
+}
+.my_Comment_Button button {
+  text-align: center;
+  align-items: center;
+  border-radius: 50%;
+  border: none;
+  background-color: #ffffff;
+  color: #F24405;
+  /* Drop Shadow */
+  box-shadow: 0px 3px 3px #C6C6C6;
+}
+
+#CommentInput {
+  border-radius: 20px;
+  border: 1px lightgray solid;
+}
+
+/* All Card hover */
+.card:hover {
+  box-shadow: 0 2px 5px 0 rgba(1, 1, 0, 0.2);
+  scale: 104%;
+}
+
+/* Add Favorite */
+a > img {
+  transition: 0.2s;
+}
+
+/* Add Favorite */
+a > img:hover {
+  scale: 120%;
+}
+
+/* Right Column */
+.right_Column {
+  padding: 18px 30px 18px 30px;
+  flex-wrap: wrap;
+}
+
+/* Right Column Container */
+.right_Column_Container {
+  height: 88vh;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0px 0px 5px rgba(121, 121, 121, 0.2);
+  padding: 18px 20px 0px 20px;
+  transition: 0.3s;
+  position: relative;
+}
+
+/* right_Column_Container 游標 style */
+.right_Column_Container:hover {
+  height: 88vh;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0px 3px 6px rgba(121, 121, 121, 0.8);
+  padding: 18px 20px 0px 20px;
+}
+
+.right_Column_Container:hover::before {
+  opacity: 1;
+}
+
+.right_Column_Container::before,
+.right_Column_Container::after {
+  border: inherit;
+  content: "";
+  height: 100%;
+  left: 0px;
+  opacity: 0;
+  position: absolute;
+  top: 0px;
+  transition: opacity 500ms;
+  width: 100%;
+}
+
+.right_Column_Container::before {
+  background: radial-gradient(200px circle at var(--mouse-x) var(--mouse-y), rgba(255, 136, 0, 0.3), rgba(255, 136, 0, 0.1), transparent);
+  z-index: -1;
+  border-radius: 20px;
+}
+
+.right_Column_Container::after {
+  background: radial-gradient(200px circle at var(--mouse-x) var(--mouse-y), rgba(255, 136, 0, 0.3), rgba(255, 136, 0, 0.2), transparent);
+  z-index: -2;
+  border-radius: 20px;
+}
+
+/* My Comment Item */
+.my_Comment_Item {
+  height: 90%;
+  overflow: auto;
+}
+
+/* Comment Card */
+.comment_Card_Style {
+  border-radius: 15px;
+  border: none;
+  margin-bottom: 10px;
+}
+.comment_Card_Style .row div img {
+  border-radius: 50%;
+  width: 55px;
+}
+
+/* Comment Card Name */
+.comment_Card_Name {
+  margin-bottom: 0;
+}
+
+/* Comment_Card_Date */
+.comment_Card_Date {
+  margin-top: 0;
+  font-size: 0.5rem;
+  color: rgb(98, 98, 98);
+}
+
+/* wheel */
+.wheel-wrapper {
+  width: 100%;
+  max-width: 34.37em;
+  max-height: 90vh;
+  background-image: url("/pic/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 12px;
+}
+
+.wheel-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: rgb(245, 185, 73);
+  padding: 10px;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+#wheel-spin-btn-img {
+  position: relative;
+  top: -8px;
+  right: 0px;
+  width: 80%;
+}
+
+#wheel-spin-btn {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  height: 25%;
+  width: 25%;
+  border-radius: 50%;
+  border: 0;
+  background: radial-gradient(#ff6363 50%, #ff6363 85%);
+  color: #fa9e41;
+  text-transform: uppercase;
+  font-size: 1.8em;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  overflow: hidden;
+}
+
+#wheel-svg-img {
+  position: absolute;
+  width: 1.9em;
+  top: 45%;
+  right: -4%;
+}
+
+#final-value {
+  color: gray;
+}
+
+.history-title {
+  color: gray;
+}
+
+#history-value {
+  color: gray;
+}
+
+@media screen and (max-width: 768px) {
+  .wheel-wrapper {
+    font-size: 12px;
+  }
+}/*# sourceMappingURL=membership.css.map */
