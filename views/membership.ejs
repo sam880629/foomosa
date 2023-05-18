@@ -22,8 +22,6 @@
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.1.0/chartjs-plugin-datalabels.min.js">
         </script>
-     <link rel="icon" type="image/x-icon" href="/pic/favicon32.ico">
-
 </head>
 
 <body>
@@ -39,45 +37,59 @@
                 <div class="row left_Column_Container">
                     <!-- User Information -->
                     <div class="col-12 user_Information">
-                        <div class="row ps-3 pt-3">
-                            <div class="col-3">
-                                <!-- User Information image -->
-                                <img class="user_Information_image" src="<%= user[0][0].user_avatar %>"
-                                    onclick="uploadImage()">
-                                <form id="uploadForm" enctype="multipart/form-data" style="display: none;">
-                                    <input type="file" name="avatar" id="avatarInput">
-                                </form>
+                        <div class="row align-items-center">
+                            <!-- 使用者照片&名稱&積分剩餘點數 -->
+                            <div class="col-8">
+                                <div class="row ps-3 pt-3">
+                                    <div class="col-3">
+                                        <!-- User Information image -->
+                                        <img class="user_Information_image" src="<%= user[3][0].user_avatar %>"
+                                            onclick="uploadImage()">
+                                        <form id="uploadForm" enctype="multipart/form-data" style="display: none;">
+                                            <input type="file" name="avatar" id="avatarInput">
+                                        </form>
+                                    </div>
+                                    <div class="row col-9">
+                                        <div class="col-12 mb-3 ms-3">
+                                            <input type="hidden" id="user_id" value="<%= user_id %>">
+                                            <input type="text" id="username" class="username-input"
+                                                value="<%= user[3][0].user_name %>" onclick="editUsername(user_id)">
+                                        </div>
+                                        <!-- <input type="text" style=""> -->
+                                        <!-- User Points & edit -->
+                                        <div class="col-12 ms-3">
+                                            <p class="user_Points">
+                                                我的積分點數 :
+                                                <span id="user_point">
+                                                    <%= user[3][0].user_point %>
+                                                </span>
+                                                點
+                                            </p>
+                                            <a href=""></a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="row col-9">
-                                <div class="col-12 mb-3">
-                                    <input type="hidden" id="user_id" value="<%= user_id %>">
-                                    <input type="text" id="username" class="username-input"
-                                        value="<%= user[0][0]['user_name'] %>" onclick="editUsername(user_id)">
-                                </div>
-                                <!-- <input type="text" style=""> -->
-                                <!-- User Points & edit -->
-                                <div class="col-12">
-                                    <p class="user_Points">
-                                        我的積分點數 :
-                                        <span id="user_point">
-                                            <%= user[0][0]['user_point'] %>
-                                        </span>
-                                        點
-                                    </p>
-                                    <a href=""></a>
-                                </div>
+                            <!-- 首頁&登出按鈕 -->
+                            <div class="col-4 text-end pe-4">
+                                <span class="expandedButtons"></span>
+                                <button class="user_Information_Button" onclick="toggleButtons()">
+                                    <i class="bi bi-list"></i>
+                                </button>
                             </div>
                         </div>
                     </div>
 
-                    <script src="/js/uploadUserImage.js"></script>
+                    <!-- Logout Membership $.ajax 請求 -->
+                    <script src="/js/logoutMembership.js"></script>
+
                     <!-- Edit User Name Update $.ajax 請求 -->
                     <script src="/js/updateEditUserName.js"></script>
 
                     <!-- Points Exchange  -->
                     <div class="col-12 points_Exchange">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-6 mt-2">
                                 <!-- Points Exchange Turntable -->
                                 <div class="col-12 text-center points_Exchange_Image">
                                     <!-- Lucky Wheel -->
@@ -86,12 +98,10 @@
                                             <div class="wheel-Container">
                                                 <canvas id="wheel-canvas"></canvas>
                                                 <button id="wheel-spin-btn">
-                                                    <img id="wheel-spin-btn-img"
-                                                         src="/pic/luckyWheel.png">
+                                                    <img id="wheel-spin-btn-img" src="/pic/luckyWheel.png">
                                                 </button>
-                                                <img id="wheel-svg-img" 
-                                                     src="/svg/spinner-arrow-.svg"
-                                                     alt="spinner-arrow" />
+                                                <img id="wheel-svg-img" src="/svg/spinner-arrow-.svg"
+                                                    alt="spinner-arrow" />
                                             </div>
                                         </div>
                                     </div>
@@ -131,7 +141,7 @@
                     <div class="col-12 my_Coupon">
                         <div class="row my_Coupon-row">
                             <div class="row">
-                                <div class="col-12 mb-2">
+                                <div class="col-12 mt-2 mb-1">
                                     <h5>我的優惠券</h5>
                                 </div>
                                 <!-- Coupon Lable Cursor Style -->
@@ -156,7 +166,7 @@
                                                     data-coupon-code="<%= user[1][i].coupon_code %>"
                                                     data-user-coupon="<%= JSON.stringify(user[1]) %>"
                                                     data-user-coupon-id="<%= user[1][i].user_coupon_id %>">
-                                                    <div class="text-center">
+                                                    <div class="text-center codeButton">
                                                         <div class="codeButton-shop">
                                                             <%= user[1][i].shop_name %>
                                                         </div>
@@ -278,7 +288,6 @@
             <!-- 我的最愛 update $.ajax 請求 -->
             <script src="/js/updateFavorite.js"></script>
 
-
             <!-- Right Column -->
             <div class="col-12 col-xl-4 col-md-6 right_Column">
                 <!-- Right Column Container -->
@@ -290,38 +299,41 @@
                     <div class="col-12 scrollbar pt-1 my_Comment_Item  ps-4 pe-4">
                         <!-- Comment Card -->
                         <% for(var i=0; i<user[0].length; i++) { %>
-                            <div class="card comment_Card_Style mb-3">
-                                <!-- card-body:內容 -->
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-2 me-3">
-                                            <img src="<%= user[0][i].shop_logo_img %>">
-                                        </div>
-                                        <div class="col-7 mt-1">
-                                            <p class="comment_Card_Name">
-                                                <%= user[0][i].shop_name %>
-                                            </p>
-                                            <p class="comment_Card_Date">
-                                                <%= user[0][i].created_at %>
-                                            </p>
-                                        </div>
-                                        <div class="row text">
-                                            <div class="col-12">
-                                                <p class="card-text">
-                                                    <%= user[0][i].comment_text %>
+                            <!-- 評論內容不等於 null & 空字串 -->
+                            <% if(user[0][i].comment_text!==null && user[0][i].comment_text!=="") { %>
+                                <div class="card comment_Card_Style mb-3">
+                                    <!-- card-body:內容 -->
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-2 me-3">
+                                                <img src="<%= user[0][i].shop_logo_img %>">
+                                            </div>
+                                            <div class="col-7 mt-1">
+                                                <p class="comment_Card_Name">
+                                                    <%= user[0][i].shop_name %>
+                                                </p>
+                                                <p class="comment_Card_Date">
+                                                    <%= user[0][i].created_at %>
                                                 </p>
                                             </div>
-                                            <!-- My Comment Button -->
-                                            <div class="col-12 card-text text-end my_Comment_Button">
-                                                <button data-bs-target="#CommentButton" data-bs-toggle="modal"
-                                                    data-shop-id="<%= user[0][i].shop_id %>"><i
-                                                        class="bi bi-pencil-square"></i></button>
+                                            <div class="row text">
+                                                <div class="col-12">
+                                                    <p class="card-text">
+                                                        <%= user[0][i].comment_text %>
+                                                    </p>
+                                                </div>
+                                                <!-- My Comment Button -->
+                                                <div class="col-12 card-text text-end my_Comment_Button">
+                                                    <button data-bs-target="#CommentButton" data-bs-toggle="modal"
+                                                        data-shop-id="<%= user[0][i].shop_id %>"><i
+                                                            class="bi bi-pencil-square"></i></button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             <% } %>
+                        <% } %>
                     </div>
                 </div>
             </div>
@@ -357,4 +369,5 @@
         <!-- 滑鼠追蹤效果 -->
         <script src="/js/mouse-tracker.js"></script>
 </body>
+
 </html>
