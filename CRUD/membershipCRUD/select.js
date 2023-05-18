@@ -6,8 +6,8 @@ var config = require("../config"); //-- 接收 config.js
 router.get("/", function (req, res) {
     //-- 指定要查詢的使用者id
     // var user_id = req.params.user_id; //-- 由網址路由中取得 user_id
-    var user_id = 1;
-    // var user_id = req.session.user_id; //-- 由 session 取得 user_id
+    // var user_id = 1;
+    var user_id = req.session.uid; //-- 由 session 取得 user_id
     console.log("我是user_id: " + user_id);
 
     const sql1 = `SELECT u.user_name, u.user_avatar, s.shop_name, s.shop_logo_img, s.shop_preview_img, c.comment_text, user_point, c.shop_id, c.comment_favorite, DATE_FORMAT(c.created_at, '%Y-%m-%d %H:%i') created_at
