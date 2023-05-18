@@ -51,7 +51,17 @@ $(function () {
     animationContainer.style.width = '400px';
     animationContainer.style.height = '400px';
 
-
+     // 前往登入畫面
+     $('#login_btn').on('click', function(){
+        
+        window.location.href = '/login';
+    })
+    
+    // 登出
+    $('#logout_btn').on('click', function(){
+      
+        $.get('/logout').then(location.reload());
+    })
 
     // 滾動滾輪達到是否顯示
     $(window).scroll(function () {

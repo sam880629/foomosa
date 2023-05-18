@@ -12,16 +12,20 @@ let searAll = '';//是否搜尋全部
 const sql_location = 'SELECT * FROM `location` ORDER BY `location`.`location_id` ASC ;';
 const sql_class = 'SELECT * FROM `class` ORDER BY `class_id` ASC;';
 // 先確定是否有登入，有取得user_ID後搜尋符合的資料，沒有則不搜尋
-const sql_comment ='SELECT * FROM `comment` WHERE 1=1 AND comment_favorite = 1 AND user_id = 1;';
+let sql_comment ='SELECT * FROM `comment` WHERE 1=1 AND comment_favorite = 1 AND user_id = 0;';
+let sql_user = 'SELECT * FROM `user` WHERE user_id = 0;'
 // 全部搜尋
 api.get('/all', function (req, res) {
   searAll = '1';// 如果是ALL則搜尋全部
+  if(req.session.uid){
+    sql_user = `SELECT * FROM  user WHERE user_id = ${req.session.uid};`;
+    sql_comment = `SELECT * FROM comment WHERE 1=1 AND comment_favorite = 1 AND user_id =${req.session.uid};`;
+  }
 
   const sql_shop = ' SELECT * FROM `shop` ;';//ORDER BY RAND()
-  conn.query(`${sql_shop}${sql_location}${sql_class}${sql_comment}`, function (err, result, fields) {
+  conn.query(`${sql_shop}${sql_location}${sql_class}${sql_comment}${sql_user}`, function (err, result, fields) {
     if (err) {
       res.send('錯誤', err);
-     
     } else {
       // 有被蒐藏的店家
       let userFavorite=[];
@@ -32,7 +36,8 @@ api.get('/all', function (req, res) {
         shop: result[0],
         location: result[1],
         class: result[2],
-        comment : userFavorite
+        comment : userFavorite,
+        user_comment : result[4]
       });
     }
   })
@@ -78,7 +83,7 @@ api.post('/some', express.urlencoded(), function (req, res) {
     { id: 5, column: 'shop_linepay', value: 1 },
     { id: 6, column: 'shop_jkopay', value: 1 }
   ];
-  console.log(searAll);
+  
   let sql = (searAll==1)? `SELECT * FROM shop WHERE 1`:`SELECT * FROM shop WHERE shop_name LIKE '${searAll}'`;//搜尋全部還是部份
   // 只要任一條件有選取
     //類別
@@ -99,7 +104,7 @@ api.post('/some', express.urlencoded(), function (req, res) {
   
   // sql += ` ORDER BY RAND(); `;
 
-  console.log(sql);
+  // console.log(sql);
   conn.query(sql,function (err, result, fields) {
     if (err) {
       res.send('錯誤', err)

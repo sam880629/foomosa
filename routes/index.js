@@ -34,16 +34,18 @@ app.get('/index', async function (req, res) {
     user_id = req.session.uid  // 前端登錄的 user_id
     // console.log(user_id);
   }
- 
+  
   try {
     let url = 'http://localhost:3000/find/all';//所有店家
     let shop = await axios.get(url);
+   
     res.render('index', {
       shopLocation: shop.data.location,
       shopClass: shop.data.class,
       timeText: timeText,
       user: req.session.uid,//session  user id
-      shopId: req.session.shopId // session shop id
+      shopId: req.session.shopId, // session shop id
+      // user_avatar: (shop.data.user_comment[0].user_avatar==undefined)?'https://github.com/mdo.png' : shop.data.user_comment[0].user_avatar 
     })
   }
   catch (err) {

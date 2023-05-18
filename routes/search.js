@@ -23,7 +23,8 @@ app.get('/all', async function (req, res) {
             shopComment : shop.data.comment,
             JSONurl : '/json/think.json',
             user: req.session.uid,//session  user id
-            shopId: req.session.shopId // session shop id
+            shopId: req.session.shopId, // session shop id
+            // user_avatar: (shop.data.user_comment[0].user_avatar==undefined)?'https://github.com/mdo.png' : shop.data.user_comment[0].user_avatar 
          });
         
    } catch (err) {

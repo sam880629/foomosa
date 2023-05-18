@@ -8,6 +8,13 @@
     showSlides(slideIndex);//顯示第一頁面
     fetchWeather() //渲染溫度推薦餐點文字
 
+     
+    
+    // 登出
+    $('#logout_btn').on('click', function(){
+        $.get('/logout').then(location.reload());
+    })
+
 
     $('.my_Slides .foodcard ').on('click', function(){
         let classId = $(this).find('.card-text').data('class');

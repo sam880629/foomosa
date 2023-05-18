@@ -24,6 +24,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap%27');
     </style>
     <link rel="icon" type="image/x-icon" href="/pic/favicon32.ico">
+
     <title>Foomosa</title>
 </head>
 
@@ -32,51 +33,59 @@
         <div class="header_search_box">
             <object data="/svg/230517.svg" type="image/svg+xml" class="homeSVG">
             </object>
-           
+
 
             <nav class="navbar navbar-expand-xl d-flex position-absolute">
                 <div class="container-fluid ">
                     <!-- LOGO-->
-                    <a class="navbar-brand col-lg-4" href="/index"><img src="/pic/LOGO.png" alt="LOGO" class="img-fluid ps-5"
-                            style="width: 200px;"></a>
-            
+                    <a class="navbar-brand col-lg-4" href="/index"><img src="/pic/LOGO.png" alt="LOGO"
+                            class="img-fluid ps-5" style="width: 200px;"></a>
+
                     <div class="collapse  d-flex" id="navbarSupportedContent">
-            
-                        <% if(!user  && !shopId) {%>
-                        <!-- 登錄前 -->
-                        <a class="btn btn-outline-primary btn-sm ms-auto me-2 d-flex text-nowrap " href='/login'>登錄</a>
-                        <div class="btn-group" role="group">
-                            <button type="button " class="btn btn-primary btn-sm dropdown-toggle " data-bs-toggle="dropdown" aria-expanded="false">
-                              註冊
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-end ">
-                              <li><a class="dropdown-item" href="/signup/user">加入會員</a></li>
-                              <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                              <li><a class="dropdown-item" href="/signup/client">成為合作夥伴</a></li>
-                            </ul>
-                          </div>
-                        <% } else { %>
-                        <!-- 登錄後 -->
-                        <div class="dropdown col-lg-4 mt-4 mt-md-0">
-                            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end text-small">
-                                <% if(shopId) {%>
-                                    <li><a class="dropdown-item" href="#">店家後台</a></li>
-                                <% } else { %>
-                                    <li><a class="dropdown-item" href="#">會員專區</a></li>
+
+                        <% if(!user && !shopId) {%>
+                            <!-- 登錄前 -->
+                            <a class="btn btn-outline-primary btn-sm ms-auto me-2 d-flex text-nowrap "
+                                href='/login'>登錄</a>
+                            <div class="btn-group" role="group">
+                                <button type="button " class="btn btn-primary btn-sm dropdown-toggle "
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    註冊
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end ">
+                                    <li><a class="dropdown-item" href="/signup/user">加入會員</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="/signup/client">成為合作夥伴</a></li>
+                                </ul>
+                            </div>
+                            <% } else { %>
+                                <!-- 登錄後 -->
+                                <div class="dropdown col-lg-4 mt-4 mt-md-0">
+                                    <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        <% if(shopId) {%>
+                                            <img src='https://github.com/mdo.png' alt="mdo" width="32" height="32"
+                                                class="rounded-circle">
+                                            <% } else { %>
+                                                <img src='pic/categ_img/categ-1.png' alt="mdo" width="32" height="32"
+                                                    class="rounded-circle">
+                                                <% } %>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-end text-small">
+                                        <% if(shopId) {%>
+                                            <li><a class="dropdown-item" href="/backstage/clientinfo">店家後台</a></li>
+                                            <% } else { %>
+                                                <li><a class="dropdown-item" href="/membership">會員專區</a></li>
+                                                <% } %>
+                                                    <li>
+                                                        <hr class="dropdown-divider">
+                                                    </li>
+                                                    <li><a class="dropdown-item" id="logout_btn">登出</a></li>
+                                    </ul>
+                                </div>
                                 <% } %>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" id="logout_btn">登出</a></li>
-                            </ul>
-                        </div>
-                        <% } %>
                     </div>
                 </div>
             </nav>
@@ -96,7 +105,7 @@
                 </div>
             </div>
         </div>
-        
+
     </header>
 
 
