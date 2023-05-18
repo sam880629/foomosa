@@ -50,6 +50,7 @@ app.get('/:id', async function (req, res) { // 修改路由以接收 id 參數
             active:response.data[3][0],
             openStatus,
             statusColor,
+            userAvatar:response.data[4][0],
             user: req.session.uid,//session  user id
             shopId: req.session.shopId // session shop id
         });

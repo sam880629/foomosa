@@ -39,13 +39,17 @@
             <div class="dropdown text-end ms-auto me-2 col-lg-4 mt-4 mt-md-0">
                 <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
                     aria-expanded="false">
-                    <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
-                </a>
+                    <% if(shopId) {%>
+                    <img src="<%= shop.shop_logo_img %>" alt="mdo" width="32" height="32" class="rounded-circle">
+                    <% } else { %>
+                        <img src="<%=  userAvatar.user_avatar %>" alt="mdo" width="32" height="32" class="rounded-circle">
+                     <% } %>
+
                 <ul class="dropdown-menu dropdown-menu-end text-small">
                     <% if(shopId) {%>
-                        <li><a class="dropdown-item" href="#">店家後台</a></li>
+                        <li><a class="dropdown-item" href="/backstage/clientInfo">店家後台</a></li>
                     <% } else { %>
-                        <li><a class="dropdown-item" href="#">會員專區</a></li>
+                        <li><a class="dropdown-item" href="/membership">會員專區</a></li>
                     <% } %>
                     <li>
                         <hr class="dropdown-divider">
