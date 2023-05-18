@@ -111,66 +111,66 @@ $(function () {
             labels: labels, //Y軸月份
             datasets: [
                 {
-                    label: '主食優惠卷兌換數',
+                    label: '主食兌換數',
                     data: cu_chartData[0].MainDish,
-                    borderColor: '#0072c6',
-                    backgroundColor: '#0072c6',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    backgroundColor: 'rgba(54, 162, 235, 1)',
                     yAxisID: 'y',
                 },
 
                 {
-                    label: '招牌優惠卷兌換數',
+                    label: '招牌兌換數',
                     data: cu_chartData[1].SignatureDish,
-                    borderColor: '#1e90ff',
-                    backgroundColor: '#1e90ff',
+                    borderColor: 'rgba(255, 206, 86, 1)',
+                    backgroundColor: 'rgba(255, 206, 86, 1)',
                     yAxisID: 'y',
                     hidden: true
                 },
 
                 {
-                    label: '湯品優惠卷兌換數',
+                    label: '湯品兌換數',
                     data: cu_chartData[2].Soup,
-                    borderColor: '#4e82b4',
-                    backgroundColor: '#4e82b4',
+                    borderColor: 'rgba(75, 192, 150, 1)',
+                    backgroundColor: 'rgba(75, 192, 150, 1)',
                     yAxisID: 'y',
                     hidden: true
                 },
                 {
-                    label: '特色飲品優惠卷兌換數',
+                    label: '飲品兌換數',
                     data: cu_chartData[3].Beverage,
-                    borderColor: '#6fa8dc',
-                    backgroundColor: '#6fa8dc',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    backgroundColor: 'rgba(255, 99, 132, 1)',
                     yAxisID: 'y',
                     hidden: true
                 },
                 {
                     label: '主食觸及數',
                     data: touchData[0].MainDish_T,
-                    borderColor: '#d0011b',
-                    backgroundColor: '#d0011b',
+                    borderColor: '#0C4D7A',
+                    backgroundColor: '#0C4D7A',
                     yAxisID: 'y1',
                 },
                 {
                     label: '招牌觸及數',
                     data: touchData[1].SignatureDish_T,
-                    borderColor: '#ff4136',
-                    backgroundColor: '#ff4136',
+                    borderColor: '#FF6600',
+                    backgroundColor: '#FF6600',
                     yAxisID: 'y1',
                     hidden: true
                 },
                 {
                     label: '湯品觸及數',
                     data: touchData[2].Soup_T,
-                    borderColor: '#ff7f50',
-                    backgroundColor: '#ff7f50',
+                    borderColor: '#33916F',
+                    backgroundColor: '#33916F',
                     yAxisID: 'y1',
                     hidden: true
                 },
                 {
-                    label: '特色飲品觸及數',
+                    label: '飲品觸及數',
                     data: touchData[3].Beverage_T,
-                    borderColor: '#ff2d55',
-                    backgroundColor: '#ff2d55',
+                    borderColor: '#FF093E',
+                    backgroundColor: '#FF093E',
                     yAxisID: 'y1',
                     hidden: true
                 },
@@ -189,8 +189,18 @@ $(function () {
                 plugins: {
                     title: {
                         display: true,
-                        fontSize: 21,
+                        font:{ size:21},
                         text: '優惠卷兌換數 vs. 觸及數'
+                    },
+                    legend: {
+                        position: 'right',
+      //},
+                        labels: {
+                            // This more specific font property overrides the global property
+                            font: {
+                                size: 16
+                            }
+                        }
                     }
                 },
                 scales: {
@@ -200,6 +210,7 @@ $(function () {
                         display: true,
                         position: 'left',
                         title: {
+                            font:{ size:18},
                             display: true,
                             text: '優惠卷兌換數'
                         }
@@ -209,6 +220,7 @@ $(function () {
                         display: true,
                         position: 'right',
                         title: {
+                            font:{ size:18},
                             display: true,
                             text: '觸及數'
                         },

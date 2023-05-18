@@ -76,7 +76,7 @@
     }
 
     #timeline {
-      width: 650px;
+      width: 540px;
       height: 10px;
       background-color: #F2EDED;
       position: relative;
@@ -291,28 +291,24 @@
 
           <div class="card py-4 d-flex justify-content-center" style="height: auto; width: 100%;">
             <div class=" px-4 d-flex justify-content-center" style="height:367px; width: 100%;">
-
-              <canvas id="myChart" style="height:367px;"></canvas>
-              <div class="p-3">
-                  <form class="food_checkbox">
+              <div class="p-3 d-flex align-items-center me-5">
+                  <form class="food_checkbox  ">
                       <input type="checkbox" name="item1" value="主食" checked>主食<br>
-                      <input type="checkbox" name="item2" value="招牌必點" >招牌必點<br>
+                      <input type="checkbox" name="item2" value="招牌必點" >招牌<br>
                       <input type="checkbox" name="item3" value="湯品">湯品<br>
-                      <input type="checkbox" name="item4" value="特色飲品">特色飲品<br>
+                      <input type="checkbox" name="item4" value="特色飲品">飲品<br>
                   </form>
               </div>
 
+              <canvas id="myChart" style="height:367px;"></canvas>
+
             </div>
-            <div class="d-flex align-items-center" style=" width: 100%;">
+            <div class="d-flex align-items-center" style=" width: 100%; margin-left: 150px;">
               <div class="d-flex align-items-center "
                 style="background-color: rgba(197, 119, 119, 0);height: 10px;width: 145px;font-size: 8px;text-align: right;padding-left: 40px;">
                 Coupon time </div>
               <div id="timeline"></div>
-              <!-- <div id="summerDrink" style="background-color: rgba(255, 99, 132, 0.2); height: 10px;width: 50px;"></div>
-              <div id="happyMom"style="background-color: rgba(54, 162, 235, 0.2);height: 10px;width: 80px;"></div>
-              <div id="happyNewYear" style="background-color: rgba(255, 206, 86, 0.2);height: 10px;width: 80px;"></div>
-              <div id="winterSoup" style="background-color: rgba(75, 192, 192, 0.2);height: 10px;width: 90px;"></div> -->
-
+            
             </div>
 
 
@@ -457,18 +453,18 @@ var myChart2 = new Chart(ctx2, {
       label: '近一年資料',
       data: [50, 400, 450, 120, 100],
       backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(153, 102, 255, 0.2)'
+        'rgba(255, 99, 132, 0.6)',
+        'rgba(54, 162, 235, 0.6)',
+        'rgba(255, 206, 86, 0.6)',
+        'rgba(75, 192, 192, 0.6)',
+        'rgba(153, 102, 255, 0.6)'
       ],
       borderColor: [
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)'
+        'rgba(255, 9, 6, 1)',
+        'rgba(12, 77, 122, 1)',
+        'rgba(255, 102, 0, 1)',
+        'rgba(51, 145, 111, 1)',
+        'rgba(118, 48, 232, 1)'
       ],
       borderWidth: 1
     },
@@ -476,18 +472,18 @@ var myChart2 = new Chart(ctx2, {
       label: '進3個月資料',
       data: [150, 500,1020,  190, 120],
       backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(153, 102, 255, 0.2)'
+        'rgba(255, 99, 132, 0.6)',
+        'rgba(54, 162, 235, 0.6)',
+        'rgba(255, 206, 86, 0.6)',
+        'rgba(75, 192, 192, 0.6)',
+        'rgba(153, 102, 255, 0.6)'
       ],
       borderColor: [
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)'
+        'rgba(255, 9, 6, 1)',
+        'rgba(12, 77, 122, 1)',
+        'rgba(255, 102, 0, 1)',
+        'rgba(51, 145, 111, 1)',
+        'rgba(118, 48, 232, 1)'
       ],
       borderWidth: 1
     }]
@@ -498,9 +494,9 @@ legend: {
       },
       title: {
         display: true,
-        text: '觸及率-年齡分布'
+        text: '觸及率-年齡分布',
 fontSize: 21,
-      }
+      },
     responsive: true,
     plugins: {
       
