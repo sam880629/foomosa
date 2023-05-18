@@ -14,7 +14,7 @@ function createButton(text, id, onClick) {
 }
 
 // 定義一個函數來切換顯示或隱藏擴展按鈕
-toggleButtons=() => {
+toggleButtons = () => {
     var expandedButtons = document.querySelector(".expandedButtons");
     expandedButtons.innerHTML = "";
     if (expandedButtons.style.display === "none" || expandedButtons.style.display === "") {
@@ -24,11 +24,20 @@ toggleButtons=() => {
         });
         // 登出按鈕
         var rightButton = createButton("<i class='bi bi-box-arrow-right'></i>", "rightButton", function () {
+            // 登出請求
             $.ajax({
-                url: '/membership/logout',
-                type: 'GET',
-                success: function (result) {
-                    window.location.href = "/index";
+                url: "/membership/update/logout",
+                type: "POST",
+                success: function(response) {
+                    if (response.status === 200) {
+                        alert(" 登出成功!!");
+                        window.location.href = "/index";
+                    } else {
+                        console.log("登出失敗");
+                    }
+                },
+                error: function(error) {
+                    console.log(error);
                 }
             });
         });

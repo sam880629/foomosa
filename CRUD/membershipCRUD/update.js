@@ -3,6 +3,19 @@ var router = express.Router(); //-- 呼叫路由方法
 
 var config = require("../config"); //-- 接收 config.js
 
+//-- 登出按鈕路由
+router.post("/logout", function (req, res) {
+
+  req.session.destroy(function (err) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json({status: 200});
+      console.log("登出路由執行成功!");
+    }
+  });
+});
+
 //-- 美食口袋路由
 router.put("/comment_Favorite/:id", function (req, res) {
   console.log("獲取:", req.body);
@@ -94,7 +107,7 @@ router.post('/updateUserPoints/', function (req, res) {
       console.log("更新資料成功");
       // 再次查詢使用者資訊以獲取新的積分
       var sql = `SELECT * FROM user WHERE user_id = ?`;
-      config.query(sql, [user_id], function(err, results, fields) {
+      config.query(sql, [user_id], function (err, results, fields) {
         if (err) {
           console.error("查詢失敗", err);
           res.status(500).send("查詢資料錯誤" + err.message);
@@ -102,7 +115,7 @@ router.post('/updateUserPoints/', function (req, res) {
           console.log("查詢資料成功");
           // 從查詢結果中取得新的積分數量並回傳給前端
           var newPoints = results[0].user_point;
-          console.log("我是newPoints: "+ newPoints);
+          console.log("我是newPoints: " + newPoints);
           res.status(200).send({ newPoints: newPoints });
           // res.status(200).send("更新資料成功");
         }
