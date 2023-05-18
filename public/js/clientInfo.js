@@ -88,6 +88,11 @@ function setInitialData([shop]) {
     // 圖片上傳區
     setInitialImg(shop);
 
+    // 換成資料庫抓到的logo圖像路徑(如果有的話)
+    if (shop.shop_logo_img) {
+        $('.avatar img').prop('src', '../' + shop.shop_logo_img);
+    }
+
     // 將左側 menu 的文字改成店名
     $('#welcomeText').text(`Welcome! ${shop.shop_name.split(" ")[0]}`);
     // $('.welcomeText').html("hi");
@@ -459,8 +464,8 @@ function setInitialImg({ shop_logo_img, shop_index_img }) {
         let imgTag = `<img src="${shop_logo_img}" class="img-fluid h-100" alt="image">`; //creating an img tag and passing user selected file source inside src attribute
         $(".img_upload").eq(1).children('div').html(imgTag);
         setHoverEvent($(".img_upload").eq(1));
-        
-        if(shop_logo_img){ //如果資料庫有logo，則呈現在左側menu
+
+        if (shop_logo_img) { //如果資料庫有logo，則呈現在左側menu
             // $('.avatar img').attr('src', shop_logo_img); // 左側換頭像
         }
     }
