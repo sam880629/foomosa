@@ -28,23 +28,27 @@
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end ">
                   <li><a class="dropdown-item" href="/signup/user">加入會員</a></li>
-                  <li>
-                    <hr class="dropdown-divider">
-                </li>
+                  <li><hr class="dropdown-divider"></li>
                   <li><a class="dropdown-item" href="/signup/client">成為合作夥伴</a></li>
                 </ul>
               </div>
             <% } else { %>
             <!-- 登錄後 -->
             <div class="dropdown text-end ms-auto me-2 col-lg-4 mt-4 mt-md-0">
-                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
-                    aria-expanded="false">
+                <!-- <a href="#" class="inline-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
+                    aria-expanded="false"> -->  
+                <% if(!user  && !shopId) {%>
+                        <a href="#" class="d-inline link-dark text-decoration-none"> </a>
+                <% } %>
+                <!-- 登入了，刪除產生多餘的a標籤， 製造一個 class="dropdown-toggle的 div-->
+                <div class="dropdown-toggle" data-bs-toggle="dropdown">
                     <% if(shopId) {%>
-                    <img src="<%= shop.shop_logo_img %>" alt="mdo" width="32" height="32" class="rounded-circle">
+                    <img src="<%= shop.shop_logo_img %>" width="32" height="32" class="rounded-circle">
                     <% } else { %>
-                        <img src="<%=  userAvatar.user_avatar %>" alt="mdo" width="32" height="32" class="rounded-circle">
+                    <img src="<%=  userAvatar.user_avatar %>"  width="32" height="32" class="rounded-circle">
                      <% } %>
-
+                </div>
+                <!-- 登入了，刪除產生多餘的a標籤， 製造一個 class="dropdown-toggle的 div-->
                 <ul class="dropdown-menu dropdown-menu-end text-small">
                     <% if(shopId) {%>
                         <li><a class="dropdown-item" href="/backstage/clientInfo">店家後台</a></li>
