@@ -24,7 +24,7 @@ app.get('/all', async function (req, res) {
             JSONurl : '/json/think.json',
             user: req.session.uid,//session  user id
             shopId: req.session.shopId, // session shop id
-            // user_avatar: (shop.data.user_comment[0].user_avatar==undefined)?'https://github.com/mdo.png' : shop.data.user_comment[0].user_avatar 
+            headshot: (shop.data.headshot.length>0)? shop.data.headshot[0].user_avatar:'https://github.com/mdo.png'  
          });
         
    } catch (err) {
@@ -47,7 +47,8 @@ app.get('/name/:shop_name', async function (req, res) {
             shopComment : shop.data.comment,
             JSONurl : '/json/54605-food-toss.json',
             user: req.session.uid,//session  user id
-            shopId: req.session.shopId // session shop id
+            shopId: req.session.shopId, // session shop id
+            headshot: (shop.data.headshot.length>0)? `../${shop.data.headshot[0].user_avatar}` : 'https://github.com/mdo.png'  
          })
    } catch (err) {
       console.log(err);

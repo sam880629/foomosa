@@ -66,18 +66,24 @@
                         <div class="dropdown col-lg-4 mt-4 mt-md-0">
                             <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
                                 aria-expanded="false">
-                                <img src= 'https://github.com/mdo.png' alt="mdo" width="32" height="32" class="rounded-circle">
+                                <% if(shopId) {%>
+                                    <img src=<%= shop[shopId-1].shop_logo_img %> alt="mdo" width="32" height="32"
+                                        class="rounded-circle">
+                                    <% } else { %>
+                                        <img src= <%= headshot %> alt="mdo" width="32" height="32"
+                                            class="rounded-circle">
+                                        <% } %>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end text-small">
                                 <% if(shopId) {%>
-                                    <li><a class="dropdown-item" href="#">店家後台</a></li>
+                                    <li><a class="dropdown-item" href="/backstage/clientinfo">店家後台</a></li>
                                 <% } else { %>
                                     <li><a class="dropdown-item" href="/membership">會員專區</a></li>
                                 <% } %>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" id="logout_btn">登出</a></li>
+                                <li><button type="button" class="dropdown-item" id="logout_btn">登出</button></li>
                             </ul>
                         </div>
                         <% } %>

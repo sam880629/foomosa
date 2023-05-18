@@ -324,6 +324,10 @@ header .JsonV_1 {
   border-radius: 15px;
   box-shadow: 0px 3px 3px #C6C6C6;
 }
+.card a {
+  text-decoration: none;
+  color: #212529;
+}
 .card:hover {
   cursor: pointer;
   transition: 0.3s;

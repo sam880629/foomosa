@@ -2,7 +2,8 @@
 
 <% shop.forEach(function(shopItem, index) { %>
     <div class="card col-12 col-md-3 mb-5" style="width: 18rem;">
-       <i class=" <%-  (shopComment.includes(shopItem.shop_id))? 'bi bi-suit-heart-fill' : 'bi bi-suit-heart' %> stor_heart"></i> 
+      <a href=<%= `/restaurant/${shopItem.shop_id}` %> >  
+      <i class=" <%-  (shopComment.includes(shopItem.shop_id))? 'bi bi-suit-heart-fill' : 'bi bi-suit-heart' %> stor_heart"></i> 
       <img src="../<%= shopItem.shop_preview_img %>" class="card-img-top">
       <div class="card-body">
         <p class="card-text">
@@ -10,5 +11,6 @@
         </p>
         <p class="rating"><i class="bi bi-star-fill pe-2"></i>4.6/5<span>(100+)</span></p>
       </div>
+      </a>
     </div>
   <% }); %>

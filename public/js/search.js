@@ -338,16 +338,19 @@ $(function () {
     // <img src="${data.shop_preview_img}" class="card-img-top">
     //更新商家card
     function replaceData(shopDatas) {
+        userFavorite = (userFavorite==undefined)?[]:userFavorite;
         $('#store_box').html("");// 清空card
         $.each(shopDatas, (index, data) => {
             $("#store_box").append(` 
 <div class="card col-12  col-md-3   mb-5"style="width: 18rem;">
+<a href='/restaurant/${data.shop_id}'>
 <i class=" ${(userFavorite.includes(data.shop_id))? 'bi bi-suit-heart-fill' : 'bi bi-suit-heart'} stor_heart"></i>
  <img src="../${data.shop_preview_img}" class="card-img-top">
 <div class="card-body">
     <p class="card-text">${data.shop_name}</p>
     <p class="rating"><i class="bi bi-star-fill pe-2 "></i>4.6/5<span>(100+)</span></p>
 </div>
+</a>
 </div>
         `
         )
@@ -395,6 +398,7 @@ $(function () {
             for (let i = offset; i < (offset + size); i++) {
                 result +=
                  ` <div class="card col-12   col-md-3   mb-5" style="width: 18rem; ">
+                 <a href='/restaurant/${data[i].shop_id}'>
                     <i class=" ${(userFavorite.includes(data[i].shop_id))? 'bi bi-suit-heart-fill' : 'bi bi-suit-heart'} stor_heart"></i>
                     <img src="../${data[i].shop_preview_img}" class="card-img-top ">
                     <div class="card-body">
@@ -403,6 +407,7 @@ $(function () {
                         </h6>
                         <p class="rating pt-2 "><i class="bi bi-star-fill pe-2 "></i>4.6/5<span>(100+)</span></p>
                     </div>
+                    </a>
                 </div>`;
             }
             $('#store_box').append(result);

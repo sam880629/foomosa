@@ -12,18 +12,23 @@ let searAll = '';//是否搜尋全部
 const sql_location = 'SELECT * FROM `location` ORDER BY `location`.`location_id` ASC ;';
 const sql_class = 'SELECT * FROM `class` ORDER BY `class_id` ASC;';
 // 先確定是否有登入，有取得user_ID後搜尋符合的資料，沒有則不搜尋
-let sql_comment ='SELECT * FROM `comment` WHERE 1=1 AND comment_favorite = 1 AND user_id = 0;';
-let sql_user = 'SELECT * FROM `user` WHERE user_id = 0;'
+let sql_comment = 'SELECT * FROM `comment` WHERE 1=1 AND comment_favorite = 1 AND user_id = 0;';
+let sql_user = 'SELECT * FROM `user` WHERE user_id = 0;';
+
+
+
+
 // 全部搜尋
 api.get('/all', function (req, res) {
   searAll = '1';// 如果是ALL則搜尋全部
-  if(req.session.uid){
+  
+  if(req.session.uid !=undefined ){
     sql_user = `SELECT * FROM  user WHERE user_id = ${req.session.uid};`;
     sql_comment = `SELECT * FROM comment WHERE 1=1 AND comment_favorite = 1 AND user_id =${req.session.uid};`;
   }
 
-  const sql_shop = ' SELECT * FROM `shop` ;';//ORDER BY RAND()
-  conn.query(`${sql_shop}${sql_location}${sql_class}${sql_comment}${sql_user}`, function (err, result, fields) {
+  const sql_shop = ' SELECT * FROM `shop`;';//ORDER BY RAND()
+  conn.query(`${sql_shop}${sql_location}${sql_class}${sql_comment}${sql_user}`,function (err, result, fields) {
     if (err) {
       res.send('錯誤', err);
     } else {
@@ -37,7 +42,7 @@ api.get('/all', function (req, res) {
         location: result[1],
         class: result[2],
         comment : userFavorite,
-        user_comment : result[4]
+        headshot : result[4]
       });
     }
   })
@@ -51,7 +56,11 @@ api.get('/shop/:shop_Name', function (req, res) {
   res.cookie('shopname', 'some');
   searAll = `%${req.params.shop_Name}%`;// 如果是名稱則做模糊搜尋
   const sql = `SELECT * FROM shop WHERE shop_name LIKE  ? ;`;
-  conn.query(`${sql}${sql_location}${sql_class}${sql_comment}`, [`%${req.params.shop_Name}%`],function (err, result, fields) {
+  if(req.session.uid!=undefined){
+    sql_user = `SELECT * FROM  user WHERE user_id = ${req.session.uid};`;
+    sql_comment = `SELECT * FROM comment WHERE 1=1 AND comment_favorite = 1 AND user_id =${req.session.uid};`;
+  }
+  conn.query(`${sql}${sql_location}${sql_class}${sql_comment}${sql_user}`, [`%${req.params.shop_Name}%`],function (err, result, fields) {
     if (err) {
       res.send('錯誤', err);
     } else {
@@ -60,11 +69,13 @@ api.get('/shop/:shop_Name', function (req, res) {
       for (const data of result[3]) {
             userFavorite.push( data.shop_id );
         }
+
       res.json({
         shop: result[0],
         location: result[1],
         class: result[2],
-        comment : userFavorite
+        comment : userFavorite,
+        headshot : result[4]
       }
       );
     }
@@ -104,7 +115,7 @@ api.post('/some', express.urlencoded(), function (req, res) {
   
   // sql += ` ORDER BY RAND(); `;
 
-  // console.log(sql);
+  console.log(sql);
   conn.query(sql,function (err, result, fields) {
     if (err) {
       res.send('錯誤', err)
