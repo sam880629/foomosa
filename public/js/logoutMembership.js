@@ -30,7 +30,7 @@ toggleButtons = () => {
                 type: "POST",
                 success: function(response) {
                     if (response.status === 200) {
-                        alert(" 登出成功!!");
+                        alert(" 會員已成功登出!!");
                         window.location.href = "/index";
                     } else {
                         console.log("登出失敗");
