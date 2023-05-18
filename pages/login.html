@@ -27,15 +27,15 @@
     <link rel="icon" type="image/x-icon" href="/pic/favicon32.ico">
     <!-- google identity -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-
+    <!-- Load the JS SDK asynchronously -->
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
 </head>
 
 <body>
-    <!-- google 測試 -->
+    <!-- google 登入的彈出框框 -->
     <div id="g_id_onload" data-client_id="1043228888977-p1mm0ld5p7ncpinsa9avguqj6h8p3l3u.apps.googleusercontent.com"
         data-context="signup" data-ux_mode="popup" data-callback="onSignIn" data-auto_prompt="false">
     </div>
-    <!-- google 測試 -->
 
 
     <div class="container-fluid p-0 vh-100">
@@ -99,9 +99,10 @@
                                     data-text="continue_with" data-size="large">
                                 </div>
 
-                                <button type="button" class="btn d-flex align-items-center justify-content-center me-3">
+                                <button type="button" class="btn d-flex align-items-center justify-content-center me-3" id="fbLogin">
                                     <img src="pic/icons8-facebook.svg" height="30px">
                                 </button>
+
                                 <button type="button" class="btn d-flex align-items-center justify-content-center me-3">
                                     <img src="pic/icons8-apple-24.png" height="24px">
                                 </button>

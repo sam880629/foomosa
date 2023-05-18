@@ -95,6 +95,10 @@ app.use('/clientCreate', clientCreate);
 const googleCreate = require('./CRUD/loginSignupCRUD/googleCreate.js');
 app.use('/googleId', googleCreate);
 
+// fb 登入
+const fbSelect = require('./CRUD/loginSignupCRUD/fbSelect.js');
+app.use('/fbId', fbSelect);
+
 //會員註冊 create
 const userCreate = require('./CRUD/loginSignupCRUD/userCreate.js');
 app.use('/userCreate', userCreate);
