@@ -8,9 +8,9 @@ let populationChart; // 這是個全域變數，放chartjs渲染的結果
 
 $(document).ready(() => {
     setInitialDateRange();
-    setDatePicker();
     getBehaviorCsvData();
     getClientData();
+    getPopulationCsvData();
 })
 
 function getClientData() {
@@ -174,6 +174,14 @@ function showBehaviorChart(startDate, endDate, filter = false) {
         sum += parseInt(value);
     })
 
+    // 決定X軸的日期區間
+    let stepSize = 1;
+    if (DATA_COUNT > 60) {
+        stepSize = 10;
+    } else if (DATA_COUNT > 20) {
+        stepSize = 6;
+    }
+
     let titleText;     // // options.plugins.title.text 標題文字
     let scalesY;    // // options.scales.y y軸文字
 
@@ -228,7 +236,8 @@ function showBehaviorChart(startDate, endDate, filter = false) {
             plugins: {
                 title: {
                     display: true,
-                    text: titleText
+                    text: titleText,
+                    font: { size: 21 },
                 },
                 legend: {
                     labels: {
@@ -239,7 +248,10 @@ function showBehaviorChart(startDate, endDate, filter = false) {
                             });
                             return labels;
                         },
-                        boxHeight: 8
+                        boxHeight: 12,
+                        font: {
+                            size: 16 // 改label的字體大小
+                        }
                     }
                 }
 
@@ -252,12 +264,20 @@ function showBehaviorChart(startDate, endDate, filter = false) {
                     type: 'time',
                     time: {
                         // Luxon format string
-                        tooltipFormat: 'DD',
+                        // tooltipFormat: 'DD'
+                        tooltipFormat: 'M/d',
                         unit: 'day', // 以天為單位
+                        stepSize: stepSize,
+                        displayFormats: {
+                            day: 'M/d' // 指定日期顯示格式為 "12/25"
+                        },
                     },
                     title: {
                         display: false,
-                        text: 'Date'
+                        text: 'Date',
+                    },
+                    ticks: {
+                        font: { size: 16 },
                     }
                 },
                 y: {
@@ -266,7 +286,10 @@ function showBehaviorChart(startDate, endDate, filter = false) {
                         text: scalesY
                     },
                     suggestedMin: 0,
-                    suggestedMax: maxY
+                    suggestedMax: maxY,
+                    ticks: {
+                        font: { size: 16 },
+                    }
                 }
             }
         }
@@ -310,12 +333,15 @@ $(function () {
     $('input[name="daterange"]').daterangepicker({
         opens: 'left',
         minDate: "12/01/2022",
-        maxDate: formatDate2(date)
-        // maxDate: "05/31/2023"
+        maxDate: formatDate2(date), // 今天
+        startDate: startDateNow,
+        endDate: endDateNow,
+
     }, function (start, end, label) {
-        startDateNow = new Date(start);
-        endDateNow = new Date(end);
+        startDateNow = new Date(start); // 將 startDateNow 改成時間篩選器的結果
+        endDateNow = new Date(end); // 將 endDateNow 改成時間篩選器的結果
         endDateNow.setDate(endDateNow.getDate() - 1);
+
         setDashboard(startDateNow, endDateNow);
         showBehaviorChart(startDateNow, endDateNow);
         showPopulationChart(startDateNow, endDateNow);
@@ -399,17 +425,14 @@ $('.filter_time_btn span').on('click', (e) => {
 
 //渲染日期選擇器的值
 function setDatePicker() {
-
-    // 把日期轉為 yyyy/mm/dd 的格式
-    let start = formatDate2(startDateNow);
-    let end = formatDate2(endDateNow);
-    $('input[name="daterange"]').daterangepicker({ startDate: start, endDate: end });
+    $('input[name="daterange"]').data('daterangepicker').setStartDate(formatDate2(startDateNow));
+    $('input[name="daterange"]').data('daterangepicker').setEndDate(formatDate2(endDateNow));
 }
 
 
 // 使用者分析
 $("#pills-analytic-tab").on('click', function () {
-    getPopulationCsvData();
+    showPopulationChart(startDateNow, endDateNow);
 })
 
 
@@ -421,7 +444,6 @@ function getPopulationCsvData() {
         dataType: "text",
         success: function (data) {
             populationDataObj = processDataToJson(data); // 將讀取到 csv 轉成物件
-            showPopulationChart(startDateNow, endDateNow);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             // 發生錯誤時執行的動作
@@ -456,7 +478,7 @@ function showPopulationChart(startDate, endDate, filter = false) {
         // console.log(day); // 2023-5-7
         day.setDate(startDate.getDate() + i);
         let dayStr = formatDate(day);
-        for (let j = 0; j < 12; j++) { // 12 是每個日期的資料總比數
+        for (let j = 0; j < 12; j++) { // 12 是每個日期的資料總筆數
             datapoints[j] += parseInt(populationDataObj[dayStr][j]);
             sum += parseInt(populationDataObj[dayStr][j]);
         }
@@ -466,21 +488,22 @@ function showPopulationChart(startDate, endDate, filter = false) {
     const femaleDatapoints = datapoints.slice(6, 12); // 存女生數據
 
 
-    const labels = ['18-24', '25-34', '35-44', '45-54', '55-64', '65以上'];
+    const labels = ['18 - 24', '25 - 34', '35 - 44', '45 - 54', '55 - 64', '65以上'];
     const data = {
         labels: labels,
         datasets: [
             {
                 label: '女性',
                 data: femaleDatapoints,
-                borderColor: '#F28F16',
-                backgroundColor: '#F28F16',
+                borderColor: 'rgba(255, 99, 132, 0.6)',
+                backgroundColor: 'rgba(255, 99, 132, 0.6)',
             },
             {
                 label: '男性',
                 data: maleDatapoints,
-                borderColor: "#558C03",
-                backgroundColor: "#558C03",
+                borderColor:  'rgba(54, 162, 235, 0.6)',
+                backgroundColor:  'rgba(54, 162, 235, 0.6)',
+
             }
         ]
     };
@@ -493,7 +516,15 @@ function showPopulationChart(startDate, endDate, filter = false) {
             scales: {
                 y: {
                     reverse: true,
+                    ticks:{
+                        font:{
+                            size:16
+                        }
+                    }
                 },
+                X: {
+                    display: false
+                }
             },
             indexAxis: 'y',
             // Elements options apply to all of the options unless overridden in a dataset
@@ -510,7 +541,8 @@ function showPopulationChart(startDate, endDate, filter = false) {
                 },
                 title: {
                     display: true,
-                    text: '全平台性別比例分布圖'
+                    text: '客群分析(年齡、性別)',
+                    font: { size: 21 },
                 },
                 tooltip: {
                     enabled: true, // 確保工具提示已啟用
@@ -520,6 +552,15 @@ function showPopulationChart(startDate, endDate, filter = false) {
                             return `${value} %`;
                         }
                     }
+                },
+                legend: {
+                    labels: {
+                        // This more specific font property overrides the global property
+                        font: {
+                            size: 14
+                        },
+                    },
+                    position: 'right'
                 }
             }
         },
