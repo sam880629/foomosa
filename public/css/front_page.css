@@ -49,7 +49,7 @@ header .header_content div:nth-child(1) h2:nth-child(1) {
   color: #F89E02;
 }
 header .header_content div:nth-child(1) h2:nth-child(2) {
-  color: #558C03;
+  color: #558C03; 
 }
 header .header_content div:nth-child(2) {
   margin-top: 60px;
