@@ -40,7 +40,7 @@ router.get("/", function (req, res) {
             // console.log(results[0][0].user_point);
             // console.log(results[0][1].shop_preview_img);
             // console.log(results[0][0].shop_logo_img);
-            // console.log(results[0][2].user_avatar);
+            console.log(results[0][0].user_avatar);
             // console.log(results[1]);
             // console.log(results[1][1].user_coupon_id);
             // console.log(results[2]);
