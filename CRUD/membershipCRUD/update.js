@@ -49,7 +49,8 @@ router.put("/comment_text/:id", function (req, res) {
   var comment_text = req.body.comment_text;
   var shop_id = req.body.shop_id;
   // var sql = `UPDATE comment SET comment_text = '${comment_text}' WHERE shop_id = ${shop_id}`;
-  var sql = `UPDATE comment SET comment_text = ? WHERE shop_id = ?`;
+  // var sql = `UPDATE comment SET comment_text = ? WHERE shop_id = ?`;
+  var sql = `UPDATE comment SET comment_text = ?,created_at = now() WHERE shop_id = ?`;
 
   config.query(sql,
     // [req.params.comment_text, req.params.id], //-- 獲取 url 輸入的參數，位置不影響，只引用變數名稱
