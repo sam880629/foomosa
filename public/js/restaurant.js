@@ -121,7 +121,7 @@ $(document).ready(function () {
         var uberPriceRow = ubereat ? `<div class="mt-3"><img src="/pic/UberPrice.png"><span class="ps-3 h6">${ubereat}元</span></div>` : '';
         var pandaPriceRow = foodpanda ? `<div class="mt-3"><img src="/pic/PandaPrice.png"><span class="ps-3 h6">${foodpanda}元</span></div>` : '';
 
-        var popoverContent = `<div><span class="h6">本店價&nbsp&nbsp&nbsp&nbsp&nbsp<span class="ps-4">${menuPrice}元</span></span>${uberPriceRow}${pandaPriceRow}</div>`;
+        var popoverContent = `<div><span class="h6">本店價&nbsp&nbsp&nbsp<span class="ps-5">${menuPrice}元</span></span>${uberPriceRow}${pandaPriceRow}</div>`;
 
         // 顯示 popover
         $(this).popover({

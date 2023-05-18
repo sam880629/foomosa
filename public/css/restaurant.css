@@ -255,6 +255,11 @@ ul {
     border-radius: 20px;
 }
 
+.card-body p{
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
 .foodcard .img-container {
     position: absolute;
     /* 設定絕對定位 */

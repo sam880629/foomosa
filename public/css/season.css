@@ -121,7 +121,8 @@ body::-webkit-scrollbar-thumb {
     width: 100%;
     font-size: 4rem;
     line-height: 5.2rem;
-    color: white;
+    color: white;   
+    /* color: #F89E02;    */
 }
 
 .bannerTitle p {
@@ -136,6 +137,12 @@ body::-webkit-scrollbar-thumb {
     padding-left: 6%;
 }
 
+@media (max-width:1475px) {
+    .bannerTitle {
+        font-size: 3.8rem;
+    }
+
+}
 @media (max-width: 991px) {
     .bannerTitle {
        display: none;
