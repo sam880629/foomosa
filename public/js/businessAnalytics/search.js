@@ -189,7 +189,7 @@ $(function () {
                 plugins: {
                     title: {
                         display: true,
-                        
+                        fontSize: 21,
                         text: '優惠卷兌換數 vs. 觸及數'
                     }
                 },

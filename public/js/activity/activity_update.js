@@ -28,7 +28,7 @@ function getActivityList() {
         //檢查有沒有url資料
         console.log(alist)
         $('tbody').empty();
-        $.each(alist, function (index, myactivitylist) {
+        $.each(alist[0], function (index, myactivitylist) {
           if ((showOpenData && myactivitylist.active_ifDel == 1) || (!showOpenData && myactivitylist.active_ifDel == 0)) {
             $('tbody').append(
               `   <tr>
@@ -74,6 +74,12 @@ function getActivityList() {
             )
           }
         })
+	if (alist[1][0].shop_logo_img) {
+          $('#mosa2 img').prop('src', '../' + alist[1][0].shop_logo_img);
+        }
+
+        // 將左側 menu 的文字改成店名
+        $('#welcomeText').text(`Welcome! ${alist[1][0].shop_name.split(" ")[0]}`);
       }
     })
 
