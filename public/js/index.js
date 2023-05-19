@@ -7,8 +7,10 @@
     getAll()// get 店家資訊//全部店家的資料
     showSlides(slideIndex);//顯示第一頁面
     fetchWeather() //渲染溫度推薦餐點文字
-
+    renderHeadshot()// 更新會員相片
      
+ 
+  
     
     // 登出
     $('#logout_btn').on('click', function(){
@@ -52,6 +54,23 @@
         url = ( wordToMatch =='')? url+'all' : url+ `name/${wordToMatch}`;
         window.location.assign(url);
     })
+
+
+       // 更新會員相片
+       function renderHeadshot(){
+        $.get('/index/headshot', function(data){
+            
+            try{
+                let my_img =(data.headshot.length==0)? 'https://github.com/mdo.png':data.headshot[0].user_avatar
+                $('#headshot').attr('src',my_img)
+            }catch(err){
+                console.log(err);
+            }
+        })
+    }
+
+
+
 
     // get 店家資訊//全部店家的資料
     function getAll() {

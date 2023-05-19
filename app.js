@@ -56,6 +56,9 @@ app.use('/backstage', backstage);
 
 
 // -------------【  CRUD  開始 】--------------------
+// 首頁
+const index_select = require('./CRUD/indexCRUD/indexSelect');
+app.use('/index', index_select);
 // 導入搜尋頁面路由 //商家資料
 const sel_all = require('./CRUD/searchCRUD/searchSelect');
 app.use('/find', sel_all); 
