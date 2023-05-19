@@ -5,16 +5,20 @@ api.post('/', express.urlencoded(), function (req, res) {
     // 連線資料庫
     const conn = require('../config.js');
 
+
+    console.log("data");
+    console.log(req.body.pId);
+
     const sqlSelect = "select * from user WHERE user_fb_id = ?;";
     conn.query(sqlSelect, // 先搜尋看看資料庫有沒有這個 fb_id
         [req.body.pId],
         function (err, results, fields) {
             if (!err) {
                 if (results.length > 0) {
-                    req.session.uid = results.user_id; // 有的話，將 user_id 存進 session
+                    req.session.uid = results[0].user_id; // 有的話，將 user_id 存進 session
                     res.redirect('/index'); // 導回主頁
                 } else {
-                    let redirectUrl = createAccount(req.body);
+                    let redirectUrl = createAccount(req.body.pAvatar);
                     res.redirect(redirectUrl);
                 }
             } else {

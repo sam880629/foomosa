@@ -11,7 +11,7 @@ app.post('/', express.urlencoded(), function (req, res) {
         function (err, results, fields) {
             if (!err) {
                 if (results.length > 0) {
-                    req.session.uid = results.user_id;
+                    req.session.uid = results[0].user_id;
                     res.redirect('/index');
                 } else {
                     const sqlInsert = "INSERT INTO user(user_name, user_email, user_avatar, user_google_id) VALUES (?, ?, ?, ?);";
