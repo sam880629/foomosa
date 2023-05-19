@@ -157,7 +157,7 @@
                                 <!-- Coupon -->
                                 <div class="row">
                                     <% for(var i=0; i<user[1].length; i++) { %>
-                                        <% if(user[1][i].coupon_used_date==null) { %>
+                                        <% if(user[1][i].coupon_used_date==null&&user[1][i].coupon_id!=null) { %>
                                             <div class="col-4 text-center mt-2">
                                                 <!-- --Coupon-Button 內容 -->
                                                 <button class="text-center" id="codeButton"
