@@ -25,6 +25,8 @@ if (nowTime.getHours() >= 5 && nowTime.getHours() < 11) {
 
 
 app.get('/index', async function (req, res) {
+  req.session.url = req.originalUrl;
+  
   let user_id ;
   if (req.session.uid=='') {
     console.log('未登入')

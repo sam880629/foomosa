@@ -53,7 +53,6 @@ $(function () {
 
      // 前往登入畫面
      $('#login_btn').on('click', function(){
-        
         window.location.href = '/login';
     })
     
@@ -272,6 +271,7 @@ $(function () {
 
     // 保存所需Cookie的值
     function findCookie() {
+        
         for (let i = 0; i < cookies.length; i++) {
             let cookie = cookies[i].split("="); // 將每個Cookie字符串分割成名稱和值
             if (cookie[0] === 'page') {
@@ -447,7 +447,7 @@ $(function () {
         let i = Math.floor(Math.random()*3);
         $('#storSearch_text').prop('placeholder', `${recommend_text[i]}`);
     }
-
+    console.log(shopName_cookie);
     // 當前是在哪個頁面
     if (page_cookie == 'all') {
         getAll();

@@ -9,7 +9,10 @@
     fetchWeather() //渲染溫度推薦餐點文字
     renderHeadshot()// 更新會員相片
      
- 
+    // 前往登錄畫面，並存取當前網址url
+    $('#login_btn').on('click', function(){
+        window.location.assign('/login');
+    })
   
     
     // 登出

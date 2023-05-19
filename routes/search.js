@@ -11,6 +11,8 @@ const axios = require('axios');
 app.get('/all', async function (req, res) {
   
    try {
+      req.session.url = req.originalUrl;//存取當前網址
+    
       res.cookie('page', 'all');
       let url = 'http://localhost:3000/find/all';//所有店家
       let shop = await axios.get(url);
@@ -36,6 +38,8 @@ app.get('/all', async function (req, res) {
 //關鍵字搜尋
 app.get('/name/:shop_name', async function (req, res) {
    try {
+      req.session.url = req.originalUrl;//存取當前網址
+    
       res.cookie('page', 'name');
       let url = `http://localhost:3000/find/shop/${req.params.shop_name}`;
       let shop = await axios.get(url);
