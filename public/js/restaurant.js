@@ -1,3 +1,4 @@
+//登出
 $(document).ready(function () {
     $('#logout_btn').on('click', function () {
         $.get('/logout').then(location.reload());
