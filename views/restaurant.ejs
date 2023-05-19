@@ -19,7 +19,9 @@
                     <%= shop.shop_name %>
                 </h2>
                 <!-- 愛心收藏 -->
-                <div id="heart" class="infoIcon ms-auto me-3 mt-5"><i class="bi bi-suit-heart" id="like" data-shop-id="<%= shop.shop_id %>"></i></div>
+                <div id="heart" class="infoIcon ms-auto me-3 mt-5">
+                    <i class="bi <%= comment &&comment.comment_favorite === 1 ? 'bi-suit-heart-fill' : 'bi-suit-heart' %>" id="like" data-shop-id="<%= shop.shop_id %>"></i>
+                </div>
 
                 <!-- 填寫評論 -->
                 <div class="infoIcon me-5 mt-5" data-bs-toggle="modal" data-bs-target="#exampleModal"><i

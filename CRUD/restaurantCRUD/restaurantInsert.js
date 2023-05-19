@@ -29,17 +29,16 @@ api.post('/rate', express.json(), (req, res) => {
 
         });
 })
-//uid
 
 //愛心收藏
 api.post('/toggleHeart', express.json(), (req, res) => { //用 POST 方法設定 /toggleHeart 路由
-    // if (!req.session.uid) {
-        // res.status(401).send("請先登錄");
-        // return;
-    // }
+    if (!req.session.uid) {
+        res.status(401).send("請先登錄");
+        return;
+    }
     // console.log('更新的收藏:', req.body); // 在 server 查看 req.body 的內容
-    // const user_id = req.session.uid; // 前端登錄的 user_id
-    const user_id = 1; //測試用的用戶ID
+    const user_id = req.session.uid; // 前端登錄的 user_id
+    // const user_id = 1; //測試用的用戶ID
     const { shop_id, comment_favorite } = req.body;// 從 req.body 中解構出 shop_id 和 comment_favorite 兩個變數
     const sql = "INSERT INTO comment (user_id, shop_id, comment_favorite) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE comment_favorite = VALUES(comment_favorite);";
     //將用戶對店家的收藏狀態插入 comment 資料表中，如果資料已存在則更新該資料

@@ -50,9 +50,10 @@ app.get('/:id', async function (req, res) { // 修改路由以接收 id 參數
             shopClass: response.data[1][0],
             menu: response.data[2],
             active:response.data[3][0],
+            userAvatar:response.data[4][0],
+            comment:response.data[5][0]|| { comment_favorite: 0},//if response.data[5][0] 是 undefined 或 null，則 comment_favorite: 0 
             openStatus,
             statusColor,
-            userAvatar:response.data[4][0],
             user: req.session.uid,//session  user id
             shopId: req.session.shopId // session shop id
         });

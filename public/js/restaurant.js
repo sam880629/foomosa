@@ -23,7 +23,8 @@ $(document).ready(function () {
 // information 
 // 加入我的最愛
 $(document).ready(function () {
-    var flag = true;
+    // var flag = true;
+    var flag = $('#like').data('is-favorited');
     $('#heart').on('click', async function () {
 
         const shop_id = $('#like').data('shop-id'); // 獲取 shop_id
