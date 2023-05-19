@@ -67,7 +67,6 @@ $(function () {
     $(window).scroll(function () {
         if ($(this).scrollTop() > 300) {
             $(".go_top").css({ "display": "inline-block", "cursor": "pointer" });
-
         }
         else {
             $(".go_top").css("display", "none");
@@ -94,7 +93,6 @@ $(function () {
             $(barcontent).addClass(d_none);
         }
     });
-
 
     /*畫面滾動到一定加載顯示更多*/
     $(window).scroll(function(){
