@@ -15,7 +15,7 @@ api.post('/rate', express.json(), (req, res) => {
     const user_id = req.session.uid; // 前端登錄的 user_id
     // const user_id = 1; //測試用的用戶ID
     const { shop_id, rate, comment } = req.body; //解析 POST 請求的資料，解構賦值
-    const sql = "INSERT INTO comment (user_id, shop_id, comment_star, comment_text) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE comment_star = VALUES(comment_star), comment_text = VALUES(comment_text);";//使用者的輸入值
+    const sql = "INSERT INTO comment (user_id, shop_id, comment_star, comment_text) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE comment_star = VALUES(comment_star), comment_text = VALUES(comment_text), created_at = now();";//使用者的輸入值
     dbConn.query(sql, //dbConn 啟動 sql //送出 sql 指令         
         [user_id, shop_id, rate, comment], //抓變數下來，用[]
         function (err, results, fields) {
