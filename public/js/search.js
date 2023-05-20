@@ -460,6 +460,7 @@ $(function () {
     //重製cookie裡的classID //移除classBox的cookie資料
     document.cookie = `classId= ; path=/search`
     // classBox.splice(0, 1);
+    
 })
 
 
