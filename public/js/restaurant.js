@@ -5,8 +5,16 @@ $(document).ready(function () {
     })
 })
 
+//前往登入畫面
+$(document).ready(function () {
+    $('#login_btn').on('click', () => {
+        window.location.assign('/login');
+    })
+})
+
+
 //我等一下要使用 promise
-function delay(slow) { 
+function delay(slow) {
     return new Promise(resolve => setTimeout(resolve, slow));
 }
 
@@ -46,10 +54,10 @@ $(document).ready(function () {
                     $('#like').removeClass('bi bi-suit-heart').addClass('bi bi-suit-heart-fill');
                     await delay(100); //慢 0.1秒 出現 alert
                     alert('收藏成功!');
-        
+
                 } else {
                     $('#like').removeClass('bi bi-suit-heart-fill').addClass('bi bi-suit-heart');
-                     await delay(100);
+                    await delay(100);
                     alert('取消收藏!');
                     console.log('取消收藏');
                 }
@@ -57,7 +65,7 @@ $(document).ready(function () {
             },
 
             error: function (jqXHR, textStatus, errorThrown) {  //請求失敗時執行
-                if(jqXHR.status === 401) {
+                if (jqXHR.status === 401) {
                     alert('請先登錄');
                 } else {
                     console.error('錯誤訊息：', textStatus, errorThrown);
@@ -80,6 +88,18 @@ $(function () {
     });
 
 })
+
+// 預先帶入文字
+$(function () {
+
+    $("textarea[name='comment']").on("click", function () {
+        // 獲取預設內容
+        const shopName = $("#shop-name").val();
+
+        // 將預設內容填入 textarea
+        $(this).val(shopName + "超級好吃");
+    });
+});
 
 // 提交表單
 $(function () {
@@ -106,14 +126,14 @@ $(function () {
             error: function (jqXHR) {
                 if (jqXHR.status === 401) {
                     alert('請先登錄');
-                } 
+                }
                 else if (jqXHR.responseJSON && jqXHR.responseJSON.message) {
                     alert(jqXHR.responseJSON.message);
                 } else {
                     alert("提交評論時出錯");
                     console.error('錯誤訊息：', textStatus, errorThrown);
                 }
-                
+
             }
         });
     });

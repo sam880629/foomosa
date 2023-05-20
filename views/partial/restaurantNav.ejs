@@ -21,7 +21,7 @@
 
             <% if(!user  && !shopId) {%>
             <!-- 登錄前 -->
-            <a class="btn btn-outline-primary btn-sm ms-auto me-2 d-inline text-nowrap" type="submit" href="/login">登錄</a>
+            <a class="btn btn-outline-primary btn-sm ms-auto me-2 d-inline text-nowrap" type="submit" id="login_btn">登錄</a>
             <div class="btn-group" role="group">
                 <button type="button " class="btn btn-primary btn-sm dropdown-toggle " data-bs-toggle="dropdown" aria-expanded="false">
                   註冊
@@ -48,7 +48,6 @@
                     <img src="<%=  userAvatar.user_avatar %>"  width="32" height="32" class="rounded-circle">
                      <% } %>
                 </div>
-                <!-- 登入了，刪除產生多餘的a標籤， 製造一個 class="dropdown-toggle的 div-->
                 <ul class="dropdown-menu dropdown-menu-end text-small">
                     <% if(shopId) {%>
                         <li><a class="dropdown-item" href="/backstage/clientInfo">店家後台</a></li>
