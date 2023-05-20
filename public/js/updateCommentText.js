@@ -6,12 +6,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
     //-- 為 commentButton 添加一個 show.bs.modal 事件監聽器。這個事件在 Bootstrap Modal（對話框）顯示之前觸發。
     commentButton.addEventListener('show.bs.modal', function (event) {
-        // Button that triggered the modal
-        var getShop_id = event.relatedTarget;
-        // 從 id 為 data-shop-id 的觸發按鈕屬性中獲取 shopId
-        var shopId = getShop_id.getAttribute('data-shop-id');
-        // 再從 shopId 獲得的店家 id 帶入至 #submitCommentButton 按鈕當中
+        // 從 Button 中獲取 data- 值
+        var getButtonValue = event.relatedTarget;
+        // 從 data-shop-id 屬性中獲取 shopId
+        var shopId = getButtonValue.getAttribute('data-shop-id');
+        console.log("我是ID: " + shopId);
+        // 將 shopId 獲得的店家 id 帶入至 #submitCommentButton 按鈕當中
         submitCommentButton.setAttribute('data-shop-id', shopId);
+
+        // 從 data-user-comment-text 屬性中獲取 comment-text
+        var userCommentText = getButtonValue.getAttribute("data-user-comment-text");
+        console.log(userCommentText);
+        document.querySelector("#message-text").innerHTML = userCommentText;
     });
 });
 
