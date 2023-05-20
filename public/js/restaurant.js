@@ -15,7 +15,7 @@ $(document).ready(function () {
     $('#shopSearch_btn').on('click', function () {
         wordToMatch = $('#shopSearch_text').val();
         document.cookie = `shop_Name=${wordToMatch}`;
-        alert('OK');
+        // alert('OK');
         let url = 'http://localhost:3000/search/';
         url = (wordToMatch == '') ? url + 'all' : url + `name/${wordToMatch}`;
         window.location.assign(url);
