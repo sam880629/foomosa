@@ -20,6 +20,9 @@ body {
   height: 15px;
 }
 
+header {
+  position: relative;
+}
 header .header_search_box {
   position: relative;
 }

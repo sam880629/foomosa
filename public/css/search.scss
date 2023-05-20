@@ -1,0 +1,490 @@
+// 顏色
+$color_red: #B34200;
+$color_orange: #F89E02;
+$color_orange2: #F24405;
+$color_green: #558C03;
+$color_white: #FFF;
+$color_gray1: #F6F6F8;
+$color_gray2: #C6C6C6;
+$color_brown: #D99E5F;
+$color_blue: #2260ff;
+
+//按鈕樣式
+%button {
+    background-color: $color_orange;
+    color: #000;
+    color: $color_white;
+    border-radius: 10px;
+}
+
+// 篩選器樣式
+// 綠色樣式
+%filter1 {
+    color: $color_green;
+    width: 100px;
+    border-radius: 10px;
+    text-align: center;
+    padding: 0px;
+}
+
+//橘色樣式
+%filter2 {
+    color: $color_orange;
+    width: 100px;
+    border-radius: 10px;
+    text-align: center;
+    padding: 0px;
+}
+
+//reset
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Noto Sans TC';
+}
+
+body {
+    background-color: $color_gray1;
+}
+
+// 回到最上
+.go_top {
+    width: 50px;
+    position: absolute;
+    right: 0px;
+    bottom: 100px;
+    display: none;
+
+    >p {
+        font-size: 24px;
+        border-radius: 20px;
+        color: $color_orange;
+        position: fixed;
+    }
+
+}
+
+//loading設定
+.loader {
+    height: 300px;
+    text-align: center;
+    display: none;
+
+    &.show {
+        display: inline-block;
+    }
+}
+
+//首頁搜尋頁面
+header {
+    position: relative;
+    //header內容  
+    .header_content {
+        position: relative;
+        // top: 80px;
+        // left: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: start;
+
+        // 搜尋餐廳功能
+        div:nth-child(1) {
+            margin-top: 60px;
+            // margin-left: 80px;
+            width: 100%;
+
+            //搜尋列
+            input[type=text] {
+                width: 50%;
+                height: 50px;
+                border-radius: 10px;
+                border: none;
+                outline: none;
+                z-index: 2;
+
+                &:focus {
+                    border: 2px solid $color_orange
+                }
+            }
+
+            //搜尋按鈕
+            input[type=button] {
+                @extend %button;
+                width: 150px;
+                height: 50px;
+                border: 0px;
+                font-size: 24px;
+                letter-spacing: .5rem;
+                z-index: 5;
+            }
+
+            .suggestions {
+                position: absolute;
+                top: 100px;
+                width: 40%;
+                height: 30px;
+
+                li {
+                    background: white;
+                    list-style: none;
+                    border-bottom: 1px solid #D8D8D8;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.14);
+                    margin: 0;
+                    padding: 20px;
+                    transition: background 0.2s;
+                    display: flex;
+                    justify-content: space-between;
+                    text-transform: capitalize;
+                    z-index: 5;
+
+                    &:hover {
+                        background: $color_gray2;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+
+    }
+
+    // 篩選器_地區
+    .Taichung_area1 {
+        #area_Item {
+            @extend %filter2; //篩選器樣式
+
+            margin:0px {
+                right: 25px;
+                top: 20px;
+            }
+        }
+
+        //單選框
+        input[type=radio] {
+            display: none; //
+        }
+
+        //地區文字
+        p {
+            margin-bottom: 0;
+            border-radius: 10px;
+            border: 1px solid $color_orange;
+
+            &:hover {
+                color: $color_white;
+                background-color: $color_orange;
+                cursor: pointer;
+            }
+
+            //radio被選取時
+            &.radio_Checked {
+                color: $color_white;
+                background-color: $color_orange;
+            }
+        }
+    }
+
+    // 篩選器_類別
+    .classify {
+        margin-bottom: 10px;
+
+        #classify_Item {
+            @extend %filter1;
+
+            margin:0px {
+                right: 25px;
+                top: 20px;
+            }
+        }
+
+        //複選框
+        input[type=checkbox] {
+            display: none; //
+        }
+
+        p {
+            margin-bottom: 0;
+            border-radius: 10px;
+            border: 1px solid $color_green;
+
+            &:hover {
+                color: $color_white;
+                background-color: $color_green;
+                cursor: pointer;
+            }
+
+            //checkbox被選取時
+            &.checkbox_Checked {
+                color: $color_white;
+                background-color: $color_green;
+            }
+        }
+
+
+    }
+
+    // 更多篩選器
+    .filter {
+        font-size: 20px;
+
+        margin:0px {
+            top: 20px;
+            bottom: 20px;
+        }
+
+        button {
+            color: $color_blue;
+            border: 0px;
+            background-color: $color_gray1;
+        }
+
+        .checkbox-group {
+            font-size: 14px;
+            border-radius: 10px;
+            display: flex;
+            visibility: hidden;
+            justify-content: start;
+            // width: 900px;
+           
+            // margin-right: 0px;
+            animation: fadein .8s;
+
+            &.watchBox {
+                display: flex;
+                visibility: visible;
+                animation: fadeout .6s;
+                animation-iteration-count: 1;
+            }
+
+            @keyframes fadein {
+                0% {
+                    overflow: hidden;
+                    margin-right: 0px;
+                }
+
+                50% {
+                    overflow: hidden;
+                    margin-right: 1000px;
+                }
+
+                100% {
+                    
+                    overflow: hidden;
+                    margin-right: 1500px;
+                    visibility: hidden;
+                }
+            }
+
+            @keyframes fadeout {
+                0% {
+                    overflow: hidden;
+                    margin-right: 1500px;
+                    opacity: .5;
+                }
+
+                100% {
+                    overflow: hidden;
+                    margin-right: 0px;
+                    opacity: 1;
+                }
+            }
+        }
+
+
+
+
+        .checkbox-input {
+            clip: rect(0 0 0 0);
+            clip-path: inset(100%);
+            height: 1px;
+            overflow: hidden;
+            position: absolute;
+            white-space: nowrap;
+            width: 1px;
+
+            &:checked+.checkbox-tile {
+                border-color: $color_blue;
+                box-shadow: 0 5px 10px rgba(#000, 0.1);
+                background-color: $color_blue;
+
+                .checkbox-label {
+                    color: $color_white;
+                }
+
+                .checkbox-label::before {
+                    content: "✔";
+                }
+            }
+
+        }
+
+        .checkbox-tile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100px;
+            height: 30px;
+            border-radius: 20px;
+            border: 2px solid #b5bfd9;
+            background-color: #fff;
+            margin-right: 9px;
+            cursor: pointer;
+            position: relative;
+
+            &:hover {
+                border-color: $color_blue;
+            }
+        }
+
+        .checkbox-icon {
+            transition: .375s ease;
+            color: #494949;
+        }
+
+        .checkbox-label {
+            color: #707070;
+            transition: .375s ease;
+            text-align: center;
+        }
+
+        // 價錢/評分按鈕的樣式
+        .box-tile {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100px;
+            min-height: 30px;
+            border-radius: 20px;
+            border: 2px solid #b5bfd9;
+            background-color: #fff;
+            cursor: pointer;
+            margin-right: 9px;
+
+            &:hover {
+                border-color: $color_blue;
+            }
+
+            p {
+                margin: 0;
+            }
+        }
+
+        //重製按鈕樣式
+        .resetbox-tile {
+            margin-left: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 90px;
+            min-height: 30px;
+            border-radius: 10px;
+            background-color: rgb(238, 113, 113);
+            color: $color_white;
+            box-shadow: 0 5px 10px rgba(#000, 0.1);
+            transition: 0.15s ease;
+            cursor: pointer;
+            position: relative;
+
+            &:active {
+                transform: scale(0.9);
+            }
+
+            &:hover {
+                background-color: $color_red;
+                color: $color_white;
+                border-color: $color_red;
+            }
+
+            p {
+                margin: 0;
+            }
+        }
+    }
+    // JSON動畫
+    .JsonV_1{
+        position: absolute;
+        right: 0;
+        top: -60px;
+        z-index: -1;
+    }
+    // JSON動畫小於996px 隱藏
+    @media screen and (max-width: 996px) {
+        .JsonV_1{
+            position: absolute;
+            right: 0;
+            top: 100px;
+        }
+      }
+}
+
+// 店家卡片
+.card {
+    position: relative;
+    padding: 0;
+    // margin: 1rem;
+    margin-left: 15px;
+    margin-right: 1.5rem;
+
+    a{
+        text-decoration: none;
+        color: #212529;
+    }
+    margin-bottom: 100px;
+    border-radius: 15px;
+    box-shadow: 0px 3px 3px #C6C6C6;
+
+    &:hover {
+        cursor: pointer;
+        transition: 0.3s;
+        scale: 102%;
+    }
+
+    img {
+        border-radius: 15px 15px 0 0;
+    }
+
+    // 愛心
+    .stor_heart {
+        position: absolute;
+        padding-top: 4px;
+        top: 15px;
+        right: 10px;
+        width: 34px;
+        height: 34px;
+        text-align: center;
+        border-radius: 50%;
+        background-color: $color_white;
+        color: red;
+        font-size: 1.1rem;
+    }
+
+    .card-body {
+
+        padding-top: 20px;
+        padding-bottom: 10px;
+    }
+
+    .card-text {
+        color: #212529;
+    }
+
+    .fav {
+        position: relative;
+        left: 10px;
+        top: 6px;
+        color: #F24405;
+    }
+
+    span {
+        color: #B7B7B7;
+    }
+
+    .rating .bi-star-fill {
+        color: #F24405;
+    }
+
+    .rating {
+        margin-bottom: 5px;
+    }
+}

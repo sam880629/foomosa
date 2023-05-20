@@ -52,7 +52,7 @@
      //按下搜尋按鈕搜尋
      $('#storSearch_btn').on('click', function () {
         wordToMatch = $('#storSearch_text').val();
-        document.cookie = `shop_Name=${wordToMatch}`
+        document.cookie = `shop_Name=${wordToMatch}; path=/`
         let url = 'http://localhost:3000/search/';
         url = ( wordToMatch =='')? url+'all' : url+ `name/${wordToMatch}`;
         window.location.assign(url);
@@ -146,7 +146,7 @@
         } else if (temp_Taichung <= 20) {
             recommend_text = ['吃點火鍋暖活暖身子吧!','這種天氣該吃火鍋了吧','麻辣鴛鴦火鍋，暖身又暖心','和牛火鍋，豐富的肉汁和口感']
         } else {
-            recommend_text =['今天我想來點披薩!','跟歐巴一起吃泡菜鍋','來杯奶香濃郁，Q彈有嚼勁的珍奶！','揪團來碗香噴噴的炸豬排飯'] 
+            recommend_text =['今天我想來點披薩!','跟歐巴一起吃韓式炸雞','來杯奶香濃郁，Q彈有嚼勁的珍奶！','揪團來碗香噴噴的炸豬排飯'] 
         }
         let i = Math.floor(Math.random()*3);
         $('#storSearch_text').prop('placeholder', `${recommend_text[i]}`);
