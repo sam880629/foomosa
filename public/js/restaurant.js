@@ -4,7 +4,9 @@ $(document).ready(function () {
         $.get('/logout').then(location.reload());
     })
 })
-function delay(slow) { //我等一下要使用 promise
+
+//我等一下要使用 promise
+function delay(slow) { 
     return new Promise(resolve => setTimeout(resolve, slow));
 }
 
@@ -23,25 +25,11 @@ $(document).ready(function () {
 // information 
 // 加入我的最愛
 $(document).ready(function () {
-    // var flag = true;
     var flag = $('#like').data('is-favorited');
     $('#heart').on('click', async function () {
 
         const shop_id = $('#like').data('shop-id'); // 獲取 shop_id
-
-        $('#like').removeClass('bi bi-suit-heart').addClass('bi bi-suit-heart-fill');
-
-        if (flag) {
-            $('#like').removeClass('bi bi-suit-heart').addClass('bi bi-suit-heart-fill');
-            await delay(100); //慢 0.1秒 出現 alert
-            alert('收藏成功!');
-
-        } else {
-            $('#like').removeClass('bi bi-suit-heart-fill').addClass('bi bi-suit-heart');
-            // await delay(100);
-            console.log('取消收藏');
-        }
-        flag = !flag;
+        var newFlag = !flag; // 存取用戶點了愛心的變量，將反轉值存入，先不改變愛心UI //原本已經收藏了（flag=true），點擊取消收藏（newFlag=false）
 
         console.log('發送收藏請求:', { shop_id, comment_favorite: !flag ? 1 : 0 });
 
@@ -51,12 +39,29 @@ $(document).ready(function () {
             url: '/restaurant/insert/toggleHeart',// 設定伺服器端的 URL
             data: JSON.stringify({ shop_id, comment_favorite: !flag ? 1 : 0 }), // 將 shop_id 和 comment_favorite 以 JSON 格式傳遞給伺服器端 ，為 POST 發送
             contentType: 'application/json', // 設定傳遞資料的內容類型為 JSON
-            success: function (response) {// 請求成功時執行。response 是伺服器端回傳的資料
+            success: async function (response) {// 請求成功時執行。response 是伺服器端回傳的資料
+
+                flag = newFlag; //當 AJAX 請求成功完成時，愛心UI才會改變
+                if (flag) {
+                    $('#like').removeClass('bi bi-suit-heart').addClass('bi bi-suit-heart-fill');
+                    await delay(100); //慢 0.1秒 出現 alert
+                    alert('收藏成功!');
+        
+                } else {
+                    $('#like').removeClass('bi bi-suit-heart-fill').addClass('bi bi-suit-heart');
+                     await delay(100);
+                    alert('取消收藏!');
+                    console.log('取消收藏');
+                }
                 console.log('操作成功:', response.message);//response.message是後端API返回的json物件的一個屬性
             },
 
             error: function (jqXHR, textStatus, errorThrown) {  //請求失敗時執行
-                console.error('錯誤訊息：', textStatus, errorThrown);
+                if(jqXHR.status === 401) {
+                    alert('請先登錄');
+                } else {
+                    console.error('錯誤訊息：', textStatus, errorThrown);
+                }
                 // jqXHR: 是 jQuery XMLHttpRequest 物件，用於封裝 HTTP 請求資訊和處理回應
                 // textStatus: 是描述請求結果的文字，例如 "timeout"、"error"、"abort" 等
                 // errorThrown: 是可捕獲的異常物件，例如 HTTP 狀態碼或伺服器端的錯誤訊息
@@ -99,12 +104,16 @@ $(function () {
                 window.location.reload(); // 重新加載頁面
             },
             error: function (jqXHR) {
-                if (jqXHR.responseJSON && jqXHR.responseJSON.message) {
+                if (jqXHR.status === 401) {
+                    alert('請先登錄');
+                } 
+                else if (jqXHR.responseJSON && jqXHR.responseJSON.message) {
                     alert(jqXHR.responseJSON.message);
                 } else {
                     alert("提交評論時出錯");
+                    console.error('錯誤訊息：', textStatus, errorThrown);
                 }
-                console.error('錯誤訊息：', textStatus, errorThrown);
+                
             }
         });
     });
