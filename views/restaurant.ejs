@@ -92,7 +92,7 @@
 
                 <div class="d-flex justify-content-start align-items-center">
                     <div class="restlogo mb-5"><img src="<%= shop.shop_logo_img %>"  ></div>
-                    <div class="ms-5 d-flex flex-column active">
+                    <div class="ms-5 d-flex flex-column active" data-bs-toggle="modal" data-bs-target="#myModal" title="預覽">
                         <div class="d-flex justify-content-between align-items-center text-nowrap">
                             <% if (active && active.active_title && active.active_enddate) { %>
                             <h6 class="text-muted"><%= active.active_title %></h6>
@@ -102,6 +102,46 @@
                         <% if (active && active.active_content) { %>
                         <p class="mt-3"><%= active.active_content %></p>
                         <% } %>
+                    <!-- Modal 預覽-->
+                    <% if (active && active.active_picture && active.active_title && active.active_startdate && active.active_enddate && active.active_content) { %>
+                    <div class="modal fade" id="myModal">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title">活動預覽</h4>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    <div class="upload-container"
+                                        style="background-color: rgb(190, 188, 185);height: 150px; width: auto;">
+                                        <img id="previewImg" src="<%= active.active_picture %>" class="img-fluid">
+                                    </div>
+                                    <form>
+                                        <div>
+                                            <label for="recipient-name" class="col-form-label fw-bold pt-3">活動標題:</label>
+                                            <span><%= active.active_title %></span>
+                                        </div>
+                                        <div>
+                                            <label for="recipient-name" class="col-form-label fw-bold">活動時間:</label>
+                                            <span><%= active.active_startdate %></span>~<span><%= active.active_enddate %></span>
+                                        </div>
+                                        <div>
+                                            <label for="message-text" class="col-form-label fw-bold">活動說明:</label> <br>
+                                            <span><%=active.active_content %></span>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
                     </div>
                 </div>
     
