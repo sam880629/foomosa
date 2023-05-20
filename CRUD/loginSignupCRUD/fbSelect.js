@@ -12,19 +12,22 @@ app.post('/', express.urlencoded(), function (req, res) {
             if (!err) {
                 if (results.length > 0) {
                     req.session.uid = results[0].user_id;
-                    res.redirect('/index');
+                    let url = (req.session.url)? req.session.url : '/index';
+                    res.send(url);
                 } else {
                     let createId = await createFbAccount(req.body); 
                     if (createId > 0) {
                         req.session.uid = createId;
-                        res.redirect('/index');
+                        let url = (req.session.url)? req.session.url : '/index';
+                        res.send(url);
+
                     } else {
-                        res.redirect('/');
+                        res.send('/');
                     }
                 }
             } else {
                 console.log(err);
-                res.redirect('/');
+                res.send('/');
             }
         })
 })

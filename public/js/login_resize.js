@@ -42,6 +42,17 @@ $(document).ready(() => {
         $(e.target).val("87291941"); // 添好運
     })
 
+    // demo 時，點一下密碼框會自動帶入 '1111'
+    $('#pills-user input[name = "userPW"]').on('focus', (e) => {
+        $(e.target).val("1111");
+    })
+
+    // demo 時，點一下帳號框會自動帶入 '88888888'
+    $('#pills-user input[name = "userAccount"]').on('focus', (e) => {
+        // $(e.target).val("88888888");
+        $(e.target).val("aniki@gmail.com"); // 藤井風
+    })
+
 })
 
 
@@ -74,8 +85,8 @@ function onSignIn(response) {
             pAvatar: profile.picture,
             pEmail: profile.email,
         },
-        success: function () {
-            location.href = "http://localhost:3000/index";
+        success: function (result) {
+            location.href = result;
         }
     })
 }
@@ -89,12 +100,6 @@ function statusChangeCallback(response) {  // Called with the results from FB.ge
     } else {
     }
 }
-
-// function checkLoginState() {               // Called when a person is finished with the Login Button.
-//     FB.getLoginStatus(function (response) {   // See the onlogin handler
-//         statusChangeCallback(response);
-//     });
-// }
 
 // 設置 fb 的初始化資料
 window.fbAsyncInit = function () {
@@ -128,7 +133,7 @@ $("#fbLogin").on('click', function () {
 
 // 將抓到的 Fb profile 傳到 server
 function fbLoginToServer(email, name, id, url) {
-        $.ajax({
+    $.ajax({
         method: "POST",
         url: "http://localhost:3000/fbId",
         data: {
@@ -137,8 +142,8 @@ function fbLoginToServer(email, name, id, url) {
             pAvatar: url,
             pEmail: email,
         },
-        success: function () {
-            location.href = "http://localhost:3000/index";
+        success: function (result) {
+            location.href = result;
         }
     })
 }
