@@ -346,7 +346,7 @@ $(function () {
  <img src="../${data.shop_preview_img}" class="card-img-top">
 <div class="card-body">
     <p class="card-text">${data.shop_name}</p>
-    <p class="rating"><i class="bi bi-star-fill pe-2 "></i>4.6/5<span>(100+)</span></p>
+    <p class="rating pt-2 "><i class="bi bi-star-fill pe-2 "></i>${random_number()}/5<span>(${random_sum()})</span></p>
 </div>
 </a>
 </div>
@@ -403,7 +403,7 @@ $(function () {
                         <h6 class="card-text pt-3">
                              ${data[i].shop_name}
                         </h6>
-                        <p class="rating pt-2 "><i class="bi bi-star-fill pe-2 "></i>4.6/5<span>(100+)</span></p>
+                        <p class="rating pt-2 "><i class="bi bi-star-fill pe-2 "></i>${random_number()}/5<span>(${random_sum()})</span></p>
                     </div>
                     </a>
                 </div>`;
@@ -453,6 +453,7 @@ $(function () {
         $('#store_box').html('');
         /*首次加载*/
         getData(pageStart, pageSize);
+       
     } else {
         getAll();
         getSome()
@@ -461,6 +462,19 @@ $(function () {
     document.cookie = `classId= ; path=/search`
     // classBox.splice(0, 1);
     
+
+    function random_number(){
+        var rate = Math.random();
+        var z = (rate * 3 + 2.5).toFixed(1); //亂數從3起跳
+        var result = (z < 5) ? z : 5;
+        return  result 
+    }
+    function random_sum(){
+        var comment = Math.random();
+        var c = Math.floor(comment * 60 + 40);
+        var comment = (c < 100) ? c : "100+";
+        return comment
+    }
 })
 
 
