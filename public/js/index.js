@@ -64,7 +64,7 @@
         $.get('/index/headshot', function(data){
             
             try{
-                let my_img =(data.headshot.length==0)? 'https://github.com/mdo.png':data.headshot[0].user_avatar
+                let my_img =(data.headshot.length==0)? '/pic/mosa2.jpg':data.headshot[0].user_avatar
                 $('#headshot').attr('src',my_img)
             }catch(err){
                 console.log(err);

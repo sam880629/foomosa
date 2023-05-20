@@ -39,7 +39,6 @@ app.get('/all', async function (req, res) {
 app.get('/name/:shop_name', async function (req, res) {
    try {
       req.session.url = req.originalUrl;//存取當前網址
-    
       res.cookie('page', 'name');
       let url = `http://localhost:3000/find/shop/${req.params.shop_name}`;
       let shop = await axios.get(url);

@@ -138,6 +138,7 @@ $(function () {
 
     //按下搜尋按鈕搜尋
     $('#storSearch_btn').on('click', function () {
+      
         wordToMatch = $('#storSearch_text').val();
         document.cookie = `shop_Name=${wordToMatch} ; path=/search`
         let url = 'http://localhost:3000/search/';
@@ -447,7 +448,7 @@ $(function () {
         let i = Math.floor(Math.random()*3);
         $('#storSearch_text').prop('placeholder', `${recommend_text[i]}`);
     }
-    console.log(shopName_cookie);
+    console.log(cookies);
     // 當前是在哪個頁面
     if (page_cookie == 'all') {
         getAll();

@@ -46,7 +46,7 @@ app.get('/index', async function (req, res) {
       timeText: timeText,
       user: req.session.uid,//session  user id
       shopId: req.session.shopId, // session shop id
-      headshot: (shop.data.headshot.length>0)? shop.data.headshot[0].user_avatar:'https://github.com/mdo.png'  
+      headshot: (shop.data.headshot.length>0)? shop.data.headshot[0].user_avatar:'/pic/mosa2.jpg'  
     })
   }
   catch (err) {
