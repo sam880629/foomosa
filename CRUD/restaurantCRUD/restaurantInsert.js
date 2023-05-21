@@ -48,7 +48,7 @@ api.post('/toggleHeart', express.json(), (req, res) => { //用 POST 方法設定
             res.status(500).send('無法更新收藏狀態');
             return;
         }
-        console.log("會員編號", results.insertId);// 在 server console 顯示會員編號
+        // console.log("會員編號", results.insertId);// 在 server console 顯示會員編號
         res.status(200).json({ message: '收藏狀態更新成功' });// 回傳成功訊息，並回傳 200 成功狀態碼
     });
 });

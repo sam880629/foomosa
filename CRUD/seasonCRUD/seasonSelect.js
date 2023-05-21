@@ -17,7 +17,7 @@ api.get('/:season_id', (req, res) => {
 
             } else {
                 res.send(results); // 將整個查詢結果作為 JSON 數據返回
-                console.log('查詢結果:', results);//顯示查詢結果
+                // console.log('查詢結果:', results);//顯示查詢結果
             }
         });
 
