@@ -46,8 +46,10 @@ app.get('/:id', async function (req, res) { // 修改路由以接收 id 參數
         // console.log('我要看Current URL:', req.session.url);
         // console.log( '我要看uid');
         // console.log( req.session.uid);
-        console.log( '我要看shopId');
-        console.log( req.session.shopId);
+        // console.log( '我要看shopId');
+        // console.log( req.session.shopId);
+        console.log( '我要看shopLogo');
+        console.log( req.session.shopLogo);
         res.render('restaurant', {
             // shops: response.data, // 將整個結果集傳遞給 EJS 模板
             shop: response.data[0][0],
@@ -59,7 +61,8 @@ app.get('/:id', async function (req, res) { // 修改路由以接收 id 參數
             openStatus,
             statusColor,
             user: req.session.uid,//session  user id
-            shopId: req.session.shopId // session shop id
+            shopId: req.session.shopId, // session shop id
+            shopLogo:req.session.shopLogo
         });
     } catch (error) { // 如果 try 語句中的代碼出現錯誤，則執行 catch 語句
         console.error(error); // 輸出錯誤信息至控制台

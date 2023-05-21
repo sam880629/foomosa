@@ -34,14 +34,15 @@
               </div>
             <% } else { %>
             <!-- 登錄後 -->
-            <div class="dropdown text-end ms-auto me-2 col-lg-4 mt-4 mt-md-0"> 
+            <div class="dropdown text-end ms-auto me-2 col-lg-4 mt-4 mt-md-0">
+ 
                 <% if(!user  && !shopId) {%>
                         <a href="#" class="d-inline link-dark text-decoration-none"> </a>
                 <% } %>
                 <!-- 登入了，刪除產生多餘的a標籤， 製造一個 class="dropdown-toggle的 div-->
                 <div class="dropdown-toggle" data-bs-toggle="dropdown">
                     <% if(shopId) {%>
-                    <img src="<%= shop.shop_logo_img %>" width="32" height="32" class="rounded-circle">
+                    <img src="<%=  shopLogo %>" width="32" height="32" class="rounded-circle">
                     <% } else { %>
                     <img src="<%=  userAvatar.user_avatar %>"  width="32" height="32" class="rounded-circle">
                      <% } %>
