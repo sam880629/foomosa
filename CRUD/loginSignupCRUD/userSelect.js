@@ -4,7 +4,13 @@ const app = express();
 app.post('/', function (req, res) {
     const inputAcc = req.body.userAccount;
     const inputPw = req.body.userPW;
-    // console.log(inputAcc, inputPw); // 測試有沒有抓到
+    let url; // 存原網頁網址
+
+    if (req.session.url) {
+        url = req.session.url // 如果 session 有存前網頁，就導回原網頁
+    } else {
+        url = '/index'; // 導回首頁
+    }
 
     // 連線資料庫
     const conn = require('../config.js');
@@ -35,9 +41,7 @@ app.post('/', function (req, res) {
                         // 如果一樣，設定session，儲存登入者的 id 
                         req.session.uid = results[0]['user_id'];
 
-                        
-                        // res.send('密碼正確，成功登入，兩秒後跳轉到首頁');
-                        res.redirect('/index');
+                        res.redirect(url);
                     } else {
                         // 如果密碼錯誤的話，會將使用者的 email 存進 cookie ，然後設成帳號輸入框預設的 value
                         res.cookie('email', inputAcc, {
