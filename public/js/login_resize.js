@@ -29,6 +29,9 @@ $(document).ready(() => {
             $('#userPW').css("border-color", 'red');
             swal("密碼錯誤!", "請再試一次，或按一下「忘記密碼」以重設密碼", "error");
             break;
+        case '4':
+            swal("您的 email 已用其他方式註冊!", "請直接登入", "error");
+            break;
     }
 
     // demo 時，點一下密碼框會自動帶入 'mosamosa'

@@ -13,22 +13,30 @@ app.post('/', express.urlencoded(), function (req, res) {
                 if (results.length > 0) {
                     req.session.uid = results[0].user_id;
                     // res.redirect('/');
-                    let url = (req.session.url)? req.session.url : '/index';
+                    let url = (req.session.url) ? req.session.url : '/index';
                     res.send(url);
 
                 } else {
-                    let createId = await createGoogleAccount(req.body); 
+                    let createId = await createGoogleAccount(req.body);
                     if (createId > 0) {
                         req.session.uid = createId;
-                        let url = (req.session.url)? req.session.url : '/index';
+                        let url = (req.session.url) ? req.session.url : '/index';
                         res.send(url);
                     } else {
                         res.send('/');
                     }
                 }
             } else {
-                console.log(err);
-                res.send('/');
+                if (err.errno === 1062) {
+                    res.cookie('loginErr', 4, {
+                        maxAge: 5 * 1000,
+                        httpOnly: false
+                    })
+                    res.redirect("/login");
+                } else {
+                    console.log(err);
+                    res.send('/');
+                }
             }
         })
 })
