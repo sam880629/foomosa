@@ -34,8 +34,9 @@ app.post('/', function (req, res) {
                     const dbPw = results[0]['shop_pw'];
                     // 判斷此帳號的密碼與 user 輸入的是否相同
                     if (dbPw === inputPw) {
-                        // 如果一樣，設定session，儲存登入店家的 id 
+                        // 如果一樣，設定session，儲存登入店家的 id 與登入頭像 
                         req.session.shopId = results[0]['shop_id'];
+                        req.session.shopLogo =results[0]['shop_logo_img'];
 
                         // 密碼正確，成功登入，跳轉至後台
                         res.redirect('/backstage/clientinfo');
