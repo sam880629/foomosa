@@ -23,7 +23,7 @@ $(function () {
     findCookie() // 保存所需Cookie的值
     fetchWeather();//API取得台中現在溫度
     hasClassId(classId_cookie);//是否有class cookie存在
-
+    renderHeadshot(); //更新頭貼
 
     // 當畫面滑至一定高度時cookie判斷現在是在all頁面還是shop_name
     // all頁面就執行append新增頁面
@@ -447,6 +447,22 @@ $(function () {
         let i = Math.floor(Math.random()*3);
         $('#storSearch_text').prop('placeholder', `${recommend_text[i]}`);
     }
+
+     // 更新會員相片
+     function renderHeadshot(){
+        $.get('/index/headshot', function(data){
+            
+            try{
+                let my_img =(data.headshot.length==0)? '/pic/mosa2.jpg':data.headshot[0].user_avatar
+                $('#headshot').attr('src',my_img)
+            }catch(err){
+                console.log(err);
+            }
+        })
+    }
+
+    
+
     // 當前是在哪個頁面
     if (page_cookie == 'all') {
         getAll();
