@@ -155,12 +155,16 @@
                         <% if (shop.shop_uber || shop.shop_panda) { %>
                             <% if (shop.shop_uber) { %>
                                 <div class="platformlogo">
-                                    <img src="/pic/Ubereat.png">
+                                    <a href="<%= shop.shop_uber %>" target="_blank">
+                                    <img src="/pic/Ubereat.png" class="img-fluid px-2">
+                                    </a>
                                 </div>
                             <% } %>
                             <% if (shop.shop_panda) { %>
                                 <div class="platformlogo <%= shop.shop_uber ? 'ms-5' : '' %>">
-                                    <img src="/pic/FoodPanda-Logo.png">
+                                    <a href="<%= shop.shop_panda %>" target="_blank">
+                                    <img src="/pic/FoodPanda-Logo.png"  class="img-fluid px-2">
+                                    </a>
                                 </div>
                             <% } %>
                         <% } else { %>

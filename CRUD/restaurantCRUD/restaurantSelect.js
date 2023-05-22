@@ -27,7 +27,7 @@ api.get('/:id', (req, res) => {
             } else {
                 // res.json({ shop_name: results[0].shop_name, shop_address: results[0].shop_address });// 若成功查詢，回傳結果
                 res.json(results); // 將整個查詢結果作為 JSON 數據返回
-                // console.log('查詢結果:', results);//顯示查詢結果
+                //  console.log('查詢結果:', results);//顯示查詢結果
                 // console.log('查詢活動結果:', results[3]);//顯示活動查詢結果
                 // console.log('會員資訊:', results[4][0].user_avatar);
                 // console.log('會員評論:', JSON.stringify(results[5], null, 2));
