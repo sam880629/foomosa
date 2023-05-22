@@ -11,15 +11,22 @@ api.get('/', function (req, res) {
     let pShopId = req.session.pShopId;
 
     // 測試用先寫死
-    // shopId = 94;
+    // shopId = 14;
 
     // 從資料庫透過shop_id取得資料
     if (shopId) {
         // console.log("抓到shopId" + shopId); 
-        let sql = "select * from shop WHERE shop_id = ?;";
-        conn.query(sql, shopId, function (err, results, fields) {
+        // let sql = "select * from shop WHERE shop_id = ?;";
+        let sql2 = `SELECT shop.*, dayoff.dayoff_recently 
+                    FROM shop 
+                    INNER JOIN dayoff ON shop.shop_id = dayoff.shop_id 
+                    WHERE shop.shop_id = ?;`;
+        conn.query(sql2, [shopId], function (err, results, fields) {
             // console.log(results);
             res.json(results);
+            if(err){
+                console.log(err);
+            }
         })
     } else if (pShopId) {
         let sql_p = "select * from potential_shop WHERE p_shop_id = ?;";

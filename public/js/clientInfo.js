@@ -1,5 +1,7 @@
 $(document).ready(function () {
     renewPage();
+
+    // swalOpen(); // 詢問是否立刻開店
 })
 
 
@@ -583,6 +585,7 @@ function shopImgUpdate(target, fileName) {
         }
     })
 }
+
 
 
 

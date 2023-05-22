@@ -187,4 +187,41 @@ api.post('/shopImgUpdate', (req, res) => {
     res.end();
 })
 
+// 處理臨時公休日的更新
+api.put('/dayoff', function (req, res) {
+
+    // 連線資料庫
+    const conn = require('../config.js');
+
+    // 取得前端傳來的資料
+    // const data = req.body;
+
+    // 取得session中的shop_id
+    let shopId = req.session.shopId;
+
+    // 測試用假的
+    // shopId = 94;
+
+    // 抓今天日期
+    let date = new Date();
+    let data = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+
+    // update 的 sql 語法
+    let sql = `
+        UPDATE dayoff
+        SET dayoff_recently = ?
+        WHERE shop_id = ${shopId};`;
+
+    // 執行 sql
+    conn.query(sql, data,
+        function (err, results, fields) {
+            if (err) {
+                console.log(err);
+            }
+        });
+
+    res.end();
+
+});
+
 module.exports = api;
