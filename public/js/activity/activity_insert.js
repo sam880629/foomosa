@@ -5,12 +5,12 @@
         const enddate = $('#activityInsertCard input[name="enddate"]').val();
         const memo = $('#memo').val();
         const picture = $('#picture')[0].files[0];
-        console.log(`title=${title}, startdate=${startdate}, enddate=${enddate}, memo=${memo}, picture=${picture.name}`)
+        // console.log(`title=${title}, startdate=${startdate}, enddate=${enddate}, memo=${memo}, picture=${picture.name}`)
         //判斷是否有上傳圖片
         if (picture) {
           const formData = new FormData();
           formData.append('picture', picture);
-          console.log(...formData.entries())
+          // console.log(...formData.entries())
 
           // 透過ajax將圖片上傳至伺服器
           $.ajax({
@@ -22,18 +22,18 @@
             success: function (res) {//練習用await
 
               const pictureName = picture.name;
-              console.log(pictureName)
+              // console.log(pictureName)
               // 透過ajax將其他資料送至伺服器
               $.ajax({
                 url: 'http://localhost:3000/activityInsert/insertData',//這裡的操作要再多包一層
                 type: 'POST',
                 data: { title, startdate, enddate, memo, pictureName },
                 success: function (res) {
-                  console.log(res);
-                  confirm("是否發送優惠卷？")
-                  if (confirm("是否發送優惠卷？")) {
-                    $('#couponModal').modal('show');
-                  }
+                  // console.log(res);
+                  // confirm("是否發送優惠卷？")
+                  // if (confirm("是否發送優惠卷？")) {
+                  //   $('#couponModal').modal('show');
+                  // }
                   getActivityList();
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
@@ -49,10 +49,10 @@
             type: 'POST',
             data: { title, startdate, enddate, memo },
             success: function (res) {
-              console.log(res);
-              if (confirm("是否發送優惠卷？")) {
-                $('#couponModal').modal('show');
-              }
+              // console.log(res);
+              // if (confirm("是否發送優惠卷？")) {
+              //   $('#couponModal').modal('show');
+              // }
               getActivityList();
             },
             error: function (jqXHR, textStatus, errorThrown) {

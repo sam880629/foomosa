@@ -4,9 +4,9 @@ function getMenuList() {
     type: "GET",
     success: function (Mlist) {
       //檢查是否有進來
-      console.log('我是getMenuList-success')
+      // console.log('我是getMenuList-success')
       //檢查有沒有url資料
-      console.log(Mlist)
+      // console.log(Mlist)
       $('tbody').empty();
       $.each(Mlist, function (index, myMenulist) {
 
@@ -72,7 +72,7 @@ $('#btnEdit').on('click', function () {
   menuFormData.append('menu_panda', $('#editPanda').val());
   menuFormData.append('menu_type', $('#editType').val());
   menuFormData.append('menu_id', $('#editId').text());
-  console.log(...menuFormData.entries())
+  // console.log(...menuFormData.entries())
   $.ajax({
     type: "put",
     url: "/menuUpdate",

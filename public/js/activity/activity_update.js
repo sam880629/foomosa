@@ -24,9 +24,9 @@ function getActivityList() {
       type: "GET",
       success: function (alist) {
         //檢查是否有進來
-        console.log('我是getActivityList-success')
+        // console.log('我是getActivityList-success')
         //檢查有沒有url資料
-        console.log(alist)
+        // console.log(alist)
         $('tbody').empty();
         $.each(alist[0], function (index, myactivitylist) {
           if ((showOpenData && myactivitylist.active_ifDel == 1) || (!showOpenData && myactivitylist.active_ifDel == 0)) {
@@ -90,18 +90,18 @@ function getActivityList() {
 
 
   $('#insertActivity').on('click', function () {
-    console.log("insert")
+    // console.log("insert")
     const title = $('#activityInsertCard input[name="title"]').val();
     const startdate = $('#activityInsertCard input[name="startdate"]').val();
     const enddate = $('#activityInsertCard input[name="enddate"]').val();
     const memo = $('#memo').val();
     const picture = $('#picture')[0].files[0];
-    console.log(`title=${title}, startdate=${startdate}, enddate=${enddate}, memo=${memo}, picture=${picture}`)
+    // console.log(`title=${title}, startdate=${startdate}, enddate=${enddate}, memo=${memo}, picture=${picture}`)
     //判斷是否有上傳圖片
     if (picture) {
       const formData = new FormData();
       formData.append('picture', picture);
-      console.log(...formData.entries())
+      // console.log(...formData.entries())
 
       // 透過ajax將圖片上傳至伺服器
       $.ajax({
@@ -113,14 +113,14 @@ function getActivityList() {
         success: function (res) {//練習用await
 
           const pictureName = picture.name;
-          console.log(pictureName)
+          // console.log(pictureName)
           // 透過ajax將其他資料送至伺服器
           $.ajax({
             url: 'http://localhost:3000/activityInsert/insertData',//這裡的操作要再多包一層
             type: 'POST',
             data: { title, startdate, enddate, memo, pictureName },
             success: function (res) {
-              console.log(res);
+              // console.log(res);
               // confirm("是否發送優惠卷？")
               // if (confirm("是否發送優惠卷？")) {
               //   $('#couponModal').modal('show');
@@ -140,7 +140,7 @@ function getActivityList() {
         type: 'POST',
         data: { title, startdate, enddate, memo },
         success: function (res) {
-          console.log(res);
+          // console.log(res);
           // if (confirm("是否發送優惠卷？")) {
           //   $('#couponModal').modal('show');
           // }

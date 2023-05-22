@@ -13,14 +13,14 @@ $(document).ready(function () {
 
       reader.onload = function (event) {
         var csvData = event.target.result;
-        console.log(csvData)
+        // console.log(csvData)
         var jsonData = Papa.parse(csvData, { header: true, skipEmptyLines: true }).data;
-        console.log(jsonData)
+        // console.log(jsonData)
 
         var csvFormData = new FormData();
         //csv檔案名稱為menu
         csvFormData.append('menu', JSON.stringify(jsonData));
-        console.log(...csvFormData.entries())
+        // console.log(...csvFormData.entries())
 
           $.ajax({
             type: 'POST',

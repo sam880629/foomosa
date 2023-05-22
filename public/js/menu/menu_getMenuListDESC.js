@@ -10,9 +10,9 @@ $(document).ready(function () {
           type: "GET",
           success: function (Mlist) {
             //檢查是否有進來
-            console.log('我是getMenuList-success')
+            // console.log('我是getMenuList-success')
             //檢查有沒有url資料
-            console.log(Mlist)
+            // console.log(Mlist)
             $('tbody').empty();
             $.each(Mlist, function (index, myMenulist) {
 
@@ -79,9 +79,9 @@ $(document).ready(function () {
           type: "GET",
           success: function (Mlist) {
             //檢查是否有進來
-            console.log('我是getMenuList-success')
+            // console.log('我是getMenuList-success')
             //檢查有沒有url資料
-            console.log(Mlist)
+            // console.log(Mlist)
             $('tbody').empty();
             $.each(Mlist, function (index, myMenulist) {
 

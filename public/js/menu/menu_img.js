@@ -38,10 +38,10 @@ $(document).ready(function () {
       alert('未上傳任何圖片');
       return;
     }
-    console.log(imgFiles);
+    // console.log(imgFiles);
     for (let i = 0; i < imgFiles.length; i++) {
       imgData.append('image_files', imgFiles[i]);
-      console.log(...imgData.entries());
+      // console.log(...imgData.entries());
     }
 
     try {
@@ -55,7 +55,7 @@ $(document).ready(function () {
         }
       }
       const uploadResult = await uploadImage(imgData);
-      console.log(uploadResult);
+      // console.log(uploadResult);
       location.reload();
     } catch (error) {
       console.error(error);
