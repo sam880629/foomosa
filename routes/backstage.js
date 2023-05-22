@@ -7,22 +7,22 @@ const api = express.Router();
 
 api.get('/clientinfo', function (req, res) {
     // // 判斷現在是不是已登入 測試時先拿掉
-    // if (req.session.shopId) {
+    if (req.session.shopId) {
     res.sendFile(process.cwd() + '/pages/clientInfo.html');
-    // } else {
-    //     res.send("請登入");
-    // }
+    } else {
+        res.send("請登入");
+    }
 
 })
 
 api.get('/businessAnalytics/all', function (req, res) {
     // // 判斷現在是不是已登入 測試時先拿掉
-    // // if (req.session.shopId) {
+    if (req.session.shopId) {
         res.sendFile(process.cwd() + '/pages/businessAnalyticsAll.html');
-        // res.sendFile(process.cwd() + '/pages/backstage_default.html');
-        // } else {
-        //     res.send("請登入");
-        // }
+        res.sendFile(process.cwd() + '/pages/backstage_default.html');
+        } else {
+            res.send("請登入");
+        }
 })
 
 /* ************************************** 
