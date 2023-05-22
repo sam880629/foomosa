@@ -115,7 +115,7 @@ api.post('/some', express.urlencoded(), function (req, res) {
   
   // sql += ` ORDER BY RAND(); `;
 
-  console.log(sql);
+  // console.log(sql);
   conn.query(sql,function (err, result, fields) {
     if (err) {
       res.send('錯誤', err)
