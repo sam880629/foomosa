@@ -22,8 +22,8 @@
                 // alert("執行成功!");
                 var user_id = document.getElementById('user_id').value;
                 var user_name = document.querySelector(".username-input").value;
-                console.log("我叫: " + user_name);
-                console.log("user_id: " + user_id);
+                // console.log("我叫: " + user_name);
+                // console.log("user_id: " + user_id);
         
                 // Replace the input element with the updated username
                 // usernameElement.innerHTML = user_name;

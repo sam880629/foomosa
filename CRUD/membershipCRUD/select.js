@@ -8,7 +8,7 @@ router.get("/", function (req, res) {
     // var user_id = req.params.user_id; //-- 由網址路由中取得 user_id
     // var user_id = 1;
     var user_id = req.session.uid; //-- 由 session 取得 user_id
-    console.log("我是user_id: " + user_id);
+    // console.log("我是user_id: " + user_id);
 
     const sql1 = `SELECT u.user_name, u.user_avatar, s.shop_name, s.shop_logo_img, s.shop_preview_img, c.comment_text, user_point, c.shop_id, c.comment_favorite, DATE_FORMAT(c.created_at, '%Y-%m-%d %H:%i') created_at
                 FROM user u
@@ -37,7 +37,7 @@ router.get("/", function (req, res) {
             } else {
                 let user_comment = (results[4].length==0) ? []: results[4];
                 // console.log("我是: " + user_comment);
-                console.log(results[4].length);
+                // console.log(results[4].length);
                 res.render('membership', { user: results, user_id: user_id, user_comment: user_comment}); //-- res.render() 方法來呼叫 EJS 模板引擎，丟物件進去
 
             }

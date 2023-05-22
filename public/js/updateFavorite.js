@@ -23,9 +23,9 @@ document.addEventListener('DOMContentLoaded', function () { //-- DOMContentLoade
 updateFavorite = (button) => {
     const shop_id = button.getAttribute("data-shop-id");
     const comment_favorite = button.getAttribute("data-comment-favorite") == 1 ? 0 : 0;
-    console.log("美食口袋更新成功!");
-    console.log("我是店家ID: " + shop_id);
-    console.log("收藏值: " + comment_favorite);
+    // console.log("美食口袋更新成功!");
+    // console.log("我是店家ID: " + shop_id);
+    // console.log("收藏值: " + comment_favorite);
 
     var data = {
         shop_id: shop_id,
@@ -39,7 +39,7 @@ updateFavorite = (button) => {
         contentType: 'application/json',
         data: JSON.stringify(data),
         success: function (result) {
-            console.log(result);
+            // console.log(result);
             alert('更新口袋名單成功！');
             window.location.reload(); // 重新載入頁面以顯示更新後的評論
         },

@@ -15,7 +15,7 @@ document.getElementById('pointUsedButton').addEventListener('click', function ()
     },
     success: function (data) {
       var newPoints = data.newPoints;
-      console.log("我是newPoints: " + newPoints);
+      // console.log("我是newPoints: " + newPoints);
       // 從後端接收newPoints
       if (newPoints < 0) {
         // 如果新的積分數量小於0，顯示錯誤訊息並返回
@@ -171,7 +171,7 @@ const valueGenerator = async (angleValue) => {
         history_text = "恭喜獲得添好運優惠券!!";
         spinBtn.disabled = false;
         wheelInsertCode = await new Promise(resolve => setTimeout(() => resolve(i.value), 100));
-        console.log(wheelInsertCode);
+        // console.log(wheelInsertCode);
 
         //-- 中獎結果是添好運的歷史訊息的 insert $.ajax 請求
         $.ajax({
@@ -183,7 +183,7 @@ const valueGenerator = async (angleValue) => {
           },
           success: function (response) {
             // 請求成功
-            console.log('插入 history_text 成功!!');
+            // console.log('插入 history_text 成功!!');
             alert(history_text);
             window.location.reload(); // 重新載入頁面以顯示更新後的評論
           },
@@ -221,7 +221,7 @@ const valueGenerator = async (angleValue) => {
         history_text = "恭喜獲得NENE CHICKEN優惠券!!";
         spinBtn.disabled = false;
         wheelInsertCode = await new Promise(resolve => setTimeout(() => resolve(i.value), 100));
-        console.log(wheelInsertCode);
+        // console.log(wheelInsertCode);
 
         //-- 中獎結果是 NENE CHICKEN 的歷史訊息的 insert $.ajax 請求
         $.ajax({
@@ -272,7 +272,7 @@ const valueGenerator = async (angleValue) => {
         history_text = "很可惜!! 再接再厲!!";
         spinBtn.disabled = false;
         wheelInsertCode = await new Promise(resolve => setTimeout(() => resolve(i.value), 100));
-        console.log(wheelInsertCode);
+        // console.log(wheelInsertCode);
 
         //-- 沒有中獎結果的歷史訊息 insert $.ajax 請求
         $.ajax({

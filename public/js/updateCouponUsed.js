@@ -10,15 +10,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // 從 Button 當中的 data-shop-id 屬性取得 shop_id
         var selectedShopId = button.getAttribute('data-shop-id');
-        console.log("我是店家ID: " + selectedShopId);
+        // console.log("我是店家ID: " + selectedShopId);
 
         // 從 Button 當中的 data-user-coupon-id 屬性取得 shop_id
         var userCouponId = button.getAttribute('data-user-coupon-id');
-        console.log("我是user-coupon-id: " + userCouponId);
+        // console.log("我是user-coupon-id: " + userCouponId);
 
         // 從 Button 當中的 data-user-coupon 屬性取得 user
         var userCoupon = JSON.parse(button.getAttribute('data-user-coupon'));
-        console.log(userCoupon);
+        // console.log(userCoupon);
         // Button 選取到的 shop ID 放入置 id 為 selectedShop 的 Input
         selectedShopIdInput.value = selectedShopId;
 

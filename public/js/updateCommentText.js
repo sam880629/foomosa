@@ -10,13 +10,13 @@ document.addEventListener('DOMContentLoaded', function () {
         var getButtonValue = event.relatedTarget;
         // 從 data-shop-id 屬性中獲取 shopId
         var shopId = getButtonValue.getAttribute('data-shop-id');
-        console.log("我是ID: " + shopId);
+        // console.log("我是ID: " + shopId);
         // 將 shopId 獲得的店家 id 帶入至 #submitCommentButton 按鈕當中
         submitCommentButton.setAttribute('data-shop-id', shopId);
 
         // 從 data-user-comment-text 屬性中獲取 comment-text
         var userCommentText = getButtonValue.getAttribute("data-user-comment-text");
-        console.log(userCommentText);
+        // console.log(userCommentText);
         document.querySelector("#message-text").innerHTML = userCommentText;
     });
 });
@@ -38,7 +38,7 @@ updateCommentText = (button) => {
         contentType: 'application/json',
         data: JSON.stringify(data),
         success: function (result) {
-            console.log(result);
+            // console.log(result);
             alert('評論更改成功！');
             window.location.reload(); // 重新載入頁面以顯示更新後的評論
         },

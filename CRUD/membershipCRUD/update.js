@@ -18,7 +18,7 @@ router.post("/logout", function (req, res) {
 
 //-- 美食口袋路由
 router.put("/comment_Favorite/:id", function (req, res) {
-  console.log("獲取:", req.body);
+  // console.log("獲取:", req.body);
   // var id = req.params.id;
   var comment_favorite = req.body.comment_favorite;
   var shop_id = req.body.shop_id;
@@ -116,7 +116,7 @@ router.post('/updateUserPoints/', function (req, res) {
           console.log("查詢資料成功");
           // 從查詢結果中取得新的積分數量並回傳給前端
           var newPoints = results[0].user_point;
-          console.log("我是newPoints: " + newPoints);
+          // console.log("我是newPoints: " + newPoints);
           res.status(200).send({ newPoints: newPoints });
           // res.status(200).send("更新資料成功");
         }
