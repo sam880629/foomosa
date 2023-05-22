@@ -46,7 +46,18 @@ $color_blue: #2260ff;
 body {
     background-color: $color_gray1;
 }
+body::-webkit-scrollbar {
+    background-color: #d7d7d7;
+    width: 10px;
+    /* 修改滾動條的寬度 /
+}
 
+body::-webkit-scrollbar-thumb {
+    background-color: #afafaf;
+    / 修改滾動條的顏色 /
+    border-radius: 6px;
+    / 修改滾動條的圓角半徑 */
+}
 // 回到最上
 .go_top {
     width: 50px;

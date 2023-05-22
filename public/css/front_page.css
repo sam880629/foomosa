@@ -15,6 +15,19 @@ body {
   background-color: #F6F6F8;
 }
 
+body::-webkit-scrollbar {
+  background-color: #d7d7d7;
+  width: 10px;
+  /* 修改滾動條的寬度 /
+  }
+
+  body::-webkit-scrollbar-thumb {
+      background-color: #afafaf;
+      / 修改滾動條的顏色 /
+      border-radius: 6px;
+      / 修改滾動條的圓角半徑 */
+}
+
 .gap {
   background-color: #F5F5F5;
   height: 15px;
