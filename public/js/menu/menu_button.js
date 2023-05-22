@@ -1,7 +1,7 @@
-$(function(){
+$(function () {
 
-//獲得Tr內容
-function getTrData(row) {
+  //獲得Tr內容
+  function getTrData(row) {
     const meid = row.find("span[name='menu_id']").text();
     const mename = row.find("span[name='menu_name']").text();
     const metype = row.find("span[name='menu_type']").text();
@@ -54,5 +54,34 @@ function getTrData(row) {
       $('#delId').text(trData.meid);
     });
   }
-    
+
+
+  //測試input換造型
+  $('.inputFile').on('change', function () {
+    var inputFiles = $(this)[0].files;
+    var inputFileName = "";
+    if (inputFiles.length > 1) {
+      inputFileName = `選擇了 ${inputFiles.length} 個檔案`;
+    } else {
+      inputFileName = inputFiles[0].name;
+    }
+    var inputId = $(this).attr('id');
+    if (inputId == 'file1') {
+      $('#span1').text(inputFileName);
+    } else if (inputId == 'image_files') {
+      $('#span2').text(inputFileName);
+    }
+  });
+
+  $('.click_here, .btn').on('click', function () {
+    var fileNameId = $(this).attr('id');
+    if (fileNameId == 'file-name1' || fileNameId == 'upload_btn1') {
+      $('#file1').trigger('click');
+    } else if (fileNameId == 'file-name2' || fileNameId == 'upload_btn2') {
+      $('#image_files').trigger('click');
+    }
+
+
+
+  });
 })

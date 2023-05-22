@@ -119,9 +119,34 @@
 
   /* Typography */
   .arrow span {
-    color: #ffffff;
+    color: #212529;
     position: relative;
   }
   .card-body{
 background-color: #f6f6f8
  }
+ .wrapper {
+  height: 100vh;
+  background: black;
+}
+
+.inputFile {
+  display: none;
+}
+
+.file-name {
+  position: relative;
+  overflow: hidden;
+  line-height: 30px;
+  padding: 9px;
+  box-sizing: border-box;
+  font-size: 20px;
+  vertical-align: middle;
+  width: 200px;
+  border: 2px solid #dbdbdb;
+  border-radius: 0;
+  height: 47px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px 0px 0px 10px;
+  cursor: pointer;
+}

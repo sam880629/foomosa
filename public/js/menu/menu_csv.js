@@ -1,9 +1,9 @@
 
 $(document).ready(function () {
     //CSV的部分
-    $('#insertmenu').click(function () {
+    $('#csvFileBtn1').click(function () {
 
-      var file = $('#menuFile')[0].files[0];
+      var file = $('#file1')[0].files[0];
       if (!file) {
         alert('未選擇任何檔案');
         return;

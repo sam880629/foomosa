@@ -142,19 +142,34 @@
               </div>
               <div class="arrow step2  py-1 px-3 me-2">
                 <span class="text-secondary">2.上傳菜單表單</span>
-                <form class="input-group mb-2" id="menuForm" enctype="multipart/form-data">
+                <!-- <form class="input-group mb-2" id="menuForm" enctype="multipart/form-data">
 
                   <input type="file" class="form-control" name="menuFile" id="menuFile">
                   <button class="btn btn-outline-secondary" type="button" id="insertmenu">上傳</button>
 
-                </form>
+                </form> -->
+                <input type="file" name="file1" id="file1" class="inputFile">
+                <div class="d-flex justify-content-center">
+                  <div type="text" name="file-name1" id="file-name1" class="file-name click_here " readonly="readonly">
+                    <span id="span1">點擊選擇檔案</span>
+                  </div>
+                  <input type="button" id="csvFileBtn1" class="btn btn-outline-secondary" style="border-radius:0px 10px 10px 0px" value="上傳">
+                </div>
+
               </div>
               <div class="arrow step3 py-1 px-3">
                 <span class="text-secondary">3.上傳菜單圖片</span>
                 <form class="input-group" id="imgForm" enctype="multipart/form-data" method="POST">
-                  <input type="file" name="image_files[]" id="image_files" multiple class="form-control">
+                  <!-- <input type="file" name="image_files[]" id="image_files" multiple class="form-control">
 
-                  <button class="btn btn-outline-secondary" type="submit" id="addImage">上傳</button>
+                  <button class="btn btn-outline-secondary" type="submit" id="addImage">上傳</button> -->
+                  <input type="file" name="file2" id="image_files" class="inputFile" multiple style="display:none;">
+                  <div class="d-flex">
+                    <div type="text" name="file-name2" id="file-name2" class="file-name click_here" readonly="readonly">
+                      <span id="span2">點擊選擇圖片</span>
+                    </div>
+                    <input  type="submit" id="addImage" class="btn btn-outline-secondary" style="border-radius:0px 10px 10px 0px" value="上傳">
+                  </div>
                 </form>
               </div>
 
