@@ -11,14 +11,17 @@ body {
     /* background-color: rgba(229, 238, 192, 1); */
     background-color: rgba(251, 218, 178, 0.7);
     /* background-image: linear-gradient(62deg, #fbdab2e1 10%,#fce1c0b6 20%, #fbdab2 70%); */
-    color:#5D5D5D; 
+    color: #5D5D5D;
 
 }
+
 /* 營業狀態 modal */
-.form-check{
+.form-check {
     cursor: pointer;
 }
-.form input, .form-check-label{
+
+.form input,
+.form-check-label {
     cursor: pointer;
 }
 
@@ -58,27 +61,28 @@ body {
     background-color: aliceblue; */
 }
 
-.status-info{
+.status-info {
     position: relative;
 }
 
 /* 狀態 */
-.status{
+.status {
     position: relative;
-    left:50px;
-    top:20px;
+    left: 50px;
+    top: 20px;
     border-radius: 24px;
     width: 24px;
     height: 24px;
     border: 1px solid rgb(195, 195, 195);
     background-color: white;
     display: flex;
-    justify-content: center;    
-    align-items: center;  
-          
+    justify-content: center;
+    align-items: center;
+
 }
+
 /* 狀態燈 */
-.statusLight{
+.statusLight {
     width: 14px;
     height: 14px;
     border-radius: 16px;
@@ -106,6 +110,14 @@ body {
     /* 左邊框線2px顏色#F28F16 */
     /* background: linear-gradient(to right, rgba(248, 158, 2, 0.38), transparent); */
     /* 背景顏色#F28F16左到右漸層分布 */
+}
+
+/* 當前頁籤 */
+.backstage_nav .choose {
+    border-left: 6px solid #558C03;
+    margin-right: 7px;
+    color: #558C03;
+    font-weight: bolder;
 }
 
 .mosa_card {
@@ -136,8 +148,8 @@ body {
 }
 
 /* 下面兩個按鈕 */
-.btnContainer button{
-    color:#5D5D5D; 
+.btnContainer button {
+    color: #5D5D5D;
     text-align: left;
     font-size: 1rem;
     letter-spacing: 0.2rem;
