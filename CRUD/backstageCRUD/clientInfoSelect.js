@@ -11,7 +11,7 @@ api.get('/', function (req, res) {
     let pShopId = req.session.pShopId;
 
     // 測試用先寫死
-    shopId = 14;
+    // shopId = 14;
 
     // 從資料庫透過shop_id取得資料
     if (shopId) {
@@ -45,7 +45,7 @@ api.get('/', function (req, res) {
 
 api.get('/getSessionId', (req, res) => {
     let shopId = req.session.shopId;
-    shopId = 14;
+    // shopId = 14;
 
     res.json({
         shopId: shopId
@@ -59,7 +59,7 @@ api.get('/getDayoff', (req, res) => {
     // 取得session中的shop_id
     let shopId = req.session.shopId;
     
-    shopId = 14;
+    // shopId = 14;
 
     let sql = `SELECT shop.shop_id, shop.shop_start_1, shop_end_1, shop_start_2, shop_end_2, shop_break, dayoff.dayoff_recently 
                     FROM shop 
