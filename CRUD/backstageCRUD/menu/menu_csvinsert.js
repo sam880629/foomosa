@@ -59,7 +59,7 @@ app.post('/', (req, res) => {
             if (successCount === jsonData.length) {
                 // 所有資料都成功插入，回傳成功訊息
                 res.send(`${successCount} records inserted into MySQL successfully`);
-                console.log(`${successCount} records inserted into MySQL successfully`);
+                // console.log(`${successCount} records inserted into MySQL successfully`);
             }
         });
     }
