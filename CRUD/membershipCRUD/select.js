@@ -41,25 +41,6 @@ router.get("/", function (req, res) {
                 res.render('membership', { user: results, user_id: user_id, user_comment: user_comment}); //-- res.render() 方法來呼叫 EJS 模板引擎，丟物件進去
 
             }
-            // console.log(results);
-            // console.log(results[0]);
-            // console.log(results[4][1].created_at);
-            // console.log(results[0][0].user_point);
-            // console.log(results[0][1].shop_preview_img);
-            // console.log(results[0][0].shop_logo_img);
-            // console.log(results[0][0].user_avatar);
-            // console.log(results[1]);
-            // console.log(results[1][1].user_coupon_id);
-            // console.log(results[2]);
-            // console.log(results[2][1].history_text);
-            // console.log(results[1][0].coupon_text);
-            // console.log(results[0][0]);
-            // console.log(results[0][0].comment_text);
-            // console.log(results[1][0]);
-            // console.log(results[1][0].user_id);
-            // console.log(results[1][0].coupon_used_date);
-            // console.log(results[1][4].coupon_code);
-            // console.log(results[0][0].shop_name);
         })
 })
 
