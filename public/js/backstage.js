@@ -135,7 +135,6 @@ $.ajax({
                 }
             }
         }
-        console.log(result);
         setStatusLight(result);
     },
     error: function (jqXHR, textStatus, errorThrown) {
