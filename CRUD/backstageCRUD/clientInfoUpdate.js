@@ -193,9 +193,6 @@ api.put('/dayoff', function (req, res) {
     // 連線資料庫
     const conn = require('../config.js');
 
-    // 取得前端傳來的資料
-    // const data = req.body;
-
     // 取得session中的shop_id
     let shopId = req.session.shopId;
 
@@ -214,6 +211,36 @@ api.put('/dayoff', function (req, res) {
 
     // 執行 sql
     conn.query(sql, data,
+        function (err, results, fields) {
+            if (err) {
+                console.log(err);
+            }
+        });
+
+    res.end();
+
+});
+
+// 處理臨時公休日的更新
+api.put('/dayoffCancel', function (req, res) {
+
+    // 連線資料庫
+    const conn = require('../config.js');
+
+    // 取得session中的shop_id
+    let shopId = req.session.shopId;
+
+    // 測試用假的
+    // shopId = 94;
+
+    // update 的 sql 語法
+    let sql = `
+        UPDATE dayoff
+        SET dayoff_recently = NULL
+        WHERE shop_id = ?;`;
+
+    // 執行 sql
+    conn.query(sql, shopId,
         function (err, results, fields) {
             if (err) {
                 console.log(err);

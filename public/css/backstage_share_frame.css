@@ -165,3 +165,11 @@ body {
 .btn_padding{
     padding: 0px 15px 0px 30px ;
 }
+
+.openBtn {
+    background-color: #ef622e;
+}
+
+.openBtn:not([disabled]):hover, .openBtn:active{
+    background-color: var(--mosa-red);
+}
