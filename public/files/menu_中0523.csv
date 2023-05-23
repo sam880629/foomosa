@@ -1,4 +1,4 @@
-﻿menu_id,menu_name,menu_price,menu_uber,menu_panda,menu_picture,menu_type
+﻿no.,餐點名稱,餐點價格,ubereats價格,熊貓價格,餐點圖片名稱,餐點類別
 1,酥皮焗叉燒包,148,,148,tim_00.png,招牌必點
 2,添好運流沙包,148,,148,tim_01.png,招牌必點
 3,好運冰火菠蘿,118,,118,tim_02.png,招牌必點

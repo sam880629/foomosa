@@ -45,9 +45,9 @@ app.post('/', (req, res) => {
                 item[key] = null;
             }
         }
-        let picturePath = "/upload/shop_id_14/menu_img/" + item.menu_picture
+        let picturePath = "/upload/shop_id_14/menu_img/" +item["餐點圖片名稱"]
         //console.log(picturePath);
-        conn.query(sql, [shopId,item.menu_id, item.menu_name, item.menu_price, item.menu_uber, item.menu_panda, picturePath, item.menu_type], function (error, results) {
+        conn.query(sql, [shopId, item["no."], item["餐點名稱"], item["餐點價格"], item["ubereats價格"], item["熊貓價格"], picturePath, item["餐點類別"]], function (error, results) {
             if (error) {
                 console.error('Error inserting data into MySQL: ', error);
                 // 回傳錯誤訊息，並停止程式執行
