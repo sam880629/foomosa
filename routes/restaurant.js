@@ -3,7 +3,12 @@ var app = express();
 const axios = require('axios'); // 引入 axios
 
 //判斷營業時間
-function isOpen(shop, currentTime) { // 從 currentTime 得到現在的 hr 和 min
+function isOpen(shop, currentTime, dayOff) { // 從 currentTime 得到現在的 hr 和 min
+
+    // 判斷是否有設定臨時店休，且是否與當前日期相同
+    if(dayOff && dayOff.toDateString() === currentTime.toDateString()){
+        return false;
+    }
 
     const currentHours = currentTime.getHours(); //現在的 hr
     const currentMinutes = currentTime.getMinutes();//現在的 min
@@ -40,7 +45,11 @@ app.get('/:id', async function (req, res) { // 修改路由以接收 id 參數
         const response = await axios.get(`http://localhost:3000/restaurant/select/${req.params.id}?uid=${req.session.uid}`);
         // 使用從 restaurantSelect.js 獲得的數據渲染頁面
         const currentTime = new Date(); // 獲得現在時間
-        const openStatus = isOpen(response.data[0][0], currentTime) ? '營業中' : '店休中';
+        const utcDate = new Date(response.data[6][0].dayoff_recently);//獲得dayoff的今日日期
+        const offset = currentTime.getTimezoneOffset(); 
+        const dayOff = new Date(utcDate.getTime() - offset*60*1000); //轉換時區
+
+        const openStatus = isOpen(response.data[0][0], currentTime, dayOff ) ? '營業中' : '店休中';
         const statusColor = openStatus === '營業中' ? '#F89E02' : '#B7B7B7';
         req.session.url = req.originalUrl;//存取當前網址
         // console.log('我要看Current URL:', req.session.url);
@@ -50,6 +59,8 @@ app.get('/:id', async function (req, res) { // 修改路由以接收 id 參數
         // console.log( req.session.shopId);
         // console.log( '我要看shopLogo');
         // console.log( req.session.shopLogo);
+        // console.log( '我要看dayoff');
+        // console.log(dayOff);
         res.render('restaurant', {
             // shops: response.data, // 將整個結果集傳遞給 EJS 模板
             shop: response.data[0][0],

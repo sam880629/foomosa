@@ -19,7 +19,7 @@ api.get('/:id', (req, res) => {
     SELECT * FROM comment WHERE user_id = ? AND shop_id = ?;
     SELECT dayoff_recently FROM dayoff WHERE shop_id = ?
     `;
-    console.log(req.params.id);
+    // console.log(req.params.id);
     dbConn.query(sql, //dbConn 啟動 sql //送出 sql 指令  
         [req.params.id, req.params.id, req.params.id, req.params.id,userId, userId, req.params.id, req.params.id], //id 是從 URL 中獲得的參數
         function (err, results) {
@@ -29,12 +29,12 @@ api.get('/:id', (req, res) => {
             } else {
                 // res.json({ shop_name: results[0].shop_name, shop_address: results[0].shop_address });// 若成功查詢，回傳結果
                 res.json(results); // 將整個查詢結果作為 JSON 數據返回
-                 console.log('查詢結果:', results);//顯示查詢結果
+                // console.log('查詢結果:', results);//顯示查詢結果
                 // console.log('查詢活動結果:', results[3]);//顯示活動查詢結果
                 // console.log('會員資訊:', results[4][0].user_avatar);
                 // console.log('會員評論:', JSON.stringify(results[5], null, 2));
                 // console.log('會員評論:', (results[5][0]));
-                console.log('dayoff 查詢結果:', results[6]);
+                // console.log('dayoff 查詢結果:', results[6][0]);
             }
         });
 
