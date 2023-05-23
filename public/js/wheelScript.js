@@ -131,7 +131,8 @@ spinBtn.addEventListener("click", async () => {
   spinBtn.disabled = true;
 
   // 隨機產生角度的值來停止轉動
-  let randomDegree = Math.floor(Math.random() * (355 - 0 + 1) + 0);
+  let randomDegree = Math.floor(Math.random() * (325 - 0 + 1) + 0);
+  // let randomDegree = Math.floor(Math.random() * (355 - 0 + 1) + 0);
   // 旋轉動畫的間隔
   while (true) {
     // 設定圓餅圖的旋轉
