@@ -1,3 +1,13 @@
+var tooltip;
+// 啟動tooltip
+$(document).ready(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+    tooltip = new bootstrap.Tooltip($('[data-toggle="tooltip"]'));
+});
+
+// tooltip.show();
+
+// 點選頭像
 $('.avatar').on('click', function () {
     if ($('.statusLight').hasClass('dayoff')) { // 已經是臨時工休日的話
         swalOpen();
@@ -5,6 +15,21 @@ $('.avatar').on('click', function () {
         swalClose();
     }
 })
+
+// 頭貼的 hover 效果
+$(".status-info").on({
+    mouseenter: function () {
+        $('.avatar').children().css('-webkit-filter', 'drop-shadow(0px 0px 8px rgba(254, 191, 112, 0.71))');
+        $('.avatar img').css('opacity', '0.85');
+
+        tooltip.show();
+    },
+    mouseleave: function () {
+        $('.avatar').children().css('-webkit-filter', 'none');
+        $('.avatar img').css('opacity', '1');
+        tooltip.hide();
+    }
+});
 
 // 彈提示框顯示是否要臨時公休
 function swalClose() {

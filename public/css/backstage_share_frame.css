@@ -68,6 +68,7 @@ body {
 /* 狀態 */
 .status {
     position: relative;
+    z-index: 1;
     left: 50px;
     top: 20px;
     border-radius: 24px;
@@ -147,6 +148,10 @@ body {
     border: 2px solid #d7d7d7;
 }
 
+.avatar {
+    cursor: pointer;
+}
+
 /* 下面兩個按鈕 */
 .btnContainer button {
     color: #5D5D5D;
@@ -162,14 +167,43 @@ body {
     }
 }
 
-.btn_padding{
-    padding: 0px 15px 0px 30px ;
+.btn_padding {
+    padding: 0px 15px 0px 30px;
 }
 
 .openBtn {
     background-color: #ef622e;
 }
 
-.openBtn:not([disabled]):hover, .openBtn:active{
+.openBtn:not([disabled]):hover,
+.openBtn:active {
     background-color: var(--mosa-red);
 }
+
+.tooltip .tooltip-inner {
+    background-color: #558C03;
+    /* 修改背景顏色 */
+    color: white;
+    /* 修改文字顏色 */
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.color-tooltip.bs-tooltip-top>.tooltip-arrow::before,
+.color-tooltip.bs-tooltip-auto[data-popper-placement^=top]>.tooltip-arrow::before {
+    border-top-color: #558C03; /* 修改小箭頭顏色 */
+
+}
+
+@keyframes jump {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
