@@ -40,7 +40,11 @@
         })
         matchData(selectShop, wordToMatch);//執行渲染至頁面FC
     })
- 
+
+    // 影片用
+    $('#storSearch_text').on('click', function(){
+        $(this).val('NENE CHICKEN');
+    })
 
      //將關鍵字加到input text中
      $('.suggestions').on('click', '#suggestions_btn', function () {
