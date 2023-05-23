@@ -34,7 +34,7 @@ function getActivityList() {
               `   <tr>
                     <td class="align-middle text-center">
                           <div class="d-flex align-items-center justify-content-center flex-grow-1">
-                            <div class="avatar avatar-xl position-relative">
+                            <div class=" position-relative">
                               <img src="${myactivitylist.active_picture}" alt="profile_image"
                                 class="w-100 border-radius-round " style="height: 30px; width: auto";>
                             </div>
@@ -75,7 +75,7 @@ function getActivityList() {
           }
         })
 	if (alist[1][0].shop_logo_img) {
-          $('#mosa2 img').prop('src', '../' + alist[1][0].shop_logo_img);
+          $('#avatar img').prop('src', '../' + alist[1][0].shop_logo_img);
         }
 
         // 將左側 menu 的文字改成店名

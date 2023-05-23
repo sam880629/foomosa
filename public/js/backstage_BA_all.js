@@ -336,6 +336,9 @@ $(function () {
         maxDate: formatDate2(date), // 今天
         startDate: startDateNow,
         endDate: endDateNow,
+        locale: {
+            format: 'YYYY/MM/DD'
+        }
 
     }, function (start, end, label) {
         startDateNow = new Date(start); // 將 startDateNow 改成時間篩選器的結果
@@ -501,8 +504,8 @@ function showPopulationChart(startDate, endDate, filter = false) {
             {
                 label: '男性',
                 data: maleDatapoints,
-                borderColor:  'rgba(54, 162, 235, 0.6)',
-                backgroundColor:  'rgba(54, 162, 235, 0.6)',
+                borderColor: 'rgba(54, 162, 235, 0.6)',
+                backgroundColor: 'rgba(54, 162, 235, 0.6)',
 
             }
         ]
@@ -516,9 +519,9 @@ function showPopulationChart(startDate, endDate, filter = false) {
             scales: {
                 y: {
                     reverse: true,
-                    ticks:{
-                        font:{
-                            size:16
+                    ticks: {
+                        font: {
+                            size: 16
                         }
                     }
                 },
