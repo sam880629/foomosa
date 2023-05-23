@@ -55,7 +55,7 @@ body {
 }
 
 .fakeInput button {
-    background-color: #D9D9D9;
+    background-color: var(--orange);
     border: 0px;
     border-radius: 5px;
 }
@@ -63,7 +63,10 @@ body {
 .fakeInput button span {
     white-space: nowrap;
     text-overflow: ellipsis;
-
+    color: white;
+}
+.fakeInput button i {
+    color: white;
 }
 
 .backstage_main_area input:focus {
