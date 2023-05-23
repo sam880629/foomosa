@@ -11,7 +11,7 @@ api.get('/clientinfo', function (req, res) {
         res.sendFile(process.cwd() + '/pages/clientInfo.html');
     } else {
         res.send(`
-        <p id="redirectMsg">請登入，5秒後自動跳轉至登入頁...</p>
+        <p id="redirectMsg">請登入，3秒後自動跳轉至登入頁...</p>
         <script>
             var counter = 3;
             var intervalId = setInterval(function(){
@@ -34,7 +34,7 @@ api.get('/businessAnalytics/all', function (req, res) {
         res.sendFile(process.cwd() + '/pages/businessAnalyticsAll.html');
     } else {
         res.send(`
-        <p id="redirectMsg">請登入，5秒後自動跳轉至登入頁...</p>
+        <p id="redirectMsg">請登入，3秒後自動跳轉至登入頁...</p>
         <script>
             var counter = 3;
             var intervalId = setInterval(function(){
@@ -69,7 +69,7 @@ api.get('/businessAnalytics/self', function (req, res) {
     //res.sendFile(__dirname + '/public/css/backstage_share_frame.css');
     } else {
         res.send(`
-        <p id="redirectMsg">請登入，5秒後自動跳轉至登入頁...</p>
+        <p id="redirectMsg">請登入，3秒後自動跳轉至登入頁...</p>
         <script>
             var counter = 3;
             var intervalId = setInterval(function(){
@@ -90,7 +90,7 @@ api.get('/activity', function (req, res) {
     res.sendFile(process.cwd() + '/pages/activity.html');
     } else {
         res.send(`
-        <p id="redirectMsg">請登入，5秒後自動跳轉至登入頁...</p>
+        <p id="redirectMsg">請登入，3秒後自動跳轉至登入頁...</p>
         <script>
             var counter = 3;
             var intervalId = setInterval(function(){
@@ -111,7 +111,7 @@ api.get('/menu', function (req, res) {
     res.sendFile(process.cwd() + '/pages/menu.html');
     } else {
         res.send(`
-        <p id="redirectMsg">請登入，5秒後自動跳轉至登入頁...</p>
+        <p id="redirectMsg">請登入，3秒後自動跳轉至登入頁...</p>
         <script>
             var counter = 3;
             var intervalId = setInterval(function(){
