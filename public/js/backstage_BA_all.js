@@ -589,7 +589,7 @@ $("#pills-buzzword-tab").on('click', function () {
         { "x": "芒果", "value": 12900 },
         { "x": "章魚燒", "value": 12100 }
     ];
-    showBuzzwordChart(data);
+    // showBuzzwordChart(data);
     showBuzzwordTable(data);
 })
 
