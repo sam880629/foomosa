@@ -29,7 +29,8 @@
   <!-- <script type="text/javascript" src="../../public/js/businessAnalytics/stockchart.js"></script> -->
   <!-- title ICON -->
   <link rel="icon" type="image/x-icon" href="/pic/favicon32.ico">
-
+  <!-- 引進 SweetAlert -->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 
 <body>
@@ -43,14 +44,14 @@
             <div class="avatar avatar-xl position-relative" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
               <!-- 上線中statusLight 是 bg-success，休息是 bg-warning-->
               <div class="status">
-                <div class="bg-success statusLight"></div>
+                <div class=" statusLight"></div>
               </div>
               <img src="/pic/mosa2.jpg" alt="" class="rounded-circle ">
             </div>
           </div>
 
           <!-- Modal -->
-          <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+          <!-- <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
@@ -83,7 +84,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
 
           <!-- 商家名稱 -->
           <p class="mb-0 mt-2 mb-4 text-center fw-bold fs-6" id="welcomeText"></p>
@@ -200,8 +201,8 @@
               <canvas id="myChart" style="height:367px;"></canvas>
 
             </div>
-            <div class="d-flex align-items-center timeline_area" >
-              <div class="d-flex align-items-center timeline_label" >
+            <div class="d-flex align-items-center timeline_area">
+              <div class="d-flex align-items-center timeline_label">
                 Coupon time </div>
               <div id="timeline"></div>
 
@@ -707,6 +708,7 @@
       });
     });
   </script>
+  <script src="/js/backstage.js"></script>
 </body>
 
 </html>

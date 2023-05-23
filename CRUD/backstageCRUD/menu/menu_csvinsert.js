@@ -32,7 +32,7 @@ app.post('/', (req, res) => {
     let shopId =14;
     // 將CSV資料儲存到MySQL資料庫
     const jsonData = JSON.parse(req.body.menu);
-    console.log(jsonData)
+    //console.log(jsonData)
     const sql = 'INSERT INTO menu (shop_id,menu_id,menu_name,menu_price,menu_uber,menu_panda,menu_picture,menu_type) values (?,?,?,?,?,?,?,?)';
     let successCount = 0;
     for (let i = 0; i < jsonData.length; i++) {

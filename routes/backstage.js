@@ -10,7 +10,20 @@ api.get('/clientinfo', function (req, res) {
     if (req.session.shopId) {
         res.sendFile(process.cwd() + '/pages/clientInfo.html');
     } else {
-        res.send("請登入");
+        res.send(`
+        <p id="redirectMsg">請登入，5秒後自動跳轉至登入頁...</p>
+        <script>
+            var counter = 3;
+            var intervalId = setInterval(function(){
+                counter--;
+                document.getElementById('redirectMsg').textContent = '請登入，' + counter + '秒後自動跳轉至登入頁...';
+                if(counter === 0) {
+                    clearInterval(intervalId);
+                    window.location.href = "http://localhost:3000/login";
+                }
+            }, 1000);
+        </script>
+    `);
     }
 
 })
@@ -20,7 +33,20 @@ api.get('/businessAnalytics/all', function (req, res) {
     if (req.session.shopId) {
         res.sendFile(process.cwd() + '/pages/businessAnalyticsAll.html');
     } else {
-        res.send("請登入");
+        res.send(`
+        <p id="redirectMsg">請登入，5秒後自動跳轉至登入頁...</p>
+        <script>
+            var counter = 3;
+            var intervalId = setInterval(function(){
+                counter--;
+                document.getElementById('redirectMsg').textContent = '請登入，' + counter + '秒後自動跳轉至登入頁...';
+                if(counter === 0) {
+                    clearInterval(intervalId);
+                    window.location.href = "http://localhost:3000/login";
+                }
+            }, 1000);
+        </script>
+    `);
     }
 })
 
@@ -38,28 +64,67 @@ api.get('/businessAnalytics/all', function (req, res) {
 ************************************** */
 api.get('/businessAnalytics/self', function (req, res) {
     // // 判斷現在是不是已登入 測試時先拿掉
-    // if (req.session.shopId) {
+    if (req.session.shopId) {
     res.sendFile(process.cwd() + '/pages/businessAnalytics.html');
     //res.sendFile(__dirname + '/public/css/backstage_share_frame.css');
-    // } else {
-    //     res.send("請登入");
-    // }
+    } else {
+        res.send(`
+        <p id="redirectMsg">請登入，5秒後自動跳轉至登入頁...</p>
+        <script>
+            var counter = 3;
+            var intervalId = setInterval(function(){
+                counter--;
+                document.getElementById('redirectMsg').textContent = '請登入，' + counter + '秒後自動跳轉至登入頁...';
+                if(counter === 0) {
+                    clearInterval(intervalId);
+                    window.location.href = "http://localhost:3000/login";
+                }
+            }, 1000);
+        </script>
+    `);
+    }
 })
 api.get('/activity', function (req, res) {
     // // 判斷現在是不是已登入 測試時先拿掉
-    // if (req.session.shopId) {
+    if (req.session.shopId) {
     res.sendFile(process.cwd() + '/pages/activity.html');
-    // } else {
-    //     res.send("請登入");
-    // }
+    } else {
+        res.send(`
+        <p id="redirectMsg">請登入，5秒後自動跳轉至登入頁...</p>
+        <script>
+            var counter = 3;
+            var intervalId = setInterval(function(){
+                counter--;
+                document.getElementById('redirectMsg').textContent = '請登入，' + counter + '秒後自動跳轉至登入頁...';
+                if(counter === 0) {
+                    clearInterval(intervalId);
+                    window.location.href = "http://localhost:3000/login";
+                }
+            }, 1000);
+        </script>
+    `);
+    }
 })
 api.get('/menu', function (req, res) {
     // // 判斷現在是不是已登入 測試時先拿掉
-    // if (req.session.shopId) {
+    if (req.session.shopId) {
     res.sendFile(process.cwd() + '/pages/menu.html');
-    // } else {
-    //     res.send("請登入");
-    // }
+    } else {
+        res.send(`
+        <p id="redirectMsg">請登入，5秒後自動跳轉至登入頁...</p>
+        <script>
+            var counter = 3;
+            var intervalId = setInterval(function(){
+                counter--;
+                document.getElementById('redirectMsg').textContent = '請登入，' + counter + '秒後自動跳轉至登入頁...';
+                if(counter === 0) {
+                    clearInterval(intervalId);
+                    window.location.href = "http://localhost:3000/login";
+                }
+            }, 1000);
+        </script>
+    `);
+    }
 })
 
 

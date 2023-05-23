@@ -21,6 +21,8 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
   <!-- title ICON -->
   <link rel="icon" type="image/x-icon" href="/pic/favicon32.ico">
+  <!-- 引進 SweetAlert -->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 
 <body>
@@ -34,14 +36,14 @@
             <div class="avatar avatar-xl position-relative" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
               <!-- 上線中statusLight 是 bg-success，休息是 bg-warning-->
               <div class="status">
-                <div class="bg-success statusLight"></div>
+                <div class=" statusLight"></div>
               </div>
               <img src="/pic/mosa2.jpg" alt="" class="rounded-circle ">
             </div>
           </div>
 
           <!-- Modal -->
-          <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+          <!-- <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
@@ -74,7 +76,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
 
           <!-- 商家名稱 -->
           <p class="mb-0 mt-2 mb-4 text-center fw-bold fs-6" id="welcomeText"></p>
@@ -150,25 +152,30 @@
                 </form> -->
                 <input type="file" name="file1" id="file1" class="inputFile">
                 <div class="d-flex justify-content-center">
-                  <div type="text" name="file-name1" id="file-name1" class="file-name click_here py-1" readonly="readonly">
+                  <div type="text" name="file-name1" id="file-name1" class="file-name click_here py-1"
+                    readonly="readonly">
                     <span id="span1" class="pt-3">點擊選擇檔案</span>
                   </div>
-                  <input type="button" id="csvFileBtn1" class="btn btn-outline-secondary" style="border-radius:0px 10px 10px 0px" value="上傳">
+                  <input type="button" id="csvFileBtn1" class="btn btn-outline-secondary"
+                    style="border-radius:0px 10px 10px 0px" value="上傳">
                 </div>
 
               </div>
               <div class="arrow step3 py-1 px-3">
                 <span class="text-secondary">3.上傳菜單圖片</span>
-                <form class="input-group justify-content-center" id="imgForm" enctype="multipart/form-data" method="POST">
+                <form class="input-group justify-content-center" id="imgForm" enctype="multipart/form-data"
+                  method="POST">
                   <!-- <input type="file" name="image_files[]" id="image_files" multiple class="form-control">
 
                   <button class="btn btn-outline-secondary" type="submit" id="addImage">上傳</button> -->
                   <input type="file" name="file2" id="image_files" class="inputFile" multiple style="display:none;">
                   <div class="d-flex">
-                    <div type="text" name="file-name2" id="file-name2" class="file-name click_here py-1" readonly="readonly">
+                    <div type="text" name="file-name2" id="file-name2" class="file-name click_here py-1"
+                      readonly="readonly">
                       <span id="span2" class="pt-3">點擊選擇圖片</span>
                     </div>
-                    <input  type="submit" id="addImage" class="btn btn-outline-secondary" style="border-radius:0px 10px 10px 0px" value="上傳">
+                    <input type="submit" id="addImage" class="btn btn-outline-secondary"
+                      style="border-radius:0px 10px 10px 0px" value="上傳">
                   </div>
                 </form>
               </div>
@@ -186,7 +193,7 @@
                 <i class="bi bi-folder-x"></i>
               </button>
             </div>
-            
+
 
             <div class="card-body px-0 pt-0 pb-2">
               <div class="table-responsive p-0 scrollbar" style="height: 480px; min-width: 555px; overflow: auto;"
@@ -540,6 +547,7 @@
   <!-- 菜單編輯update&dele -->
   <script src="/js/menu/menu_button.js"></script>
   <script src="/js/menu/menu_update.js"></script>
+  <script src="/js/backstage.js"></script>
   <script>
     // getMenuList();
     // getEditMenu()
