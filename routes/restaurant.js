@@ -6,8 +6,8 @@ const axios = require('axios'); // 引入 axios
 function isOpen(shop, currentTime, dayOff) { // 從 currentTime 得到現在的 hr 和 min
 
     // 判斷是否有設定臨時店休，且是否與當前日期相同
-    if(dayOff && dayOff.toDateString() === currentTime.toDateString()){
-        return false;
+    if(dayOff && dayOff.toDateString() === currentTime.toDateString()){ //檢查與今天日期是否相同
+        return false; //如果 dayOff 為 null ，代表店家關閉
     }
 
     const currentHours = currentTime.getHours(); //現在的 hr

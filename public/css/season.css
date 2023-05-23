@@ -103,8 +103,8 @@ body::-webkit-scrollbar-thumb {
 }
 .bannerTitle {
     position: absolute;
-    top: 34%;
-    left: 5%;
+    top: 20%;
+    left:1%;
     text-align: left;
     padding-left: 3%;
     padding-right: 3%;
