@@ -428,8 +428,9 @@ $('.filter_time_btn span').on('click', (e) => {
 
 //渲染日期選擇器的值
 function setDatePicker() {
-    $('input[name="daterange"]').data('daterangepicker').setStartDate(formatDate2(startDateNow));
-    $('input[name="daterange"]').data('daterangepicker').setEndDate(formatDate2(endDateNow));
+    console.log(startDateNow);
+    $('input[name="daterange"]').data('daterangepicker').setStartDate(formatDate(startDateNow));
+    $('input[name="daterange"]').data('daterangepicker').setEndDate(formatDate(endDateNow));
 }
 
 
