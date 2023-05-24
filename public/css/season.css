@@ -129,7 +129,7 @@ body::-webkit-scrollbar-thumb {
     width: 100%;
     font-weight: 300;
     font-size: 1.2rem;
-    line-height: 32px;
+    line-height: 2.4rem;
     margin-top: 30px;
     text-shadow: 0 0 4px rgb(96, 96, 96);
 }
