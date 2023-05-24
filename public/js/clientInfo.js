@@ -375,23 +375,46 @@ function SetIncreaseTimeBtn() {
     let timeNum = $(".time-area>div").length;
     switch (timeNum) {
         case 0: {
-            getServiceTimeElem(timeNum);
-            let btn = '<button onclick="SetIncreaseTimeBtn()"><i class="material-icons">add</i></button>';
+            getServiceTimeElem(timeNum); // 新增營業時間的輸入框
+            let btn = '<button onclick="SetIncreaseTimeBtn()"><i class="material-icons">add</i></button>'; // 新增 + 按鈕在第一個輸入框後面
             $(".time-area>div").eq(timeNum).append(btn);
             break;
         }
         case 1: {
-            getServiceTimeElem(timeNum);
-            let btn = '<button onclick="SetIncreaseTimeBtn()"><i class="material-icons">remove</i></button>';
-            $(".time-area>div").eq(1).append(btn);
-            $(".time-area>div").eq(0).children('button').remove();
+            getServiceTimeElem(timeNum); // 新增營業時間的輸入框
+            let btn1 = '<button onclick="SetIncreaseTimeBtn()"><i class="material-icons">add</i></button>';
+            let btn2 = '<button onclick="SetDecreaseTimeBtn()"><i class="material-icons">remove</i></button>';
+            $(".time-area>div").eq(1).append(btn1);
+            $(".time-area>div").eq(1).append(btn2);
+            $(".time-area>div").eq(0).children('button').remove(); // 拿掉第一個輸入框後面的按鈕
             break;
-
         }
+        case 2: {
+            getServiceTimeElem(timeNum); // 新增營業時間的輸入框
+            let btn2 = '<button onclick="SetDecreaseTimeBtn()"><i class="material-icons">remove</i></button>';
+            $(".time-area>div").eq(2).append(btn2);
+            $(".time-area>div").eq(1).children('button').remove(); // 拿掉第二個輸入框後面的按鈕
+            break;
+        }
+    }
+}
+
+// 按營業時間 - 按鈕的事件
+function SetDecreaseTimeBtn() {
+    let timeNum = $(".time-area>div").length;
+    switch (timeNum) {
         case 2: {
             $(".time-area>div").eq(1).remove();
             let btn = '<button onclick="SetIncreaseTimeBtn()"><i class="material-icons">add</i></button>';
             $(".time-area>div").eq(0).append(btn);
+            break;
+        }
+        case 3: {
+            $(".time-area>div").eq(2).remove();
+            let btn = '<button onclick="SetIncreaseTimeBtn()"><i class="material-icons">add</i></button>';
+            let btn2 = '<button onclick="SetDecreaseTimeBtn()"><i class="material-icons">remove</i></button>';
+            $(".time-area>div").eq(1).append(btn);
+            $(".time-area>div").eq(1).append(btn2);
             break;
         }
     }
@@ -399,10 +422,10 @@ function SetIncreaseTimeBtn() {
 
 // 計算有幾個營業時間區塊
 function getServiceTimeElem(timeNum) {
-    let titleList = ['營業時間一', '營業時間二'];
+    let titleList = ['營業時段一', '營業時段二', '營業時段三'];
     let timediv = `
-        <div class="d-flex flex-row mb-3 align-items-center">
-        <p class="m-0 me-5">${titleList[timeNum]}</p>
+        <div class="d-flex flex-row py-1 align-items-center">
+        <p class="m-0 me-4">${titleList[timeNum]}</p>
             <div class="d-flex flex-row align-items-center me-3">
                 <div class="d-flex flex-row">                    
                     <input type="text" class="form-control" required>
