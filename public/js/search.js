@@ -124,17 +124,30 @@ $(function () {
     
     // ----------------------------------------------
 
-    // 搜尋//按鍵keyup時顯示符合關鍵字的店家
-    $('.header_content input').on('keyup', function () {
-        let wordToMatch = $('#storSearch_text').val();//取得關鍵字
-        //比對找到符合關鍵字的店家
-        selectShop = shopDatas.filter(shopdata => {
-            const regex = new RegExp(wordToMatch, 'gi');
-            return shopdata.shop_name && shopdata.shop_name.match(regex);
-        })
-        matchData(selectShop, wordToMatch);//執行渲染至頁面FC
-    })
+    // // 搜尋//按鍵keyup時顯示符合關鍵字的店家
+    // $('.header_content input').on('keyup', function () {
+    //     let wordToMatch = $('#storSearch_text').val();//取得關鍵字
+    //     //比對找到符合關鍵字的店家
+    //     selectShop = shopDatas.filter(shopdata => {
+    //         const regex = new RegExp(wordToMatch, 'gi');
+    //         return shopdata.shop_name && shopdata.shop_name.match(regex);
+    //     })
+    //     matchData(selectShop, wordToMatch);//執行渲染至頁面FC
+    // })
 
+
+      // 搜尋//按鍵keyup時顯示符合關鍵字的店家
+      $('.header_content input').on('keyup', 
+      debounce(function(){
+          let wordToMatch = $('#storSearch_text').val();//取得關鍵字
+          //比對找到符合關鍵字的店家
+          selectShop = shopDatas.filter(shopdata => {
+              const regex = new RegExp(wordToMatch, 'gi');
+              return shopdata.shop_name && shopdata.shop_name.match(regex);
+          })
+          matchData(selectShop, wordToMatch);//執行渲染至頁面FC
+        }, 500)
+  )
 
     //按下搜尋按鈕搜尋
     $('#storSearch_btn').on('click', function () {
@@ -438,7 +451,7 @@ $(function () {
     function renderWeather(weather) {
         temp_Taichung = weather.main.temp;
         if (temp_Taichung >= 26) {
-            recommend_text = ['喝杯冰涼的飲料吧!','來杯奶香濃郁，Q彈有嚼勁的珍奶！','經典中的經典，紅茶拿鐵','清爽解暑的冰綠茶']
+            recommend_text = ['喝杯冰冰涼涼的飲料吧!','滋味冰涼的西瓜汁，解渴又消暑的最佳選擇','品味夏日冰爽綠豆冰沙','清爽解暑的冰綠茶']
         } else if (temp_Taichung <= 20) {
             recommend_text = ['吃點火鍋暖活暖身子吧!','這種天氣該吃火鍋了吧','麻辣鴛鴦火鍋，暖身又暖心','和牛火鍋，豐富的肉汁和口感']
         } else {
@@ -461,6 +474,21 @@ $(function () {
         })
     }
 
+    // 去抖動
+    function debounce(func, delay){
+        // timeout 初始值
+        let timeout = null;
+        return function(){
+          let context = this;  // 指向 myDebounce 這個 input
+          let args = arguments;  // KeyboardEvent
+          clearTimeout(timeout)
+      
+          timeout = setTimeout(function(){
+            func.apply(context, args)
+          }, delay)
+        }
+      }
+     
     
 
     // 當前是在哪個頁面
