@@ -168,15 +168,15 @@ $(document).ready(function () {
 
 
 //評分 //評論Comment
-$(function () {
-    var rate = Math.random();
-    var z = (rate * 3 + 2.5).toFixed(1); //亂數從3起跳
-    var result = (z < 5) ? z : 5;
-    $('.rate').text(result.toString());
+// $(function () {
+//     var rate = Math.random();
+//     var z = (rate * 3 + 2.5).toFixed(1); //亂數從3起跳
+//     var result = (z < 5) ? z : 5;
+//     $('.rate').text(result.toString());
 
-    var comment = Math.random();
-    var c = Math.floor(comment * 60 + 40);
-    var comment = (c < 100) ? c : "100+";
-    $('.rating span:last-child').text(`(${comment})`);
-});
+//     var comment = Math.random();
+//     var c = Math.floor(comment * 60 + 40);
+//     var comment = (c < 100) ? c : "100+";
+//     $('.rating span:last-child').text(`(${comment})`);
+// });
 
