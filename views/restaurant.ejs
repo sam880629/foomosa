@@ -155,18 +155,18 @@
                     <div class="d-flex">
                         <% if (shop.shop_uber || shop.shop_panda) { %>
                             <% if (shop.shop_uber) { %>
+                                <a href="<%= shop.shop_uber %>" target="_blank">
                                 <div class="platformlogo">
-                                    <a href="<%= shop.shop_uber %>" target="_blank">
                                     <img src="/pic/Ubereat.png" class="img-fluid px-2">
-                                    </a>
                                 </div>
+                                </a>
                             <% } %>
                             <% if (shop.shop_panda) { %>
-                                <div class="platformlogo <%= shop.shop_uber ? 'ms-5' : '' %>">
-                                    <a href="<%= shop.shop_panda %>" target="_blank">
+                                <a href="<%= shop.shop_panda %>" target="_blank">
+                                <div class="platformlogo <%= shop.shop_uber ? 'ms-5' : '' %>">                                 
                                     <img src="/pic/FoodPanda-Logo.png"  class="img-fluid px-2">
-                                    </a>
                                 </div>
+                            </a>
                             <% } %>
                         <% } else { %>
                             <p>抱歉沒有配合的平台。</p>
