@@ -39,7 +39,7 @@ router.get("/", function (req, res) {
                 // console.log("我是: " + user_comment);
                 // console.log(results[4].length);
                 // console.log(user_comment[1].comment_star);
-                console.log( results[1]);
+                // console.log( results[1]);
                 res.render('membership', { user: results, user_id: user_id, user_comment: user_comment}); //-- res.render() 方法來呼叫 EJS 模板引擎，丟物件進去
             }
         })

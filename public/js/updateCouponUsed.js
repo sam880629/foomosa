@@ -8,17 +8,18 @@ document.addEventListener('DOMContentLoaded', function () {
         // 觸發 Modal 當中的 Button 事件 
         var button = event.relatedTarget;
 
-        // 從 Button 當中的 data-shop-id 屬性取得 shop_id
+        // 取得 shop_id
         var selectedShopId = button.getAttribute('data-shop-id');
-        // console.log("我是店家ID: " + selectedShopId);
+        console.log("我是店家ID: " + selectedShopId);
 
-        // 從 Button 當中的 data-user-coupon-id 屬性取得 shop_id
+        // 取得 coupon-id
         var userCouponId = button.getAttribute('data-user-coupon-id');
-        // console.log("我是user-coupon-id: " + userCouponId);
+        console.log("我是user-coupon-id: " + userCouponId);
 
-        // 從 Button 當中的 data-user-coupon 屬性取得 user
+        // 取得 user 列表
         var userCoupon = JSON.parse(button.getAttribute('data-user-coupon'));
-        // console.log(userCoupon);
+        // console.log("我是user:" + userCoupon);
+
         // Button 選取到的 shop ID 放入置 id 為 selectedShop 的 Input
         selectedShopIdInput.value = selectedShopId;
 
@@ -42,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var renderedCouponIds = [];
         userCoupon.forEach((item) => {
             // console.log(item);
-            if (item.shop_id == selectedShopId && !renderedCouponIds.includes(item.coupon_id)) { // includes 篩選重複的值
+            if (item.shop_id == selectedShopId && item.user_coupon_id == userCouponId &&!renderedCouponIds.includes(item.coupon_id)) { // includes 篩選重複的值
                 var couponName = document.createElement('span');
                 couponName.textContent = item.coupon_name;
                 couponNameList.appendChild(couponName);
@@ -89,7 +90,7 @@ function updateCouponUsed() {
         success: function (response) {
             alert('優惠券已成功使用');
 
-            // 獲取優惠券名稱、說明和到期日的元素節點
+            // 指定優惠券名稱、說明和到期日div容器
             var couponNameList = document.querySelector('#couponNameList');
             var couponTextList = document.querySelector('#coupontextList');
             var couponExpireList = document.querySelector('#couponExpireList');
