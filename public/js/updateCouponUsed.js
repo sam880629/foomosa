@@ -10,15 +10,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // 取得 shop_id
         var selectedShopId = button.getAttribute('data-shop-id');
-        console.log("我是店家ID: " + selectedShopId);
+        // console.log("我是店家ID: " + selectedShopId);
 
         // 取得 coupon-id
         var userCouponId = button.getAttribute('data-user-coupon-id');
-        console.log("我是user-coupon-id: " + userCouponId);
+        // console.log("我是user-coupon-id: " + userCouponId);
 
         // 取得 user 列表
         var userCoupon = JSON.parse(button.getAttribute('data-user-coupon'));
-        // console.log("我是user:" + userCoupon);
+        // console.log(userCoupon);
 
         // Button 選取到的 shop ID 放入置 id 為 selectedShop 的 Input
         selectedShopIdInput.value = selectedShopId;
@@ -42,8 +42,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         var renderedCouponIds = [];
         userCoupon.forEach((item) => {
-            console.log(item);
-            if (item.shop_id == selectedShopId && item.user_coupon_id == userCouponId) { // includes 篩選重複的值
+            // console.log(item);
+            if (item.shop_id == selectedShopId && item.user_coupon_id == userCouponId) {
                 var couponName = document.createElement('span');
                 couponName.textContent = item.coupon_name;
                 couponNameList.appendChild(couponName);
