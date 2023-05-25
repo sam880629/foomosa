@@ -25,7 +25,7 @@ api.post('/rate', express.json(), (req, res) => {
                 return;
             }
             console.log("會員編號", results.insertId);
-            res.status(200).json({ message: '評論成功，獲得積分10分' });
+            res.status(200).json({ message: '評論成功' });
         });
 })
 

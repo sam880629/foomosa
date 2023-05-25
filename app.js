@@ -70,6 +70,9 @@ app.use('/restaurant/insert', restaurantInsert);
 const restaurantSelect = require('./CRUD/restaurantCRUD/restaurantSelect.js');
 app.use('/restaurant/select', restaurantSelect);
 
+const restaurantUpdate = require('./CRUD/restaurantCRUD/restaurantUpdate.js');
+app.use('/restaurant/update', restaurantUpdate);
+
 // 導入季節路由
 const seasonSelect = require('./CRUD/seasonCRUD/seasonSelect.js');
 app.use('/season/select', seasonSelect);
