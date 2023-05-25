@@ -6,37 +6,44 @@ document.getElementById('pointUsedButton').addEventListener('click', function ()
   var user_id = document.getElementById('user_id').value;
 
   // 發送 Ajax 請求到伺服器以更新用戶積分
-  $.ajax({
-    url: '/membership/update/updateUserPoints',
-    type: 'POST',
-    data: {
-      user_id: user_id,
-      pointsToDeduct: 10
-    },
-    success: function (data) {
-      var newPoints = data.newPoints;
-      // console.log("我是newPoints: " + newPoints);
-      // 從後端接收newPoints
-      if (newPoints < 0) {
-        // 如果新的積分數量小於0，顯示錯誤訊息並返回
-        alert('積分不足，無法兌換！');
-        return;
+  var userPoint = document.querySelector("#user_point").innerHTML;
+  // console.log(userPoint);
+  if ( userPoint>9 ){
+    $.ajax({
+      url: '/membership/update/updateUserPoints',
+      type: 'POST',
+      data: {
+        user_id: user_id,
+        pointsToDeduct: 10
+      },
+      success: function (data) {
+        var newPoints = data.newPoints;
+        // console.log("我是newPoints: " + newPoints);
+        // 從後端接收newPoints
+        // if (newPoints < 0) {
+        //   // 如果新的積分數量小於0，顯示錯誤訊息並返回
+        //   alert('積分不足，無法兌換！');
+        //   return;
+        // }
+  
+        // 更新前端顯示的積分
+        alert("兌換積分完成!!");
+        $('.user_Points').html('我的積分點數 : ' + newPoints + '點');
+  
+        // 在積分成功更新後，設定已經進行過積分兌換
+        hasExchangedPoints = true;
+  
+      },
+      error: function (err) {
+        // 處理伺服器端錯誤
+        alert('發生錯誤，請稍後再試！');
+        console.log(err);
       }
-
-      // 更新前端顯示的積分
-      alert("兌換積分完成!!");
-      $('.user_Points').html('我的積分點數 : ' + newPoints + '點');
-
-      // 在積分成功更新後，設定已經進行過積分兌換
-      hasExchangedPoints = true;
-
-    },
-    error: function (err) {
-      // 處理伺服器端錯誤
-      alert('發生錯誤，請稍後再試！');
-      console.log(err);
-    }
-  });
+    });
+  } else {
+    alert('積分不足，無法兌換！');
+    return;
+  }
 });
 
 

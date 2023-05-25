@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 //-- 我的評論 update $.ajax 請求
 updateCommentText = (button) => {
-    console.log("我的評論寫入成功!");
+    // console.log("我的評論寫入成功!");
     const shopId = button.getAttribute('data-shop-id');
     var commentText = document.querySelector('#message-text').value;
 

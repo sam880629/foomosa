@@ -19,10 +19,12 @@ router.post('/coupon_insert', function(req, res) {
         res.send({ status: 'error' });
       } else {
         // 如果 coupon code 存在於 coupon_list 表中，新增一筆 coupon 紀錄到 coupon 表中
-        const userId = req.body.user_id;
-        const couponId = results[0].coupon_id;
+        const user_id = req.body.user_id;
+        const coupon_id = results[0].coupon_id;
+        console.log(user_id);
+        console.log(coupon_id);
         config.query('INSERT INTO coupon (user_id, coupon_id, coupon_used_date) VALUES (?, ?, null)', 
-          [userId, couponId], 
+          [user_id, coupon_id], 
           function (error, results) {
             if (error) {
               console.error('新增coupon失敗', error);
