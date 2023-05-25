@@ -171,7 +171,6 @@
             func.apply(context, args)
           }, delay)
         }
-      
       }
      
 

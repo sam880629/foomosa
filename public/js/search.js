@@ -124,17 +124,6 @@ $(function () {
     
     // ----------------------------------------------
 
-    // // 搜尋//按鍵keyup時顯示符合關鍵字的店家
-    // $('.header_content input').on('keyup', function () {
-    //     let wordToMatch = $('#storSearch_text').val();//取得關鍵字
-    //     //比對找到符合關鍵字的店家
-    //     selectShop = shopDatas.filter(shopdata => {
-    //         const regex = new RegExp(wordToMatch, 'gi');
-    //         return shopdata.shop_name && shopdata.shop_name.match(regex);
-    //     })
-    //     matchData(selectShop, wordToMatch);//執行渲染至頁面FC
-    // })
-
 
       // 搜尋//按鍵keyup時顯示符合關鍵字的店家
       $('.header_content input').on('keyup', 
