@@ -463,7 +463,7 @@ $(function () {
         })
     }
 
-    // 去抖動
+    //去抖動
     function debounce(func, delay){
         // timeout 初始值
         let timeout = null;
