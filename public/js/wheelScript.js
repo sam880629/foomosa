@@ -47,13 +47,13 @@ const finalValue = document.getElementById("final-value");
 
 // 最小和最大角度值陣列
 const rotationValues = [
-  { minDegree: 0, maxDegree: 30, value: null },
-  { minDegree: 31, maxDegree: 90, value: null },
+  { minDegree: 0, maxDegree: 30, value: "不能蔬" },
+  { minDegree: 31, maxDegree: 90, value: "喫起來" },
   { minDegree: 91, maxDegree: 150, value: "添好運" },
-  { minDegree: 151, maxDegree: 210, value: null },
+  { minDegree: 151, maxDegree: 210, value: "五銅號" },
   { minDegree: 211, maxDegree: 270, value: null },
   { minDegree: 271, maxDegree: 330, value: "NENE" },
-  { minDegree: 331, maxDegree: 360, value: null },
+  { minDegree: 331, maxDegree: 360, value: "不能蔬" },
 ];
 
 // 每塊的尺寸大小
@@ -77,8 +77,8 @@ let myChart = new Chart(wheel, { //-- //-- new Chart() 是 Chart.js 函式庫提
   type: "pie",
   data: {
     // 標籤（要在圖表上顯示的值）
-    // labels: ["沒中1", "沒中2", "優惠3", "沒中4", "沒中5", "優惠6"], //-- 轉盤上顯示文字
-    labels: ["可惜", "可惜", "中獎!", "可惜", "可惜", "中獎!"], //-- 轉盤上顯示文字
+    // labels: ["喫起來", "不能蔬", "NENE", "null", "五銅號", "添好運"], //-- 對照
+    labels: ["中獎!", "中獎!", "中獎!", "可惜", "中獎!", "中獎!"], //-- 對照
     // 資料集 | 圓餅圖的設置
     datasets: [
       {
@@ -217,6 +217,7 @@ const valueGenerator = async (angleValue) => {
         });
         break;
 
+      //-- NENE 中獎
       } else if (i.value == "NENE") {
         finalValue.innerHTML = `<p>恭喜獲得NENE CHICKEN優惠券!!</p>`;
         history_text = "恭喜獲得NENE CHICKEN優惠券!!";
@@ -245,6 +246,162 @@ const valueGenerator = async (angleValue) => {
         });
 
         //-- 中獎結果是 NENE CHICKEN 的 Coupon Code 的 insert $.ajax 請求
+        $.ajax({
+          type: 'POST',
+          url: '/membership/insert/coupon_insert',
+          data: {
+            coupon_code: wheelInsertCode,
+            user_id: user_id,
+          },
+          success: function (response) {
+            // 如果後端回傳success訊息，代表coupon新增成功
+            if (response.status === 'success') {
+              alert('優惠券新增成功!!');
+              window.location.reload(); // 重新載入頁面以顯示更新後的優惠券列表
+            } else {
+              // 如果後端回傳error訊息，代表coupon新增失敗
+              alert('優惠券新增失敗');
+            }
+          },
+          error: function (error) {
+            console.error('新增失敗', error);
+          }
+        });
+        break;
+
+      //-- 寒山居蔬食 中獎
+      } else if (i.value == "不能蔬") {
+        finalValue.innerHTML = `<p>恭喜獲得寒山居蔬食優惠券!!</p>`;
+        history_text = "恭喜獲得寒山居蔬食優惠券!!";
+        spinBtn.disabled = false;
+        wheelInsertCode = await new Promise(resolve => setTimeout(() => resolve(i.value), 100));
+        // console.log(wheelInsertCode);
+
+        //-- 中獎結果是 寒山居蔬食 的歷史訊息的 insert $.ajax 請求
+        $.ajax({
+          type: 'POST',
+          url: '/membership/insert/insertHistoryText',
+          data: {
+            user_id: user_id,
+            history_text: history_text
+          },
+          success: function (response) {
+            // 請求成功
+            console.log('插入 history_text 成功!!');
+            alert(history_text);
+            window.location.reload(); // 重新載入頁面以顯示更新後的評論
+          },
+          error: function (error) {
+            // 清求失敗
+            console.error('插入 history_text 失敗', error);
+          }
+        });
+
+        //-- 中獎結果是 寒山居蔬食 的 Coupon Code 的 insert $.ajax 請求
+        $.ajax({
+          type: 'POST',
+          url: '/membership/insert/coupon_insert',
+          data: {
+            coupon_code: wheelInsertCode,
+            user_id: user_id,
+          },
+          success: function (response) {
+            // 如果後端回傳success訊息，代表coupon新增成功
+            if (response.status === 'success') {
+              alert('優惠券新增成功!!');
+              window.location.reload(); // 重新載入頁面以顯示更新後的優惠券列表
+            } else {
+              // 如果後端回傳error訊息，代表coupon新增失敗
+              alert('優惠券新增失敗');
+            }
+          },
+          error: function (error) {
+            console.error('新增失敗', error);
+          }
+        });
+        break;
+
+      //-- 喫茶小舖 中獎
+      } else if (i.value == "喫起來") {
+        finalValue.innerHTML = `<p>恭喜獲得喫茶小舖優惠券!!</p>`;
+        history_text = "恭喜獲得喫茶小舖優惠券!!";
+        spinBtn.disabled = false;
+        wheelInsertCode = await new Promise(resolve => setTimeout(() => resolve(i.value), 100));
+        // console.log(wheelInsertCode);
+
+        //-- 中獎結果是 喫茶小舖 的歷史訊息的 insert $.ajax 請求
+        $.ajax({
+          type: 'POST',
+          url: '/membership/insert/insertHistoryText',
+          data: {
+            user_id: user_id,
+            history_text: history_text
+          },
+          success: function (response) {
+            // 請求成功
+            console.log('插入 history_text 成功!!');
+            alert(history_text);
+            window.location.reload(); // 重新載入頁面以顯示更新後的評論
+          },
+          error: function (error) {
+            // 清求失敗
+            console.error('插入 history_text 失敗', error);
+          }
+        });
+
+        //-- 中獎結果是 喫茶小舖 的 Coupon Code 的 insert $.ajax 請求
+        $.ajax({
+          type: 'POST',
+          url: '/membership/insert/coupon_insert',
+          data: {
+            coupon_code: wheelInsertCode,
+            user_id: user_id,
+          },
+          success: function (response) {
+            // 如果後端回傳success訊息，代表coupon新增成功
+            if (response.status === 'success') {
+              alert('優惠券新增成功!!');
+              window.location.reload(); // 重新載入頁面以顯示更新後的優惠券列表
+            } else {
+              // 如果後端回傳error訊息，代表coupon新增失敗
+              alert('優惠券新增失敗');
+            }
+          },
+          error: function (error) {
+            console.error('新增失敗', error);
+          }
+        });
+        break;
+
+      //-- 五銅號WooTEA 中獎
+      } else if (i.value == "五銅號") {
+        finalValue.innerHTML = `<p>恭喜獲得五銅號WooTEA優惠券!!</p>`;
+        history_text = "恭喜獲得五銅號WooTEA優惠券!!";
+        spinBtn.disabled = false;
+        wheelInsertCode = await new Promise(resolve => setTimeout(() => resolve(i.value), 100));
+        // console.log(wheelInsertCode);
+
+        //-- 中獎結果是 五銅號WooTEA 的歷史訊息的 insert $.ajax 請求
+        $.ajax({
+          type: 'POST',
+          url: '/membership/insert/insertHistoryText',
+          data: {
+            user_id: user_id,
+            history_text: history_text
+          },
+          success: function (response) {
+            // 請求成功
+            console.log('插入 history_text 成功!!');
+            alert(history_text);
+            window.location.reload(); // 重新載入頁面以顯示更新後的評論
+          },
+          error: function (error) {
+            // 清求失敗
+            console.error('插入 history_text 失敗', error);
+          }
+        });
+
+        //-- 中獎結果是 五銅號WooTEA 的 Coupon Code 的 insert $.ajax 請求
         $.ajax({
           type: 'POST',
           url: '/membership/insert/coupon_insert',
