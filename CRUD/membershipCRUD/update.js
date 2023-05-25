@@ -3,6 +3,32 @@ var router = express.Router(); //-- 呼叫路由方法
 
 var config = require("../config"); //-- 接收 config.js
 
+//-- 評論星星路由
+router.post("/commentStar", function (req, res) {
+  var userId = req.body.user_id;
+  var shopId = req.body.shop_id;
+  var comment_star = req.body.comment_star;
+
+  // 確定是否有接收符合的資料
+  if (!userId || !shopId || !comment_star) {
+    // console.log("收到無效資料");
+    return res.status(400).send("收到無效資料");
+  }
+
+  var sql = `UPDATE comment SET comment_star = ? WHERE user_id = ? AND shop_id = ?`;
+
+  config.query(sql, [comment_star, userId, shopId], function (err, result) {
+    if (err) {
+      // console.log("Update failed:", err);
+      return res.status(500).send("Update 失敗!");
+    } else {
+      // console.log("Update successful");
+      return res.status(200).send("Update 成功!");
+    }
+  });
+});
+
+
 //-- 登出按鈕路由
 router.post("/logout", function (req, res) {
 
@@ -10,7 +36,7 @@ router.post("/logout", function (req, res) {
     if (err) {
       console.log(err);
     } else {
-      res.json({status: 200});
+      res.json({ status: 200 });
       console.log("登出路由執行成功!");
     }
   });

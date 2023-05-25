@@ -5,31 +5,6 @@
   font-family: "Noto Sans TC", sans-serif;
 }
 
-/* 項目內容-可折疊樣式: */
-.Servicecollapsible {
-  background-color: #ffffff;
-  color: rgb(73, 73, 73);
-  cursor: pointer;
-  padding: 5px;
-  margin-bottom: 3px;
-  width: 100%;
-  border: none;
-  text-align: left;
-  outline: none;
-  font-size: 15px;
-  scale: 100%;
-  transition: scale 0.3s;
-}
-
-/* 內容 */
-.Servicecontent {
-  /* padding: 0 18px; */
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.2s ease-out;
-  background-color: #ffffff;
-  margin-bottom: 1px;
-}
 
 /* Body background */
 body {
@@ -56,31 +31,7 @@ div {
   border-radius: 4px;
 }
 
-/* 最外層玻璃容器 div */
-.bodt_Container {
-  height: 100%;
-  width: 100%;
-  padding-left: 45px;
-  padding-right: 45px;
-}
 
-/* Header */
-.header {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 15px;
-}
-
-/* Header Left LOGO */
-.Header_Left_LOGO {
-  transition: 0.2s;
-}
-
-/* Header Left LOGO hover */
-.Header_Left_LOGO:hover {
-  scale: 120%;
-  cursor: pointer;
-}
 
 /* Left Column Container */
 .left_Column {
@@ -114,7 +65,7 @@ div {
 }
 
 /* User Information 游標 style */
-.user_Information:hover::before {
+/* .user_Information:hover::before {
   opacity: 1;
 }
 
@@ -142,7 +93,7 @@ div {
   z-index: -2;
   border-radius: 20px;
 }
-
+*/
 .user_Information_Button {
   height: 30px;
   width: 30px;
@@ -187,6 +138,7 @@ div {
   border-bottom: solid 1px rgb(233, 151, 0);
   color: rgb(233, 151, 0);
   display: inline-block;
+  white-space: nowrap;
 }
 
 /* Points Exchange */
@@ -201,7 +153,6 @@ div {
   position: relative;
 }
 
-/* Points Exchange 游標 style */
 .points_Exchange:hover {
   background-color: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
@@ -213,6 +164,8 @@ div {
   align-items: center;
 }
 
+/* Points Exchange 游標 style */
+/*
 .points_Exchange:hover::before {
   opacity: 1;
 }
@@ -240,7 +193,7 @@ div {
   background: radial-gradient(200px circle at var(--mouse-x) var(--mouse-y), rgba(255, 136, 0, 0.3), rgba(255, 136, 0, 0.2), transparent);
   z-index: -2;
   border-radius: 20px;
-}
+} */
 
 /* Points Exchange Image */
 .points_Exchange_Image img {
@@ -270,6 +223,7 @@ div {
 /* Exchange History */
 .exchange_History {
   padding-left: 30px;
+  padding-top: 7px;
 }
 
 /* Exchange History Item */
@@ -295,7 +249,6 @@ div {
   padding: 5px 20px 10px 20px;
 }
 
-/* my_Coupon 游標 style */
 .my_Coupon:hover {
   background-color: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
@@ -306,7 +259,8 @@ div {
   align-items: center;
 }
 
-.my_Coupon:hover::before {
+/* my_Coupon 游標 style */
+/* .my_Coupon:hover::before {
   opacity: 1;
 }
 
@@ -334,7 +288,9 @@ div {
   z-index: -2;
   border-radius: 20px;
 }
+*/
 
+/* My Coupon Container */
 .coupon-Container {
   height: 120px;
   overflow: auto;
@@ -423,7 +379,6 @@ div {
   position: relative;
 }
 
-/* middle_Column_Container 游標 style */
 .middle_Column_Container:hover {
   height: 88vh;
   background-color: rgba(255, 255, 255, 0.1);
@@ -433,7 +388,8 @@ div {
   padding: 18px 20px 0px 20px;
 }
 
-.middle_Column_Container:hover::before {
+/* middle_Column_Container 游標 style */
+/* .middle_Column_Container:hover::before {
   opacity: 1;
 }
 
@@ -461,7 +417,9 @@ div {
   z-index: -2;
   border-radius: 20px;
 }
+*/
 
+/* Favorites Food Container */
 .favorites_Food_Container {
   height: 90%;
   overflow: auto;
@@ -493,7 +451,8 @@ div {
   right: 15px;
   top: 15px;
 }
-.my_Comment_Button button {
+
+.my_Comment_Button>button {
   text-align: center;
   align-items: center;
   border-radius: 50%;
@@ -502,6 +461,8 @@ div {
   color: rgb(233, 62, 0);
   /* Drop Shadow */
   box-shadow: 0px 3px 3px #C6C6C6;
+  position: relative;
+  z-index: 999;
 }
 
 #CommentInput {
@@ -543,7 +504,6 @@ a > img:hover {
   position: relative;
 }
 
-/* right_Column_Container 游標 style */
 .right_Column_Container:hover {
   height: 88vh;
   background-color: rgba(255, 255, 255, 0.1);
@@ -553,7 +513,8 @@ a > img:hover {
   padding: 18px 20px 0px 20px;
 }
 
-.right_Column_Container:hover::before {
+/* right_Column_Container 游標 style */
+/* .right_Column_Container:hover::before {
   opacity: 1;
 }
 
@@ -580,7 +541,7 @@ a > img:hover {
   background: radial-gradient(200px circle at var(--mouse-x) var(--mouse-y), rgba(255, 136, 0, 0.3), rgba(255, 136, 0, 0.2), transparent);
   z-index: -2;
   border-radius: 20px;
-}
+} */
 
 /* My Comment Item */
 .my_Comment_Item {
@@ -604,12 +565,117 @@ a > img:hover {
   margin-bottom: 0;
 }
 
-/* Comment_Card_Date */
+/* Comment Card Date */
 .comment_Card_Date {
   margin-top: 0;
   font-size: 0.5rem;
   color: rgb(98, 98, 98);
 }
+
+.Favorites_Food_Card_A {
+  color: black;
+  text-decoration: none;
+}
+
+.Favorites_Food_Card_A :hover {
+  color: black;
+}
+
+/* Comment Star */
+.comment_Star_Container {
+  display: flex;
+  justify-content: flex-start;
+  margin: 0px;
+  position: relative;
+  z-index: 999;
+}
+
+.comment_Star {
+  margin: 0px;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 0.1rem;
+  --stroke: #777;
+  --fill: #ffc73a;
+}
+
+.comment_Star input {
+  appearance: unset;
+}
+
+.comment_Star label {
+  cursor: pointer;
+}
+
+.comment_Star svg {
+  width: 1.4rem;
+  height: 1.4rem;
+  overflow: visible;
+  fill: transparent;
+  stroke: var(--stroke);
+  stroke-linejoin: bevel;
+  stroke-dasharray: 12;
+  animation: idle 4s linear infinite;
+  transition: stroke 0.2s, fill 0.5s;
+}
+
+@keyframes idle {
+  from {
+    stroke-dashoffset: 24;
+  }
+}
+
+.comment_Star label:hover svg {
+  stroke: var(--fill);
+}
+
+.comment_Star input:checked ~ label svg {
+  transition: 0s;
+  animation: idle 4s linear infinite, yippee 0.75s backwards;
+  fill: var(--fill);
+  stroke: var(--fill);
+  stroke-opacity: 0;
+  stroke-dasharray: 0;
+  stroke-linejoin: miter;
+  stroke-width: 8px;
+}
+
+@keyframes yippee {
+  0% {
+    transform: scale(1);
+    fill: var(--fill);
+    fill-opacity: 0;
+    stroke-opacity: 1;
+    stroke: var(--stroke);
+    stroke-dasharray: 10;
+    stroke-width: 1px;
+    stroke-linejoin: bevel;
+  }
+
+  30% {
+    transform: scale(0);
+    fill: var(--fill);
+    fill-opacity: 0;
+    stroke-opacity: 1;
+    stroke: var(--stroke);
+    stroke-dasharray: 10;
+    stroke-width: 1px;
+    stroke-linejoin: bevel;
+  }
+
+  30.1% {
+    stroke: var(--fill);
+    stroke-dasharray: 0;
+    stroke-linejoin: miter;
+    stroke-width: 8px;
+  }
+
+  60% {
+    transform: scale(1.2);
+    fill: var(--fill);
+  }
+}
+
 
 /* wheel */
 .wheel-wrapper {
@@ -684,4 +750,4 @@ a > img:hover {
   .wheel-wrapper {
     font-size: 12px;
   }
-}/*# sourceMappingURL=membership.css.map */
+}
