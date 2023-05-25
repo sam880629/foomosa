@@ -498,7 +498,7 @@ $(function () {
 
     function random_number(){
         var rate = Math.random();
-        var z = (rate * 3 + 2.5).toFixed(1); //亂數從3起跳
+        var z = (rate * 3 + 3.8).toFixed(1); //亂數從4起跳
         var result = (z < 5) ? z : 5;
         return  result 
     }
