@@ -42,8 +42,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         var renderedCouponIds = [];
         userCoupon.forEach((item) => {
-            // console.log(item);
-            if (item.shop_id == selectedShopId && item.user_coupon_id == userCouponId &&!renderedCouponIds.includes(item.coupon_id)) { // includes 篩選重複的值
+            console.log(item);
+            if (item.shop_id == selectedShopId && item.user_coupon_id == userCouponId) { // includes 篩選重複的值
                 var couponName = document.createElement('span');
                 couponName.textContent = item.coupon_name;
                 couponNameList.appendChild(couponName);
