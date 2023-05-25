@@ -50,6 +50,14 @@ api.get('/businessAnalytics/all', function (req, res) {
     }
 })
 
+// 登入
+api.get('/logout', function (req, res) {
+    // 刪除登入的 session
+    delete req.session.shopId;
+    delete req.session.shopLogo;
+    res.end();
+})
+
 /* ************************************** 
 ********    家寧的區域結束     ***********
 ************************************** */
@@ -65,8 +73,8 @@ api.get('/businessAnalytics/all', function (req, res) {
 api.get('/businessAnalytics/self', function (req, res) {
     // // 判斷現在是不是已登入 測試時先拿掉
     if (req.session.shopId) {
-    res.sendFile(process.cwd() + '/pages/businessAnalytics.html');
-    //res.sendFile(__dirname + '/public/css/backstage_share_frame.css');
+        res.sendFile(process.cwd() + '/pages/businessAnalytics.html');
+        //res.sendFile(__dirname + '/public/css/backstage_share_frame.css');
     } else {
         res.send(`
         <p id="redirectMsg">請登入，3秒後自動跳轉至登入頁...</p>
@@ -87,7 +95,7 @@ api.get('/businessAnalytics/self', function (req, res) {
 api.get('/activity', function (req, res) {
     // // 判斷現在是不是已登入 測試時先拿掉
     if (req.session.shopId) {
-    res.sendFile(process.cwd() + '/pages/activity.html');
+        res.sendFile(process.cwd() + '/pages/activity.html');
     } else {
         res.send(`
         <p id="redirectMsg">請登入，3秒後自動跳轉至登入頁...</p>
@@ -108,7 +116,7 @@ api.get('/activity', function (req, res) {
 api.get('/menu', function (req, res) {
     // // 判斷現在是不是已登入 測試時先拿掉
     if (req.session.shopId) {
-    res.sendFile(process.cwd() + '/pages/menu.html');
+        res.sendFile(process.cwd() + '/pages/menu.html');
     } else {
         res.send(`
         <p id="redirectMsg">請登入，3秒後自動跳轉至登入頁...</p>

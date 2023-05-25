@@ -201,3 +201,18 @@ $('.btnContainer>button').eq(0).on('click', () => {
         }
     })
 })
+
+$(".btnContainer>button").eq(1).on('click', ()=>{
+    $.ajax({
+        url: "/backstage/logout",
+        method: "GET",
+        success: function () {
+            window.location.href = '/index';
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            // 發生錯誤時執行的動作
+            console.log(textStatus, errorThrown); // 在console中印出錯誤訊息
+        }
+    })
+    console.log("登出");
+})
