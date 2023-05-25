@@ -45,18 +45,24 @@
 // });
 
 
-// 獲取 #couponCode 輸入框的值
+// 獲取使用者輸入的值 #couponCode 
 var couponInput = document.getElementById('couponCode');
-var couponList = document.getElementById('codeButton').getAttribute("data-user-coupon");
-var coupons = JSON.parse(couponList);
+// 獲取按鈕 #codeButton 輸入框的值
+let couponList = $("#codeButton").attr("data-user-coupon");
+// var couponList = document.getElementById('codeButton').getAttribute("data-user-coupon");
+var coupons = [];
+// console.log(couponList);
 
 // 綁定 #couponCode 輸入框的 keypress 事件
+if (couponList != undefined){
+    coupons = JSON.parse(couponList);
+}
 couponInput.addEventListener('keypress', function (event) {
     // 如果按下的是Enter鍵則會觸發
     if (event.key === "Enter") {
         // 獲取輸入的coupon code
         var couponInputCode = couponInput.value;
-        console.log("我是使用者輸入的: "+couponInputCode);
+        // console.log("我是使用者輸入的: "+couponInputCode);
 
         // 判斷是否已經輸入過該優惠券
         var couponExists = false;
@@ -74,7 +80,7 @@ couponInput.addEventListener('keypress', function (event) {
         } else {
             // 獲取user_id
             var user_id = $('#user_id').val();
-            console.log(user_id);
+            // console.log(user_id);
 
             // 發送POST請求，將coupon code傳到後端
             $.ajax({

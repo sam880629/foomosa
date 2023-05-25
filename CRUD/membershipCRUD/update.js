@@ -60,7 +60,7 @@ router.put("/comment_Favorite/:id", function (req, res) {
         res.status(500).send("更新資料錯誤");
         // res.send("更新資料錯誤");
       } else {
-        console.log("更新資料成功");
+        // console.log("更新資料成功");
         res.status(200).send("更新資料成功");
         // res.render("membership");
         // res.send("更新資料成功");
@@ -86,7 +86,7 @@ router.put("/comment_text/:id", function (req, res) {
         console.log("更新資料錯誤：", err);
         res.send("更新資料錯誤");
       } else {
-        console.log("更新資料成功");
+        // console.log("更新資料成功");
         res.send("更新資料成功");
       }
       // console.log(results); //-- 查詢結果
@@ -112,7 +112,7 @@ router.put('/coupon_used/', function (req, res) {
         console.error("更新失敗", error);
         res.status(500).send("更新資料錯誤" + error.message);
       } else {
-        console.log("更新資料成功");
+        // console.log("更新資料成功");
         res.status(200).send("更新資料成功");
       }
     });
@@ -131,7 +131,7 @@ router.post('/updateUserPoints/', function (req, res) {
       console.error("更新失敗", err);
       res.status(500).send("更新資料錯誤" + err.message);
     } else {
-      console.log("更新資料成功");
+      // console.log("更新資料成功");
       // 再次查詢使用者資訊以獲取新的積分
       var sql = `SELECT * FROM user WHERE user_id = ?`;
       config.query(sql, [user_id], function (err, results, fields) {
@@ -139,7 +139,7 @@ router.post('/updateUserPoints/', function (req, res) {
           console.error("查詢失敗", err);
           res.status(500).send("查詢資料錯誤" + err.message);
         } else {
-          console.log("查詢資料成功");
+          // console.log("查詢資料成功");
           // 從查詢結果中取得新的積分數量並回傳給前端
           var newPoints = results[0].user_point;
           // console.log("我是newPoints: " + newPoints);
@@ -164,7 +164,7 @@ router.put('/updateUserName/', function (req, res) {
       console.error("更新失敗", err);
       res.status(500).send("更新資料錯誤" + err.message);
     } else {
-      console.log("更新資料成功");
+      // console.log("更新資料成功");
       res.status(200).send("更新資料成功");
     }
   });
