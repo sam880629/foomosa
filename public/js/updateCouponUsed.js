@@ -89,22 +89,6 @@ function updateCouponUsed() {
         }),
         success: function (response) {
             alert('優惠券已成功使用');
-
-            // 指定優惠券名稱、說明和到期日div容器
-            var couponNameList = document.querySelector('#couponNameList');
-            var couponTextList = document.querySelector('#coupontextList');
-            var couponExpireList = document.querySelector('#couponExpireList');
-
-            // 分別獲取優惠券名稱、說明和到期日的值
-            var couponName = response[0].coupon_name;
-            var couponText = response[0].coupon_text;
-            var couponExpire = response[0].coupon_expire;
-
-            // 將優惠券名稱、說明和到期日顯示在元素節點中
-            couponNameList.innerHTML = '優惠券名稱：' + couponName;
-            couponTextList.innerHTML = '優惠券說明：' + couponText;
-            couponExpireList.innerHTML = '優惠到期日：' + couponExpire;
-
             window.location.reload(); // 重新載入頁面以顯示更新後的評論
         },
         error: function (error) {
