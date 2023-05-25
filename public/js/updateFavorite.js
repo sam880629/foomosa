@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function () { //-- DOMContentLoade
 });
 
 //--我的最愛 update $.ajax 請求
-
 updateFavorite = (button) => {
     const shop_id = button.getAttribute("data-shop-id");
     const comment_favorite = button.getAttribute("data-comment-favorite") == 1 ? 0 : 0;
@@ -49,3 +48,34 @@ updateFavorite = (button) => {
         }
     });
 }
+
+//--星星評論 update $.ajax 請求
+document.querySelectorAll('.comment-star-input').forEach(function(input) {
+    input.addEventListener('change', function() {
+        let id = $(this).attr('id');
+        let shop_id = $("#shop_id-" + id).val();
+        let user_id = $("#user_id-" + id).val();
+        let comment_star = $(this).val();
+        
+        $.ajax({
+          url: '/membership/update/commentStar',  // 你的路由
+          method: 'POST',
+          data: {
+            shop_id: shop_id,
+            user_id: user_id,
+            comment_star: comment_star
+          },
+          success: function(response) {
+            setTimeout(function() {
+                alert("星星評論更新成功!");
+                // console.log(response);
+              }, 700);
+          },
+          error: function(error) {
+            console.error(error);
+            // 在这里处理错误。例如，你可能想在页面上显示一个消息，告诉用户更新失败。
+          }
+        });
+    });
+});
+

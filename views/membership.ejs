@@ -30,8 +30,6 @@
     <div class="container-fluid ps-5 pe-5">
         <!-- Outermost Glass Container div -->
         <div class="row m-1 m-lg-3 body_Container">
-            <!-- Navbar Button -->
-
             <!-- Left Column Container -->
             <div class="col-12 col-xl-4 col-md-6 left_Column">
                 <!-- Left Column Container -->
@@ -40,7 +38,7 @@
                     <div class="col-12 user_Information">
                         <div class="row align-items-center">
                             <!-- 使用者照片&名稱&積分剩餘點數 -->
-                            <div class="col-8">
+                            <div class="col-7">
                                 <div class="row ps-3 pt-3">
                                     <div class="col-3">
                                         <!-- User Information image -->
@@ -50,7 +48,7 @@
                                             <input type="file" name="avatar" id="avatarInput">
                                         </form>
                                     </div>
-                                    <div class="row col-9">
+                                    <div class="row col-9 ps-4">
                                         <div class="col-12 mb-3 ms-3">
                                             <input type="hidden" id="user_id" value="<%= user_id %>">
                                             <input type="text" id="username" class="username-input"
@@ -72,7 +70,7 @@
                                 </div>
                             </div>
                             <!-- 首頁&登出按鈕 -->
-                            <div class="col-4 text-end pe-4">
+                            <div class="col-5 text-end pe-4">
                                 <span class="expandedButtons"></span>
                                 <button class="user_Information_Button" onclick="toggleButtons()">
                                     <i class="bi bi-list"></i>
@@ -186,6 +184,12 @@
                 </div>
             </div>
 
+            <script>
+                document.querySelector("#couponCode").addEventListener("focus", function () {
+                    this.value = "閣樓炸雞";
+                });
+            </script>
+
             <!-- Coupon Input Insert $.ajax 請求 -->
             <script src="/js/couponInputInsert.js"></script>
 
@@ -232,30 +236,55 @@
                     </div>
                     <!-- Scrollbar & Favorites Food Container -->
                     <div class="col-12 scrollbar pt-1 favorites_Food_Container ps-4 pe-4">
-                        <% for(var i=0; i<user[0].length; i++) { %>
-                            <% if(user[0][i].comment_favorite==1) { %>
+                        <% for(var i=0; i<user_comment.length; i++) { %>
+                            <% if(user_comment[i].comment_favorite==1) { %>
                                 <!-- Card -->
                                 <div class="card card_style mb-3" style="background: linear-gradient(230deg, transparent 30%, rgba(260, 255, 255, 0.8) 50%), url('<%= user[0][i].shop_preview_img %>'); 
-                                            background-repeat: no-repeat; 
-                                            background-size: cover;">
-                                    <!-- --.card-body:內容 -->
+                                                                         background-repeat: no-repeat; 
+                                                                         background-size: cover;">
+                                    <!-- --Favorites Food card -->
                                     <div class="card-body">
                                         <h6 class="card-title">
-                                            <%= user[0][i].shop_name %>
+                                            <%= user_comment[i].shop_name %>
                                         </h6>
                                         <div class="row">
                                             <div class="col-12">
                                                 <p class="comment_Card_Date">
-                                                    <%= user[0][i].created_at %>
+                                                    <%= user_comment[i].created_at %>
                                                 </p>
                                             </div>
-                                            <!-- <div class="col-6">
-                                                <p class="card-text pt-3">87 comments</p>
-                                            </div> -->
+                                            <div class="col-6">
+                                                <!-- --comment Star -->
+                                                    <div class="comment_Star_Container">
+                                                        <div class="comment_Star">
+                                                          <% for (var j = 5; j >= 1; j--) { %>
+                                                            <!-- 將每個星星評論設定專屬ID -->
+                                                            <% var uniqueId = `star-${i}-${j}`; %>
+                                                            <!-- 是否與使用者的評論數相等，有的話就會checked -->
+                                                            <% var commentStar = user_comment[i]?.comment_star === j ? 'checked' : ''; %>
+                                                            <!-- 星星評論本人 -->
+                                                            <input class="comment-star-input" 
+                                                                   value="<%= j %>" 
+                                                                   name="star-radio-<%= i %>" 
+                                                                   id="<%= uniqueId %>" 
+                                                                   type="radio" <%= commentStar %>>
+                                                            <label for="<%= uniqueId %>">
+                                                              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" pathLength="360"></path>
+                                                              </svg>
+                                                            </label>
+                                                            <input type="hidden" id="<%= 'shop_id-' + uniqueId %>" value="<%= user_comment[i].shop_id %>">
+                                                            <input type="hidden" id="<%= 'user_id-' + uniqueId %>" value="<%= user_id %>">
+                                                          <% } %>
+                                                        </div>
+                                                      </div>
+                                                <a class="stretched-link"
+                                                    href="/restaurant/<%= user_comment[i].shop_id %>"></a>
+                                            </div>
                                             <div class="col-12 card-text text-end my_Comment_Button">
                                                 <button data-bs-target="#favoritesButton" data-bs-toggle="modal"
-                                                    data-shop-id="<%= user[0][i].shop_id %>"
-                                                    data-comment-favorite="<%= user[0][i].comment_favorite %>">
+                                                    data-shop-id="<%= user_comment[i].shop_id %>"
+                                                    data-comment-favorite="<%= user_comment[i].comment_favorite %>">
                                                     <i class="bi bi-suit-heart-fill"></i>
                                                 </button>
                                             </div>
@@ -301,7 +330,7 @@
                         <!-- Comment Card -->
                         <% for(var i=0; i<user_comment.length; i++) { %>
                             <!-- 評論內容不等於 null & 空字串 -->
-                            <% if(user_comment[i].comment_text!==null && user_comment[i].comment_text!=="") { %>
+                            <% if(user_comment[i].comment_text!==null && user_comment[i].comment_text!=="" ) { %>
                                 <div class="card comment_Card_Style mb-3">
                                     <!-- card-body:內容 -->
                                     <div class="card-body">
@@ -325,19 +354,18 @@
                                                 </div>
                                                 <!-- My Comment Button -->
                                                 <div class="col-12 card-text text-end my_Comment_Button">
-                                                    <button class="CommentTextButton"
-                                                            data-bs-target="#CommentButton" 
-                                                            data-bs-toggle="modal"
-                                                            data-user-comment-text = "<%= user_comment[i].comment_text %>"
-                                                            data-shop-id="<%= user_comment[i].shop_id %>"><i
+                                                    <button class="CommentTextButton" data-bs-target="#CommentButton"
+                                                        data-bs-toggle="modal"
+                                                        data-user-comment-text="<%= user_comment[i].comment_text %>"
+                                                        data-shop-id="<%= user_comment[i].shop_id %>"><i
                                                             class="bi bi-pencil-square"></i></button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            <% } %>
-                        <% } %>
+                                <% } %>
+                                    <% } %>
                     </div>
                 </div>
             </div>
