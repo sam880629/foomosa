@@ -214,5 +214,4 @@ $(".btnContainer>button").eq(1).on('click', ()=>{
             console.log(textStatus, errorThrown); // 在console中印出錯誤訊息
         }
     })
-    console.log("登出");
 })
