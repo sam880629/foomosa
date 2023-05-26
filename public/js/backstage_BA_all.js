@@ -577,21 +577,21 @@ function showPopulationChart(startDate, endDate, filter = false) {
 // 使用者分析
 $("#pills-buzzword-tab").on('click', function () {
     var data = [
-        { "x": "冰", "value": 109000 },
-        { "x": "肉鬆炸雞", "value": 98300 },
-        { "x": "肉桂捲", "value": 54400 },
-        { "x": "草仔粿奶茶", "value": 52700 },
-        { "x": "環保餐具優惠", "value": 42200 },
-        { "x": "煎餅果子", "value": 28100 },
-        { "x": "楊枝甘露", "value": 26700 },
-        { "x": "下午茶", "value": 26100 },
-        { "x": "蔥麵包", "value": 22900 },
-        { "x": "火鍋", "value": 22900 },
-        { "x": "母親節優惠", "value": 15000 },
-        { "x": "義大利麵", "value": 14800 },
-        { "x": "酸菜魚", "value": 12900 },
-        { "x": "芒果", "value": 12900 },
-        { "x": "章魚燒", "value": 12100 }
+        { "x": "冰", "value": 109453 },
+        { "x": "肉鬆炸雞", "value": 98370 },
+        { "x": "母親節優惠", "value": 64441 },
+        { "x": "草仔粿奶茶", "value": 52709 },
+        { "x": "肉桂捲", "value": 42294 },
+        { "x": "煎餅果子", "value": 28117 },
+        { "x": "楊枝甘露", "value": 26726 },
+        { "x": "下午茶", "value": 26163 },
+        { "x": "蔥麵包", "value": 22982 },
+        { "x": "火鍋", "value": 22901 },
+        { "x": "環保餐具優惠", "value": 15094 },
+        { "x": "義大利麵", "value": 14865 },
+        { "x": "酸菜魚", "value": 12972 },
+        { "x": "芒果", "value": 12933 },
+        { "x": "章魚燒", "value": 12159 }
     ];
     showBuzzwordChart(data);
     showBuzzwordTable(data);
