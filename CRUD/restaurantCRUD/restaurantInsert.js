@@ -11,7 +11,7 @@ api.post('/rate', express.json(), (req, res) => {
         res.status(401).send("請先登錄");
         return;
     }
-    console.log('更新的星星與評論:', req.body); //查看 req.body 的內容
+    // console.log('更新的星星與評論:', req.body); //查看 req.body 的內容
     const user_id = req.session.uid; // 前端登錄的 user_id
     // const user_id = 1; //測試用的用戶ID
     const { shop_id, rate, comment } = req.body; //解析 POST 請求的資料，解構賦值

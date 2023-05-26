@@ -121,6 +121,19 @@ $(function () {
             success: async function (response) {
                 alert(`${response.message}`); // 顯示後端返回的消息
                 await delay(100);
+                $.ajax({
+                    type: "PUT",
+                    url: "/restaurant/update/point",
+                    data: JSON.stringify({ point: 10 }),
+                    contentType: 'application/json',
+                    success: function (response) {
+                        console.log("積分更新成功");
+                        window.location.reload(); // 重新加載頁面
+                    },
+                    error: function (jqXHR) {
+                        console.error("更新積分失敗");
+                    }
+                });
                 window.location.reload(); // 重新加載頁面
             },
             error: function (jqXHR) {
