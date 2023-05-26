@@ -54,14 +54,23 @@ const finalValue = document.getElementById("final-value");
 
 // 最小和最大角度值陣列
 const rotationValues = [
-  { minDegree: 0, maxDegree: 30, value: "不能蔬" },
-  { minDegree: 31, maxDegree: 90, value: "喫起來" },
-  { minDegree: 91, maxDegree: 150, value: "添好運" },
-  { minDegree: 151, maxDegree: 210, value: "五銅號" },
+  { minDegree: 0, maxDegree: 30, value: "NENE" },
+  { minDegree: 31, maxDegree: 90, value: "NENE" },
+  { minDegree: 91, maxDegree: 150, value: "NENE" },
+  { minDegree: 151, maxDegree: 210, value: "NENE" },
   { minDegree: 211, maxDegree: 270, value: null },
   { minDegree: 271, maxDegree: 330, value: "NENE" },
-  { minDegree: 331, maxDegree: 360, value: "不能蔬" },
+  { minDegree: 331, maxDegree: 360, value: "NENE" },
 ];
+// const rotationValues = [
+//   { minDegree: 0, maxDegree: 30, value: "不能蔬" },
+//   { minDegree: 31, maxDegree: 90, value: "喫起來" },
+//   { minDegree: 91, maxDegree: 150, value: "添好運" },
+//   { minDegree: 151, maxDegree: 210, value: "五銅號" },
+//   { minDegree: 211, maxDegree: 270, value: null },
+//   { minDegree: 271, maxDegree: 330, value: "NENE" },
+//   { minDegree: 331, maxDegree: 360, value: "不能蔬" },
+// ];
 
 // 每塊的尺寸大小
 const data = [16, 16, 16, 16, 16, 16];
@@ -227,7 +236,7 @@ const valueGenerator = async (angleValue) => {
       //-- NENE 中獎
       } else if (i.value == "NENE") {
         finalValue.innerHTML = `<p>恭喜獲得NENE CHICKEN優惠券!!</p>`;
-        history_text = "恭喜獲得NENE CHICKEN優惠券!!";
+        history_text = "恭喜獲得NENE優惠券!!";
         spinBtn.disabled = false;
         wheelInsertCode = await new Promise(resolve => setTimeout(() => resolve(i.value), 100));
         // console.log(wheelInsertCode);
